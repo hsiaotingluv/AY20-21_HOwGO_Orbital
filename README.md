@@ -1,4 +1,4 @@
-# orbital
+# Orbital project
 
 A new Flutter project.
 
