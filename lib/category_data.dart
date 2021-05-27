@@ -1,24 +1,45 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
+
+import './models/faculty.dart';
 
 import 'models/campus.dart';
 import 'models/building.dart';
 import 'models/room.dart';
 
 const CAMPUS_CATEGORIES = const [
-  Campus(title: 'Bukit Timah Campus'),
-  Campus(title: 'Kent Ridge Campus'),
-  Campus(title: 'Outram Campus'),
+  Campus(
+    title: 'Bukit Timah Campus',
+    image: 'assets/images/bukit-nus.png',
+  ),
+  Campus(
+    title: 'Kent Ridge Campus',
+    image: 'assets/images/utown_green.png',
+  ),
+  Campus(
+    title: 'Outram Campus',
+    image: 'assets/images/outram-nus.png',
+  ),
 ];
 
 const BUILDING_CATEGORIES = const [
   Building(
     title: 'COM 1',
+    faculty: 'School of Computing',
     campus: 'Kent Ridge Campus',
   ),
   Building(
     title: 'COM 2',
+    faculty: 'School of Computing',
     campus: 'Kent Ridge Campus',
+  ),
+];
+
+const FACULTY_CATEGORIES = const [
+  Faculty(
+    title: 'School of Computing',
+    campus: 'Kent Ridge Campus',
+    image: 'assets/images/soc.png',
   ),
 ];
 
@@ -28,14 +49,6 @@ const String socAddress =
 const ROOMS = const [
   // COM 1
   Room(
-    title: 'Embedded Systems Teaching Lab 2',
-    location: 'COM1-01-13',
-    building: 'COM 1',
-    address: socAddress,
-    nearbyBusStops: 'COM 2',
-    capacity: 24,
-  ),
-  Room(
     title: 'Embedded Systems Teaching Lab 1',
     location: 'COM1-01-14',
     building: 'COM 1',
@@ -44,12 +57,37 @@ const ROOMS = const [
     capacity: 24,
   ),
   Room(
-    title: 'Programming Lab 6',
-    location: 'COM1-01-20',
+    title: 'Embedded Systems Teaching Lab 2',
+    location: 'COM1-01-13',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 31,
+    capacity: 24,
+  ),
+
+  Room(
+    title: 'Seminar Room 1',
+    location: 'COM1-02-06',
+    building: 'COM 1',
+    address: socAddress,
+    nearbyBusStops: 'COM 2',
+    capacity: 200,
+  ),
+  Room(
+    title: 'Seminar Room 2',
+    location: 'COM1-02-04',
+    building: 'COM 1',
+    address: socAddress,
+    nearbyBusStops: 'COM 2',
+    capacity: 80,
+  ),
+  Room(
+    title: 'Seminar Room 3',
+    location: 'COM1-02-12',
+    building: 'COM 1',
+    address: socAddress,
+    nearbyBusStops: 'COM 2',
+    capacity: 80,
   ),
   Room(
     title: 'Seminar Room 5',
@@ -67,30 +105,7 @@ const ROOMS = const [
     nearbyBusStops: 'COM 2',
     capacity: 25,
   ),
-  Room(
-    title: 'Seminar Room 2',
-    location: 'COM1-02-04',
-    building: 'COM 1',
-    address: socAddress,
-    nearbyBusStops: 'COM 2',
-    capacity: 80,
-  ),
-  Room(
-    title: 'Cerebro@SoC',
-    location: 'COM1-02-05',
-    building: 'COM 1',
-    address: socAddress,
-    nearbyBusStops: 'COM 2',
-    capacity: 70,
-  ),
-  Room(
-    title: 'Seminar Room 1',
-    location: 'COM1-02-06',
-    building: 'COM 1',
-    address: socAddress,
-    nearbyBusStops: 'COM 2',
-    capacity: 200,
-  ),
+
   Room(
     title: 'Seminar Room 7',
     location: 'COM1-02-07',
@@ -124,13 +139,14 @@ const ROOMS = const [
     capacity: 42,
   ),
   Room(
-    title: 'Seminar Room 3',
-    location: 'COM1-02-12',
+    title: 'Cerebro@SoC',
+    location: 'COM1-02-05',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 80,
+    capacity: 70,
   ),
+
   Room(
     title: 'Video Conference Room',
     location: 'COM1-02-13',
@@ -140,12 +156,21 @@ const ROOMS = const [
     capacity: 60,
   ),
   Room(
-    title: 'Tutorial Room 11',
-    location: 'COM1-02-16',
+    title: 'Tutorial Room 5',
+    location: 'COM1-02-18',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 20,
+    capacity: 25,
+  ),
+
+  Room(
+    title: 'Tutorial Room 9',
+    location: 'COM2-01-08',
+    building: 'COM 2',
+    address: socAddress,
+    nearbyBusStops: 'COM 2',
+    capacity: 32,
   ),
   Room(
     title: 'Tutorial Room 10',
@@ -156,13 +181,14 @@ const ROOMS = const [
     capacity: 20,
   ),
   Room(
-    title: 'Tutorial Room 5',
-    location: 'COM1-02-18',
+    title: 'Tutorial Room 11',
+    location: 'COM1-02-16',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 25,
+    capacity: 20,
   ),
+
   Room(
     title: 'Datacomm & Parallel Computing Lab',
     location: 'COM1-B-02',
@@ -179,13 +205,14 @@ const ROOMS = const [
     nearbyBusStops: 'COM 2',
     capacity: 40,
   ),
+
   Room(
-    title: 'Programming Lab 3',
-    location: 'COM1-B-08',
+    title: 'Programming Lab 1',
+    location: 'COM1-B-12',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 25,
+    capacity: 48,
   ),
   Room(
     title: 'Programming Lab 2',
@@ -196,12 +223,12 @@ const ROOMS = const [
     capacity: 46,
   ),
   Room(
-    title: 'Programming Lab 5',
-    location: 'COM1-B-10',
+    title: 'Programming Lab 3',
+    location: 'COM1-B-08',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 23,
+    capacity: 25,
   ),
   Room(
     title: 'Programming Lab 4',
@@ -212,13 +239,22 @@ const ROOMS = const [
     capacity: 25,
   ),
   Room(
-    title: 'Programming Lab 1',
-    location: 'COM1-B-12',
+    title: 'Programming Lab 5',
+    location: 'COM1-B-10',
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
-    capacity: 48,
+    capacity: 23,
   ),
+  Room(
+    title: 'Programming Lab 6',
+    location: 'COM1-01-20',
+    building: 'COM 1',
+    address: socAddress,
+    nearbyBusStops: 'COM 2',
+    capacity: 31,
+  ),
+
   Room(
     title: 'IT Security & OS Lab',
     location: 'COM1-B-13',
@@ -229,14 +265,7 @@ const ROOMS = const [
   ),
 
   // COM 2
-  Room(
-    title: 'Tutorial Room 9',
-    location: 'COM2-01-08',
-    building: 'COM 2',
-    address: socAddress,
-    nearbyBusStops: 'COM 2',
-    capacity: 32,
-  ),
+
   Room(
     title: 'LT16',
     location: 'COM2',

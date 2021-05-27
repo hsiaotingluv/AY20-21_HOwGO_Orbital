@@ -15,7 +15,7 @@ class BuildingScreen extends StatefulWidget {
 }
 
 class _BuildingScreenState extends State<BuildingScreen> {
-  String campusTitle;
+  String facultyTitle;
   List<Building> displayedBuildings;
   var _loadedInitData = false;
 
@@ -30,9 +30,9 @@ class _BuildingScreenState extends State<BuildingScreen> {
     if (!_loadedInitData) {
       final routeArgs =
           ModalRoute.of(context).settings.arguments as Map<String, String>;
-      campusTitle = routeArgs['title'];
+      facultyTitle = routeArgs['title'];
       displayedBuildings = widget.availableBuildings.where((building) {
-        return building.campus.contains(campusTitle);
+        return building.faculty.contains(facultyTitle);
       }).toList();
       _loadedInitData = true;
     }
@@ -46,14 +46,14 @@ class _BuildingScreenState extends State<BuildingScreen> {
         title: const Text('Select a Building'),
       ),
       body: ListView.builder(
-        itemBuilder: (ctx, index) {
-          return BuildingItem(
-            title: displayedBuildings[index].title,
-            campus: displayedBuildings[index].campus,
-          );
-        },
-        itemCount: displayedBuildings.length,
-      ),
+          itemBuilder: (ctx, index) {
+            return BuildingItem(
+              title: displayedBuildings[index].title,
+              campus: displayedBuildings[index].campus,
+            );
+          },
+          itemCount: displayedBuildings.length,
+          padding: EdgeInsets.all(5)),
     );
   }
 }

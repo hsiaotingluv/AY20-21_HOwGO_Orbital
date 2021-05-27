@@ -27,14 +27,21 @@ class BuildingItem extends StatelessWidget {
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        padding: const EdgeInsets.all(15),
-        child: Text(title),
+        height: 100,
+        padding: const EdgeInsets.all(35),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
         decoration: BoxDecoration(
           border: Border.all(
             width: 2,
           ),
           borderRadius: BorderRadius.circular(15),
         ),
+        margin: EdgeInsets.all(5),
       ),
     );
   }
