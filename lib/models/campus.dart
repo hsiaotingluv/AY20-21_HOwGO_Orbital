@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Campus {
-  final String title;
+  final String name;
   final String image;
 
-  const Campus({@required this.title, this.image});
+  const Campus({
+    @required this.name,
+    this.image,
+  });
 }

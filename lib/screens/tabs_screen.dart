@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../models/room.dart';
-import './maps_screen.dart';
-import './favourites_screen.dart';
-import './timetable_screen.dart';
 import './campus_screen.dart';
+import './favourites_tabs_screen.dart';
+import './search_screen.dart';
+import './study_area_screen.dart';
 
 class TabsScreen extends StatefulWidget {
-  final List<Room> favouriteRooms;
-  final Function toggleFavourite;
-  final Function isFavourite;
-
-  TabsScreen(this.favouriteRooms, this.toggleFavourite, this.isFavourite);
-
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -27,20 +20,23 @@ class _TabsScreenState extends State<TabsScreen> {
       {
         'page': CampusScreen(),
         'title': 'Campus',
+        // 'appBar':,
       },
       {
-        'page': FavouritesScreen(
-            widget.favouriteRooms, widget.toggleFavourite, widget.isFavourite),
+        'page': SearchScreen(),
+        'title': 'All Rooms',
+        // 'appBar':,
+      },
+      {
+        'page': FavouritesTabsScreen(),
         'title': 'Favourite',
+        // 'appBar':,
       },
       {
-        'page': TimetableScreen(),
-        'title': 'My Timetable',
+        'page': StudyAreasScreen(),
+        'title': 'Study Area',
+        // 'appBar':,
       },
-      {
-        'page': MapsScreen(),
-        'title': 'Map',
-      }
     ];
     super.initState();
   }
@@ -54,36 +50,42 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_pages[_selectedPageIndex]['title']),
-      ),
-      // body: _pages[_selectedPageIndex]['page'],
+      // backgroundColor: Theme.of(context).backgroundColor,
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         onTap: _selectPage,
-        backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.pink,
+        unselectedItemColor: Theme.of(context).textTheme.bodyText2.color,
+        selectedItemColor: Colors.lightBlue,
         iconSize: 30.0,
-        selectedIconTheme: IconThemeData(size: 38),
+        selectedIconTheme: IconThemeData(size: 38), //, color: Colors.white),
         currentIndex: _selectedPageIndex,
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(_selectedPageIndex == 0
+                ? Icons.explore
+                : Icons.explore_outlined),
+            title: Text('Explore'),
+            backgroundColor: Theme.of(context).backgroundColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+                _selectedPageIndex == 1 ? Icons.search : Icons.search_outlined),
             title: Text('Search'),
+            backgroundColor: Theme.of(context).backgroundColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star_border),
+            icon:
+                Icon(_selectedPageIndex == 2 ? Icons.star : Icons.star_border),
             title: Text('Favourites'),
+            backgroundColor: Theme.of(context).backgroundColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_sharp),
-            title: Text('My Timetable'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_outlined),
-            title: Text('Map'),
+            icon: Icon(
+                _selectedPageIndex == 3 ? Icons.school : Icons.school_outlined),
+            title: Text('Study Areas'),
+            backgroundColor: Theme.of(context).backgroundColor,
           ),
         ],
       ),

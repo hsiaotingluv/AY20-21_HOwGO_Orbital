@@ -45,15 +45,17 @@ class _BuildingScreenState extends State<BuildingScreen> {
       appBar: AppBar(
         title: const Text('Select a Building'),
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: ListView.builder(
-          itemBuilder: (ctx, index) {
-            return BuildingItem(
-              title: displayedBuildings[index].title,
-              campus: displayedBuildings[index].campus,
-            );
-          },
-          itemCount: displayedBuildings.length,
-          padding: EdgeInsets.all(5)),
+        itemBuilder: (ctx, index) {
+          return BuildingItem(
+            title: displayedBuildings[index].title,
+            campus: displayedBuildings[index].campus,
+          );
+        },
+        itemCount: displayedBuildings.length,
+        padding: EdgeInsets.all(5),
+      ),
     );
   }
 }

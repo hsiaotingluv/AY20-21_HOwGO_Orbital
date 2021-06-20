@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/faculty_item.dart';
 
+import '../widgets/faculty_item.dart';
 import '../models/faculty.dart';
 
 class FacultyScreen extends StatefulWidget {
@@ -45,10 +45,11 @@ class _FacultyScreenState extends State<FacultyScreen> {
       appBar: AppBar(
         title: const Text('Select a Faculty'),
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return FacultyItem(
-            title: displayedFaculty[index].title,
+            title: displayedFaculty[index].name,
             campus: displayedFaculty[index].campus,
             image: displayedFaculty[index].image,
           );

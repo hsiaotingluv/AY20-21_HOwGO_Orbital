@@ -22,27 +22,33 @@ class BuildingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => selectBuilding(context),
-      splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(15),
-      child: Container(
-        height: 100,
-        padding: const EdgeInsets.all(35),
-        child: Text(
-          title,
-          style: TextStyle(
-            fontSize: 20,
-          ),
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 2,
-          ),
+    return Column(
+      children: [
+        InkWell(
+          onTap: () => selectBuilding(context),
+          splashColor: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(15),
+          child: Container(
+            height: 75,
+            padding: const EdgeInsets.only(top: 7),
+            child: ListTile(
+              title: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyText2.color,
+                ),
+              ),
+            ),
+          ),
         ),
-        margin: EdgeInsets.all(5),
-      ),
+        Divider(
+          height: 0,
+          thickness: 1.5,
+          color: Theme.of(context).dividerColor,
+        ),
+      ],
     );
   }
 }

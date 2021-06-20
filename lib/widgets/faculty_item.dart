@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import '../screens/building_screen.dart';
-import '../screens/faculty_screen.dart';
 
-import '../screens/room_screen.dart';
+import '../screens/building_screen.dart';
 
 class FacultyItem extends StatelessWidget {
   final String title;
   final String campus;
   final String image;
 
-  FacultyItem({@required this.title, @required this.campus, this.image});
+  FacultyItem({
+    @required this.title,
+    @required this.campus,
+    this.image,
+  });
 
   void selectFaculty(BuildContext ctx) {
     Navigator.of(ctx).pushNamed(
@@ -69,27 +71,5 @@ class FacultyItem extends StatelessWidget {
         ),
       ),
     );
-    // return InkWell(
-    //   onTap: () => selectFaculty(context),
-    //   splashColor: Theme.of(context).primaryColor,
-    //   borderRadius: BorderRadius.circular(15),
-    //   child: Container(
-    //     height: 100,
-    //     padding: const EdgeInsets.only(top: 35, left: 15),
-    //     child: Text(
-    //       title,
-    //       style: TextStyle(
-    //         fontSize: 20,
-    //       ),
-    //     ),
-    //     decoration: BoxDecoration(
-    //       border: Border.all(
-    //         width: 2,
-    //       ),
-    //       borderRadius: BorderRadius.circular(15),
-    //     ),
-    //     margin: EdgeInsets.all(5),
-    //   ),
-    // );
   }
 }

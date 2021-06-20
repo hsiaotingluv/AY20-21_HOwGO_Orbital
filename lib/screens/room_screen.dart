@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/room_item.dart';
 import '../models/room.dart';
+import '../widgets/room_item.dart';
 
 enum ViewOptions {
   Grid,
@@ -12,10 +12,10 @@ class RoomScreen extends StatefulWidget {
   static const routeName = '/room';
 
   final List<Room> availableRooms;
-  final Function toggleFavourite;
-  final Function isFavourite;
 
-  RoomScreen(this.availableRooms, this.toggleFavourite, this.isFavourite);
+  RoomScreen(
+    this.availableRooms,
+  );
 
   @override
   _RoomScreenState createState() => _RoomScreenState();
@@ -77,7 +77,8 @@ class _RoomScreenState extends State<RoomScreen> {
           ),
         ],
       ),
-      body: gridView ? showGridView(availRooms) : showListView(displayedRooms),
+      body: showListView(displayedRooms),
+      backgroundColor: Theme.of(context).backgroundColor,
     );
   }
 
@@ -88,12 +89,10 @@ class _RoomScreenState extends State<RoomScreen> {
         return Container(
           padding: const EdgeInsets.all(5),
           child: RoomItem(
-            title: displayedRooms[index].title,
+            title: displayedRooms[index].name,
             location: displayedRooms[index].location,
             building: displayedRooms[index].building,
             gridView: gridView,
-            toggleFavourite: widget.toggleFavourite,
-            isFavourite: widget.isFavourite,
           ),
         );
       },
@@ -107,7 +106,7 @@ class _RoomScreenState extends State<RoomScreen> {
       children: availRooms
           .map(
             (room) => RoomItem(
-              title: room.title,
+              title: room.name,
               location: room.location,
               building: room.building,
               gridView: gridView,

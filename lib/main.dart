@@ -1,94 +1,103 @@
 import 'package:flutter/material.dart';
-import './models/faculty.dart';
-import './screens/faculty_screen.dart';
+import 'package:howgo/providers/lesson_provider.dart';
+import 'package:howgo/providers/profile_providers.dart';
+import 'package:howgo/providers/settings_provider.dart';
+import 'package:howgo/providers/study_areas_provider.dart';
+import 'package:howgo/screens/maps_screen.dart';
+import 'package:howgo/screens/settings_screen.dart';
+import 'package:howgo/screens/timetable_screen.dart';
+import 'package:provider/provider.dart';
 
-import './screens/room_detail_screen.dart';
-import './screens/tabs_screen.dart';
 import './category_data.dart';
-import './models/building.dart';
-// import './models/campus.dart';
-import './models/room.dart';
-// import './screens/campus_screen.dart';
-import './screens/building_screen.dart';
-import './screens/room_screen.dart';
+import '../models/building.dart';
+import '../models/faculty.dart';
+import '../models/room.dart';
+import '../providers/rooms_provider.dart';
+import '../screens/faculty_screen.dart';
+import '../screens/room_detail_screen.dart';
+import '../screens/room_screen.dart';
+import '../screens/tabs_screen.dart';
+import '../screens/building_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  // List<Campus> _availableCampus = CAMPUS_CATEGORIES;
+class MyApp extends StatelessWidget with ChangeNotifier {
   List<Building> _availableBuildings = BUILDING_CATEGORIES;
   List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
   List<Room> _availableRooms = ROOMS;
-  List<Room> _favouriteRooms = [];
-
-  void _toggleFavourite(String roomName) {
-    print(_favouriteRooms.length);
-    final existingIndex =
-        _favouriteRooms.indexWhere((r) => r.title == roomName);
-    if (existingIndex >= 0) {
-      print('fav removed');
-      setState(() {
-        _favouriteRooms.removeAt(existingIndex);
-      });
-    } else {
-      print('fav added');
-      setState(() {
-        _favouriteRooms.add(
-          ROOMS.firstWhere((r) => r.title == roomName),
-        );
-      });
-    }
-    print(_favouriteRooms.length);
-  }
-
-  bool _isRoomFavourite(String roomName) {
-    return _favouriteRooms.any((r) => r.title == roomName);
-  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'HOwGO',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
-      // home: CampusScreen(),
-      initialRoute: '/',
-      routes: {
-        '/': (ctx) => TabsScreen(
-              _favouriteRooms,
-              _toggleFavourite,
-              _isRoomFavourite,
-            ),
-        BuildingScreen.routeName: (ctx) => BuildingScreen(_availableBuildings),
-        FacultyScreen.routeName: (ctx) => FacultyScreen(_availableFaculties),
-        RoomScreen.routeName: (ctx) => RoomScreen(
-              _availableRooms,
-              _toggleFavourite,
-              _isRoomFavourite,
-            ),
-        RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(
-              _toggleFavourite,
-              _isRoomFavourite,
-            ),
-      },
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(
-          builder: (ctx) => TabsScreen(
-            _favouriteRooms,
-            _toggleFavourite,
-            _isRoomFavourite,
-          ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => Rooms(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => StudyAreas(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => MyApp(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Settings(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Lessons(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Profiles(),
+        ),
+      ],
+      builder: (context, child) {
+        final settings = Provider.of<Settings>(context);
+        return MaterialApp(
+          title: 'HOwGO',
+          // theme: ThemeData(
+          // primaryColor: settings.darkMode ? Colors.black : Colors.orange,
+          // backgroundColor: Colors.white,
+          // ),
+          themeMode: settings.themeMode,
+          theme: MyThemes.lightTheme,
+          darkTheme: MyThemes.darkTheme,
+          home: TabsScreen(),
+          initialRoute: '/',
+          routes: {
+            // '/': (ctx) => TabsScreen(),
+            FacultyScreen.routeName: (ctx) =>
+                FacultyScreen(_availableFaculties),
+            BuildingScreen.routeName: (ctx) =>
+                BuildingScreen(_availableBuildings),
+            RoomScreen.routeName: (ctx) => RoomScreen(_availableRooms),
+            RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(),
+            TimetableScreen.routeName: (ctx) => TimetableScreen(),
+            MapsScreen.routeName: (ctx) => MapsScreen(),
+            SettingsScreen.routeName: (ctx) => SettingsScreen(),
+          },
         );
       },
+      // child: MaterialApp(
+      //   title: 'HOwGO',
+      //   theme: ThemeData(
+      //     primaryColor: Colors.orange,
+      //     backgroundColor: Colors.white,
+      //   ),
+      //   home: TabsScreen(),
+      //   initialRoute: '/',
+      //   routes: {
+      //     // '/': (ctx) => TabsScreen(),
+      //     FacultyScreen.routeName: (ctx) => FacultyScreen(_availableFaculties),
+      //     BuildingScreen.routeName: (ctx) =>
+      //         BuildingScreen(_availableBuildings),
+      //     RoomScreen.routeName: (ctx) => RoomScreen(_availableRooms),
+      //     RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(),
+      //     TimetableScreen.routeName: (ctx) => TimetableScreen(),
+      //     MapsScreen.routeName: (ctx) => MapsScreen(),
+      //     SettingsScreen.routeName: (ctx) => SettingsScreen(),
+      //   },
+      // ),
     );
   }
 }

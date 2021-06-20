@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/rooms_provider.dart';
 import '../category_data.dart';
 
 class RoomDetailScreen extends StatelessWidget {
   static const routeName = '/room-detail';
-
-  final Function toggleFavourite;
-  final Function isFavourite;
-
-  RoomDetailScreen(this.toggleFavourite, this.isFavourite);
 
   @override
   Widget build(BuildContext context) {
@@ -19,32 +16,18 @@ class RoomDetailScreen extends StatelessWidget {
     final roomBuilding = routeArgs['building'];
     final selectedRoom = ROOMS.firstWhere(
       (room) =>
-          room.title == roomTitle &&
+          room.name == roomTitle &&
           room.location == roomLocation &&
           room.building == roomBuilding,
     );
+    final roomsList = Provider.of<Rooms>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('${selectedRoom.title}'),
-        // centerTitle: true,
-        // bottom: PreferredSize(
-        //   child: Text(roomLocation),
-        //   preferredSize: null,
+        title: Text('${selectedRoom.name}'),
       ),
-      // ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: ListView(
         children: [
-          // Container(
-          //   padding: EdgeInsets.all(10),
-          //   child: ClipRRect(
-          //     child: Image.asset(
-          //       'assets/images/lzw.png',
-          //       height: 300,
-          //       width: double.infinity,
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
           Container(
             child: Text(
               'Images go here...',
@@ -84,9 +67,11 @@ class RoomDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          isFavourite(roomTitle) ? Icons.star : Icons.star_border,
+          roomsList.findByName(roomTitle).isFavourite
+              ? Icons.star
+              : Icons.star_border,
         ),
-        onPressed: () => toggleFavourite(roomTitle),
+        onPressed: () => roomsList.toggleFavourite(roomTitle),
       ),
     );
   }
