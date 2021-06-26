@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../models/room.dart';
 import '../category_data.dart';
@@ -22,5 +24,43 @@ class Rooms with ChangeNotifier {
     Room room = findByName(name);
     room.isFavourite = !room.isFavourite;
     notifyListeners();
+  }
+
+  Future<void> addRoom(Room room) async {
+    const url = 'https://orbital-howgo-default-rtdb.firebaseio.com/rooms.json';
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: json.encode({
+          'name': room.name,
+          'address': room.address,
+          'building': room.building,
+          'capacity': room.capacity,
+          'location': room.location,
+          'nearbyBusStops': room.nearbyBusStops,
+          'caption': room.caption,
+          'direction': room.direction,
+          'image': room.image,
+          'isFavourite': room.isFavourite,
+        }),
+      );
+
+      final newRoom = Room(
+        name: room.name,
+        address: room.address,
+        building: room.building,
+        capacity: room.capacity,
+        location: room.location,
+        nearbyBusStops: room.nearbyBusStops,
+        caption: room.caption,
+        direction: room.direction,
+        image: room.image,
+      );
+      _rooms.add(newRoom);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
+// import '../providers/room_provider.dart';
 import '../providers/rooms_provider.dart';
 import '../screens/room_detail_screen.dart';
 
@@ -34,36 +35,39 @@ class RoomItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final roomsList = Provider.of<Rooms>(context);
+    // final room = Provider.of<Room>(context, listen: false);
+    // final roomsList = Provider.of<Rooms>(context, listen: false);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
-        IconSlideAction(
-          iconWidget: Icon(
-            Icons.favorite,
-            size: 30,
-          ),
-          caption: 'Favourite',
-          color: Colors.blueAccent.shade200,
-          // icon: Icons.favorite,
-          closeOnTap: true,
-          foregroundColor: Colors.white,
-          onTap: () {
-            roomsList.toggleFavourite(title);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Room added to favourites'),
-                duration: Duration(seconds: 2),
-                action: SnackBarAction(
-                  label: 'UNDO',
-                  onPressed: () {
-                    roomsList.toggleFavourite(title);
-                  },
+        Consumer<Rooms>(
+          builder: (ctx, roomsList, child) => IconSlideAction(
+            icon: roomsList.findByName(title).isFavourite
+                ? Icons.favorite
+                : Icons.favorite_border,
+            caption: 'Favourite',
+            color: Theme.of(context).primaryColor,
+            // icon: Icons.favorite,
+            closeOnTap: true,
+            foregroundColor: Colors.white,
+            onTap: () {
+              roomsList.toggleFavourite(title);
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Room added to favourites'),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    textColor: Colors.cyan,
+                    onPressed: () {
+                      roomsList.toggleFavourite(title);
+                    },
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ],
       child: Column(
@@ -79,17 +83,11 @@ class RoomItem extends StatelessWidget {
                       child: GridTile(
                         child: Text(
                           title,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).textTheme.bodyText2.color,
-                          ),
+                          style: Theme.of(context).textTheme.headline1,
                         ),
                         footer: Text(
                           location,
-                          style: TextStyle(
-                            color: Theme.of(context).textTheme.bodyText2.color,
-                          ),
+                          style: Theme.of(context).textTheme.subtitle1,
                         ),
                       ),
                     ),
@@ -107,16 +105,16 @@ class RoomItem extends StatelessWidget {
                       title: Text(
                         title,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.bodyText2.color,
+                          color: Theme.of(context).textTheme.bodyText1.color,
                         ),
                       ),
                       subtitle: Text(
                         location,
                         style: TextStyle(
-                          fontSize: 15,
-                          color: Theme.of(context).textTheme.bodyText2.color,
+                          fontSize: 14.0,
+                          // fontStyle: FontStyle.italic,
                         ),
                       ),
                       // trailing: IconButton(

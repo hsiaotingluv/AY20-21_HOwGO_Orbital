@@ -106,72 +106,74 @@ class _TimetableScreenState extends State<TimetableScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Row(
-            children: <Widget>[
-              Container(
-                width: 62,
-                height: 661.88,
-                child: Card(
-                  elevation: 0,
-                  margin: EdgeInsets.all(0),
-                  child: NavigationRail(
-                    minWidth: 10,
-                    groupAlignment: 0.0,
-                    backgroundColor: Colors
-                        .blue.shade100, // Theme.of(context).cardTheme.color,
-                    selectedIndex: _selectedIndex,
-                    onDestinationSelected: (int index) {
-                      setState(() {
-                        _selectedIndex = index;
-                      });
-                    },
-                    labelType: NavigationRailLabelType.selected,
-                    destinations: [
-                      buildSideTabItem('M'),
-                      buildSideTabItem('T'),
-                      buildSideTabItem('W'),
-                      buildSideTabItem('T'),
-                      buildSideTabItem('F'),
-                      // buildSideTabItem('F'),
-                      NavigationRailDestination(
-                        icon: Container(
-                          width: 50,
-                          child: Row(
-                            children: [
-                              Card(
-                                margin: EdgeInsets.all(0),
-                                // color: Theme.of(context).cardTheme.color,
-                                // color: Colors.blueGrey,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  width: 40,
-                                  height: 40,
-                                  child: Icon(Icons.person),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 62,
+                  height: 661.88,
+                  child: Card(
+                    elevation: 0,
+                    margin: EdgeInsets.all(0),
+                    child: NavigationRail(
+                      minWidth: 10,
+                      groupAlignment: 0.0,
+                      backgroundColor: Colors
+                          .blue.shade100, // Theme.of(context).cardTheme.color,
+                      selectedIndex: _selectedIndex,
+                      onDestinationSelected: (int index) {
+                        setState(() {
+                          _selectedIndex = index;
+                        });
+                      },
+                      labelType: NavigationRailLabelType.selected,
+                      destinations: [
+                        buildSideTabItem('M'),
+                        buildSideTabItem('T'),
+                        buildSideTabItem('W'),
+                        buildSideTabItem('T'),
+                        buildSideTabItem('F'),
+                        // buildSideTabItem('F'),
+                        NavigationRailDestination(
+                          icon: Container(
+                            width: 50,
+                            child: Row(
+                              children: [
+                                Card(
+                                  margin: EdgeInsets.all(0),
+                                  // color: Theme.of(context).cardTheme.color,
+                                  // color: Colors.blueGrey,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: 40,
+                                    height: 40,
+                                    child: Icon(Icons.person),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                          label: Text(''),
                         ),
-                        label: Text(''),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              VerticalDivider(thickness: 1, width: 1),
-              // This is the main content.
-              SingleChildScrollView(
-                child: buildDayCategories(
-                  _selectedIndex,
-                  context,
-                  lessonList,
+                VerticalDivider(thickness: 1, width: 1),
+                // This is the main content.
+                SingleChildScrollView(
+                  child: buildDayCategories(
+                    _selectedIndex,
+                    context,
+                    lessonList,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

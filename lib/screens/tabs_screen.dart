@@ -55,8 +55,8 @@ class _TabsScreenState extends State<TabsScreen> {
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         onTap: _selectPage,
-        unselectedItemColor: Theme.of(context).textTheme.bodyText2.color,
-        selectedItemColor: Colors.lightBlue,
+        unselectedItemColor: Theme.of(context).iconTheme.color,
+        selectedItemColor: Theme.of(context).primaryColor,
         iconSize: 30.0,
         selectedIconTheme: IconThemeData(size: 38), //, color: Colors.white),
         currentIndex: _selectedPageIndex,

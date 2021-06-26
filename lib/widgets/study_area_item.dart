@@ -15,36 +15,42 @@ class StudyAreaItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final studyAreaList = Provider.of<StudyAreas>(context);
+    // final studyAreaList = Provider.of<StudyAreas>(context, listen: false);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
-        IconSlideAction(
-          iconWidget: Icon(
-            Icons.favorite,
-            size: 30,
-          ),
-          caption: 'Favourite',
-          color: Colors.blueAccent.shade200,
-          // icon: Icons.favorite,
-          closeOnTap: true,
-          foregroundColor: Colors.white,
-          onTap: () {
-            studyAreaList.toggleFavourite(title);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Study Spot added to favourites'),
-                duration: Duration(seconds: 2),
-                action: SnackBarAction(
-                  label: 'UNDO',
-                  onPressed: () {
-                    studyAreaList.toggleFavourite(title);
-                  },
+        Consumer<StudyAreas>(
+          builder: (ctx, studyAreaList, child) => IconSlideAction(
+            icon: studyAreaList.findByName(title).isFavourite
+                ? Icons.favorite
+                : Icons.favorite_border,
+            // iconWidget: Icon(
+            //   Icons.favorite,
+            //   size: 30,
+            // ),
+            caption: 'Favourite',
+            color: Theme.of(context).primaryColor,
+            // icon: Icons.favorite,
+            closeOnTap: true,
+            foregroundColor: Colors.white,
+            onTap: () {
+              studyAreaList.toggleFavourite(title);
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Study Spot added to favourites'),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    textColor: Colors.cyan,
+                    onPressed: () {
+                      studyAreaList.toggleFavourite(title);
+                    },
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ],
       direction: Axis.horizontal,
@@ -60,18 +66,11 @@ class StudyAreaItem extends StatelessWidget {
                 child: ListTile(
                   title: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).textTheme.bodyText2.color,
-                    ),
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   subtitle: Text(
                     location,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Theme.of(context).textTheme.bodyText2.color,
-                    ),
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                   // trailing: IconButton(
                   //   icon: Icon(

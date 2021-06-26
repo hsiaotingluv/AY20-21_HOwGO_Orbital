@@ -26,19 +26,15 @@ class BuildingItem extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => selectBuilding(context),
-          splashColor: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(15),
+          splashColor: Theme.of(context).accentColor,
+          borderRadius: BorderRadius.circular(10),
           child: Container(
             height: 75,
             padding: const EdgeInsets.only(top: 7),
             child: ListTile(
               title: Text(
                 title,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).textTheme.bodyText2.color,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
             ),
           ),

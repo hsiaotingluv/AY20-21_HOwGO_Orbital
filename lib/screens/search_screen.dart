@@ -20,7 +20,7 @@ class SearchScreen extends StatelessWidget {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: RoomSearch(rooms),
+                delegate: RoomSearch(roomsList),
               );
             },
           ),
@@ -37,7 +37,7 @@ class SearchScreen extends StatelessWidget {
 }
 
 class RoomSearch extends SearchDelegate<String> {
-  Rooms roomsList;
+  List<Room> roomsList;
   RoomSearch(this.roomsList);
 
   @override
@@ -70,8 +70,11 @@ class RoomSearch extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     final resultList = query.isEmpty
-        ? null
-        : roomsList.rooms.where((room) => room.name.contains(query)).toList();
+        ? roomsList
+        : roomsList.where((room) {
+            return room.name.toLowerCase().contains(query.toLowerCase()) ||
+                room.location.toLowerCase().contains(query.toLowerCase());
+          }).toList();
     return SearchedRoomList(resultList: resultList);
   }
 
@@ -79,8 +82,11 @@ class RoomSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     // show when someone searches for something
     final suggestionList = query.isEmpty
-        ? null
-        : roomsList.rooms.where((room) => room.name.contains(query)).toList();
+        ? roomsList
+        : roomsList.where((room) {
+            return room.name.toLowerCase().contains(query.toLowerCase()) ||
+                room.location.toLowerCase().contains(query.toLowerCase());
+          }).toList();
     return SearchedRoomList(resultList: suggestionList);
   }
 }
@@ -94,18 +100,29 @@ class SearchedRoomList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (ctx, index) {
-        return Container(
-          padding: const EdgeInsets.all(5),
-          child: RoomItem(
-            title: resultList[index].name,
-            location: resultList[index].location,
-            building: resultList[index].building,
-          ),
-        );
-      },
-      itemCount: resultList == null ? 0 : resultList.length,
-    );
+    return resultList.isEmpty
+        ? Center(
+            child: Text(
+              'No results found...',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                color: Theme.of(context).textTheme.subtitle1.color,
+              ),
+            ),
+          )
+        : ListView.builder(
+            itemBuilder: (ctx, index) {
+              return Container(
+                padding: const EdgeInsets.all(5),
+                child: RoomItem(
+                  title: resultList[index].name,
+                  location: resultList[index].location,
+                  building: resultList[index].building,
+                ),
+              );
+            },
+            itemCount: resultList.length,
+          );
   }
 }

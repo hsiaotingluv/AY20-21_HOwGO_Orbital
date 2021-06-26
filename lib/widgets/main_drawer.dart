@@ -16,10 +16,10 @@ class MainDrawer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: EdgeInsets.only(
-            top: 10,
-          ),
-          height: 75,
+          // padding: EdgeInsets.symmetric(
+          //   vertical: 3,
+          // ),
+          height: 60,
           child: ListTile(
             leading: Icon(
               icon,
@@ -30,17 +30,17 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                // color: Theme.of(context).primaryColor,
+                color: Theme.of(context).textTheme.bodyText1.color,
               ),
             ),
             onTap: tapHandler,
           ),
         ),
-        Divider(
-          height: 0,
-          thickness: 0.2,
-          color: Colors.grey,
-        ),
+        // Divider(
+        //   height: 0,
+        //   thickness: 0.2,
+        //   color: Colors.grey,
+        // ),
       ],
     );
   }
@@ -51,54 +51,41 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 150,
+            height: 230,
             width: double.infinity,
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    top: 90,
-                    left: 20,
-                  ),
-                  height: 150,
-                  width: 192,
-                  color: Theme.of(context).primaryColor,
-                  child: Text(
-                    'NUS HOwGO',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Theme.of(context).textTheme.bodyText2.color,
+            color: Theme.of(context).primaryColor,
+            child: Container(
+              padding: EdgeInsets.only(
+                left: 20,
+                top: 70,
+              ),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Icon(
+                      Icons.map_rounded,
+                      color: Colors.white,
+                      size: 100,
                     ),
                   ),
-                ),
-                Container(
-                  width: 112,
-                  height: 150,
-                  color: Theme.of(context).primaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 70.0,
-                      right: 15.0,
-                      left: 15.0,
-                      bottom: 10.0,
-                    ),
-                    child: CircleAvatar(
-                      maxRadius: 12,
-                      backgroundImage: AssetImage('assets/images/lzw.png'),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'NUS HOwGO',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          buildListTile(
-            context,
-            'Settings',
-            Icons.settings,
-            () {
-              Navigator.of(context).pushNamed(SettingsScreen.routeName);
-            },
+          SizedBox(
+            height: 10,
           ),
           buildListTile(
             context,
@@ -116,8 +103,57 @@ class MainDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed(MapsScreen.routeName);
             },
           ),
+          buildListTile(
+            context,
+            'Settings',
+            Icons.settings,
+            () {
+              Navigator.of(context).pushNamed(SettingsScreen.routeName);
+            },
+          ),
         ],
       ),
     );
   }
 }
+
+
+
+// Row(
+//   children: [
+//     Container(
+//       padding: EdgeInsets.only(
+//         top: 90,
+//         left: 20,
+//       ),
+//       height: 200,
+//       width: 192,
+//       color: Theme.of(context).primaryColor,
+//       child: Text(
+//         'NUS HOwGO',
+//         style: TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 30,
+//           color: Colors.black,
+//         ),
+//       ),
+//     ),
+//     Container(
+//       width: 112,
+//       height: 200,
+//       color: Theme.of(context).primaryColor,
+//       child: Padding(
+//         padding: const EdgeInsets.only(
+//           top: 70.0,
+//           right: 15.0,
+//           left: 15.0,
+//           bottom: 10.0,
+//         ),
+//         child: CircleAvatar(
+//           maxRadius: 12,
+//           backgroundImage: AssetImage('assets/images/lzw.png'),
+//         ),
+//       ),
+//     ),
+//   ],
+// ),

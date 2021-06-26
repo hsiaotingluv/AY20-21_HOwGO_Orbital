@@ -77,8 +77,9 @@ class _RoomScreenState extends State<RoomScreen> {
           ),
         ],
       ),
-      body: showListView(displayedRooms),
       backgroundColor: Theme.of(context).backgroundColor,
+      body: showListView(displayedRooms),
+      // backgroundColor: Theme.of(context).backgroundColor,
     );
   }
 

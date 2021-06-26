@@ -7,17 +7,20 @@ import 'package:howgo/screens/maps_screen.dart';
 import 'package:howgo/screens/settings_screen.dart';
 import 'package:howgo/screens/timetable_screen.dart';
 import 'package:provider/provider.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
 import './category_data.dart';
-import '../models/building.dart';
-import '../models/faculty.dart';
-import '../models/room.dart';
-import '../providers/rooms_provider.dart';
-import '../screens/faculty_screen.dart';
-import '../screens/room_detail_screen.dart';
-import '../screens/room_screen.dart';
-import '../screens/tabs_screen.dart';
-import '../screens/building_screen.dart';
+import './models/building.dart';
+import './models/faculty.dart';
+import './models/room.dart';
+
+import './providers/rooms_provider.dart';
+import './screens/faculty_screen.dart';
+import './screens/direction_screen.dart';
+import './screens/room_detail_screen.dart';
+import './screens/room_screen.dart';
+import './screens/tabs_screen.dart';
+import './screens/building_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -60,6 +63,7 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           // backgroundColor: Colors.white,
           // ),
           themeMode: settings.themeMode,
+          // themeMode: ThemeMode.dark,
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
           home: TabsScreen(),
@@ -78,26 +82,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           },
         );
       },
-      // child: MaterialApp(
-      //   title: 'HOwGO',
-      //   theme: ThemeData(
-      //     primaryColor: Colors.orange,
-      //     backgroundColor: Colors.white,
-      //   ),
-      //   home: TabsScreen(),
-      //   initialRoute: '/',
-      //   routes: {
-      //     // '/': (ctx) => TabsScreen(),
-      //     FacultyScreen.routeName: (ctx) => FacultyScreen(_availableFaculties),
-      //     BuildingScreen.routeName: (ctx) =>
-      //         BuildingScreen(_availableBuildings),
-      //     RoomScreen.routeName: (ctx) => RoomScreen(_availableRooms),
-      //     RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(),
-      //     TimetableScreen.routeName: (ctx) => TimetableScreen(),
-      //     MapsScreen.routeName: (ctx) => MapsScreen(),
-      //     SettingsScreen.routeName: (ctx) => SettingsScreen(),
-      //   },
-      // ),
     );
   }
 }

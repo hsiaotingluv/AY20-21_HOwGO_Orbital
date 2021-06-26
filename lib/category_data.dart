@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/lesson.dart';
-import '../models/profile.dart';
-import '/models/study_area.dart';
+import './models/lesson.dart';
+import './models/profile.dart';
+import './models/study_area.dart';
 
 import './models/faculty.dart';
 import './models/campus.dart';
@@ -55,6 +55,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0114.jpg',
     capacity: 24,
   ),
   Room(
@@ -63,6 +64,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0113.jpg',
     capacity: 24,
   ),
 
@@ -72,6 +74,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0206.jpg',
     capacity: 200,
   ),
   Room(
@@ -80,6 +83,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0204.jpg',
     capacity: 80,
   ),
   Room(
@@ -88,6 +92,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0212.jpg',
     capacity: 80,
   ),
   Room(
@@ -96,6 +101,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0201.jpg',
     capacity: 24,
   ),
   Room(
@@ -104,6 +110,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0203.jpg',
     capacity: 25,
   ),
 
@@ -113,6 +120,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0207.jpg',
     capacity: 30,
   ),
   Room(
@@ -121,6 +129,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0208.jpg',
     capacity: 36,
   ),
   Room(
@@ -129,6 +138,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0209.jpg',
     capacity: 30,
   ),
   Room(
@@ -137,6 +147,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0210.jpg',
     capacity: 42,
   ),
   Room(
@@ -154,6 +165,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/VCRM.jpg',
     capacity: 60,
   ),
   Room(
@@ -164,13 +176,13 @@ var ROOMS = [
     nearbyBusStops: 'COM 2',
     capacity: 25,
   ),
-
   Room(
     name: 'Tutorial Room 9',
     location: 'COM2-01-08',
     building: 'COM 2',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM2-0108.jpg',
     capacity: 32,
   ),
   Room(
@@ -179,6 +191,25 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0217.jpg',
+    direction: [
+      'assets/images/directions/COM1-0217_route/COM1-0217(1).png',
+      'assets/images/directions/COM1-0217_route/COM1-0217(2).png',
+      'assets/images/directions/COM1-0217_route/COM1-0217(3).png',
+      'assets/images/directions/COM1-0217_route/COM1-0217(4).png',
+    ],
+    caption: [
+      'Hello World',
+      'Hello World',
+      'Hello World',
+      'Hello World',
+    ],
+    gallery: [
+      'assets/images/gallery/COM1-0217_gallery_1.jpg',
+      'assets/images/gallery/COM1-0217_gallery_2.jpg',
+      'assets/images/gallery/COM1-0217_gallery_3.jpg',
+      'assets/images/gallery/COM1-0217_gallery_4.jpg',
+    ],
     capacity: 20,
   ),
   Room(
@@ -187,6 +218,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-0216.jpg',
     capacity: 20,
   ),
 
@@ -196,6 +228,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B102.jpg',
     capacity: 48,
   ),
   Room(
@@ -204,6 +237,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B103.jpg',
     capacity: 40,
   ),
 
@@ -213,6 +247,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B112.jpg',
     capacity: 48,
   ),
   Room(
@@ -221,6 +256,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B109.jpg',
     capacity: 46,
   ),
   Room(
@@ -229,6 +265,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B108.jpg',
     capacity: 25,
   ),
   Room(
@@ -237,6 +274,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B111.jpg',
     capacity: 25,
   ),
   Room(
@@ -245,6 +283,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B110.jpg',
     capacity: 23,
   ),
   Room(
@@ -262,6 +301,7 @@ var ROOMS = [
     building: 'COM 1',
     address: socAddress,
     nearbyBusStops: 'COM 2',
+    image: 'assets/images/rooms/COM1-B113.jpg',
     capacity: 40,
   ),
 
