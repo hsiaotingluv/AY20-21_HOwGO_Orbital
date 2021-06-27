@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/room.dart';
 // import '../providers/room_provider.dart';
+import '../models/room.dart';
 import '../providers/rooms_provider.dart';
 import '../category_data.dart';
 import '../screens/direction_screen.dart';
 
 class RoomDetailScreen extends StatelessWidget {
+  static const routeName = '/room-detail';
+
   void getDirection(
       BuildContext ctx, List<String> direction, List<String> caption) {
     Navigator.push(ctx, MaterialPageRoute(builder: (context) {
@@ -86,8 +88,6 @@ class RoomDetailScreen extends StatelessWidget {
       ),
     );
   }
-
-  static const routeName = '/room-detail';
 
   @override
   Widget build(BuildContext context) {

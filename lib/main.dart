@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/providers/lesson_provider.dart';
-import 'package:howgo/providers/profile_providers.dart';
-import 'package:howgo/providers/settings_provider.dart';
-import 'package:howgo/providers/study_areas_provider.dart';
-import 'package:howgo/screens/maps_screen.dart';
-import 'package:howgo/screens/settings_screen.dart';
-import 'package:howgo/screens/timetable_screen.dart';
 import 'package:provider/provider.dart';
 // import 'package:firebase_core/firebase_core.dart';
-
 import './category_data.dart';
 import './models/building.dart';
 import './models/faculty.dart';
 import './models/room.dart';
-
 import './providers/rooms_provider.dart';
+import './providers/lesson_provider.dart';
+import './providers/profile_providers.dart';
+import './providers/settings_provider.dart';
+import './providers/study_areas_provider.dart';
+import './screens/maps_screen.dart';
+import './screens/settings_screen.dart';
+import './screens/timetable_screen.dart';
 import './screens/faculty_screen.dart';
 import './screens/direction_screen.dart';
 import './screens/room_detail_screen.dart';
