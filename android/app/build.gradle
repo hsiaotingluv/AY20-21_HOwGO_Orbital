@@ -40,7 +40,7 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        // multiDexEnabled true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -62,5 +62,5 @@ dependencies {
     // implementation 'com.google.firebase:firebase-analytics'
     // implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    // implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex:1.0.3'
 }

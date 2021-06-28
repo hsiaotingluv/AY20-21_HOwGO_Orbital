@@ -4,6 +4,7 @@ class Room {
   final String name;
   final String location;
   final String building;
+  final String faculty;
   final String address;
   final String nearbyBusStops;
   final String image;
@@ -24,6 +25,7 @@ class Room {
     this.direction,
     this.caption,
     this.gallery,
+    this.faculty = 'SoC',
     this.isFavourite = false,
   });
 }

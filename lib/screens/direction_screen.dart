@@ -1,77 +1,56 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
-import '../providers/firestorageservice_provider.dart';
+import '../models/room.dart';
 
 class DirectionScreen extends StatelessWidget {
-  final List<String> direction;
-  final List<String> caption;
+  final Room room;
 
-  DirectionScreen(this.direction, this.caption);
+  DirectionScreen(this.room);
 
-  // int _index;
-
-  // final ref = FirebaseStorage.instance
-  //     .ref()
-  //     .child('SoC')
-  //     .child('COM1')
-  //     .child('COM1-0217')
-  //     .child('direction')
-  //     .child('COM1-0217_direction_1.png');
-
-  // var url = Uri.parse(await ref.getDownloadURL() as String);
-
-  // Future<Widget> _getImage(BuildContext context) async {
+  // Future<List<String>> _getImages(BuildContext context) async {
   //   await Firebase.initializeApp();
-  //   Image image;
-  //   await FireStorageService.loadImage(context).then((value) {
-  //     image = Image.network(
-  //       value.toString(),
-  //       fit: BoxFit.scaleDown,
-  //     );
+  //   List<String> imagesUrl = [];
+  //   final ListResult result = await FirebaseStorage.instance
+  //       .ref('SoC/COM1/COM1-02-17/direction/')
+  //       .list();
+  //   final List<Reference> allFiles = result.items;
+  //   await Future.forEach<Reference>(allFiles, (file) async {
+  //     final String fileUrl = await file.getDownloadURL();
+  //     imagesUrl.add(fileUrl.toString());
   //   });
-  //   return image;
+  //   return imagesUrl;
   // }
 
-  Future<dynamic> _getImages(BuildContext context) async {
+  // FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future<Map<String, String>> getDirection() async {
     await Firebase.initializeApp();
-    List<Image> images = [];
-    await FireStorageService.loadImage(context).then((list) {
-      list.items.forEach((image) {
-        if (image != null) {
-          images.add(Image.network(
-            image.toString(),
-          ));
-        }
-      });
-    });
-    return images;
+    final Map<String, String> content = new Map();
+
+    Query direction = FirebaseFirestore.instance
+        .collection('campus')
+        .doc('Kent Ridge Campus')
+        .collection('faculty')
+        .doc('School of Computing')
+        .collection('building')
+        .doc(room.building)
+        .collection('room')
+        .doc(room.name)
+        .collection('direction');
+    // .orderBy('direction');
+
+    final result = await direction.get();
+    for (final item in result.docs) {
+      final imageUrl = item['imageUrl'];
+      final caption = item['caption'];
+      content[imageUrl] = caption;
+    }
+    return content;
   }
-
-  // Future<void> listExample() async {
-  //   firebase_storage.ListResult result =
-  //       await firebase_storage.FirebaseStorage.instance
-  //           .ref('SoC/COM1/COM1-0217/direction/')
-  //           // .ref()
-  //           // .child('SoC')
-  //           // .child('COM1')
-  //           // .child('COM1-0217')
-  //           // .child('direction')
-  //           .listAll();
-
-  //   result.items.forEach((firebase_storage.Reference ref) {
-  //     print('Found file: $ref');
-  //     Text('hello world');
-  //   });
-
-  //   result.prefixes.forEach((firebase_storage.Reference ref) {
-  //     print('Found directory: $ref');
-  //   });
-
-  //   // return result;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,21 +59,64 @@ class DirectionScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
         child: FutureBuilder(
-            future: _getImages(context),
+            // future: _getImages(context),
+            future: getDirection(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  height: MediaQuery.of(context).size.width / 1.2,
-                  child: snapshot.data[1],
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      String key = snapshot.data.keys.elementAt(index);
+                      return Column(
+                        children: [
+                          Image.network(key),
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(20),
+                            child: Text(
+                              snapshot.data[key],
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .color),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          )
+                        ],
+                      );
+                    });
+              } else if (snapshot.hasError) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Icon(
+                        Icons.error_outline,
+                        color: Colors.red,
+                        size: 60,
+                      ),
+                    ),
+                    Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    ),
+                  ],
                 );
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
+              } else {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
               }
-              return Container();
             }),
       ),
     );

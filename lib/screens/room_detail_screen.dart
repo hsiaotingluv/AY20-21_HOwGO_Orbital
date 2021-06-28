@@ -10,10 +10,9 @@ import '../screens/direction_screen.dart';
 class RoomDetailScreen extends StatelessWidget {
   static const routeName = '/room-detail';
 
-  void getDirection(
-      BuildContext ctx, List<String> direction, List<String> caption) {
+  void getDirection(BuildContext ctx, Room room) {
     Navigator.push(ctx, MaterialPageRoute(builder: (context) {
-      return DirectionScreen(direction, caption);
+      return DirectionScreen(room);
     }));
   }
 
@@ -169,8 +168,7 @@ class RoomDetailScreen extends StatelessWidget {
                         ),
                         onPressed: () => getDirection(
                           context,
-                          selectedRoom.direction,
-                          selectedRoom.caption,
+                          selectedRoom,
                         ),
                       ),
                     ),
