@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/settings_provider.dart';
+import '../providers/theme_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const routeName = '/settings';
@@ -13,7 +14,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    final settings = Provider.of<Settings>(context);
+    final settings = Provider.of<ThemeSettings>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -33,7 +34,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: Theme.of(context).textTheme.bodyText2.color,
                   ),
                 ),
-                value: settings.isDarkMode,
+                value: settings.darkTheme,
                 onChanged: (newValue) {
                   setState(() {
                     settings.toggleTheme();
@@ -51,6 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: NavigationBar(5),
     );
   }
 }

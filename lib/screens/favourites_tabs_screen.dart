@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/rooms_favourites_screen.dart';
 import '../screens/study_area_favourites_screen.dart';
+import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 
 class FavouritesTabsScreen extends StatefulWidget {
@@ -20,13 +21,25 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
           title: Text('Favourites'),
           bottom: TabBar(
             tabs: [
-              Tab(
-                icon: Icon(Icons.menu_book_rounded),
-                text: 'Rooms',
+              SizedBox(
+                height: 40,
+                child: Tab(
+                  icon: Icon(
+                    Icons.menu_book_rounded,
+                    size: 30,
+                  ),
+                  // text: 'Rooms',
+                ),
               ),
-              Tab(
-                icon: Icon(Icons.school_outlined),
-                text: 'StudySpots',
+              SizedBox(
+                height: 40,
+                child: Tab(
+                  icon: Icon(
+                    Icons.school_outlined,
+                    size: 30,
+                  ),
+                  // text: 'StudySpots',
+                ),
               ),
             ],
           ),
@@ -38,6 +51,7 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
             StudyAreaFavouritesScreen(),
           ],
         ),
+        bottomNavigationBar: NavigationBar(2),
       ),
     );
   }

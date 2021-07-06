@@ -47,7 +47,7 @@ class RoomsFavouritesScreen extends StatelessWidget {
                 ),
         ),
       ),
-      bottomNavigationBar: NavigationBar(2),
+      // bottomNavigationBar: NavigationBar(2),
     );
     // } else {
     //   return showListView(roomList.favouriteRooms, bgrColor);

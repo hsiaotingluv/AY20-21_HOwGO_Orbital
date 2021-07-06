@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/screens/campus_screen.dart';
-import 'package:howgo/screens/favourites_tabs_screen.dart';
-import 'package:howgo/screens/search_screen.dart';
-import 'package:howgo/screens/study_area_detail_screen.dart';
-import 'package:howgo/screens/study_area_screen.dart';
 import 'package:provider/provider.dart';
-// import 'package:firebase_core/firebase_core.dart';
+
 import './category_data.dart';
 import './models/building.dart';
 import './models/faculty.dart';
@@ -13,17 +8,20 @@ import './models/room.dart';
 import './providers/rooms_provider.dart';
 import './providers/lesson_provider.dart';
 import './providers/profile_providers.dart';
-import './providers/settings_provider.dart';
+import './providers/theme_provider.dart';
 import './providers/study_areas_provider.dart';
 import './screens/maps_screen.dart';
 import './screens/settings_screen.dart';
 import './screens/timetable_screen.dart';
 import './screens/faculty_screen.dart';
-import './screens/direction_screen.dart';
 import './screens/room_detail_screen.dart';
 import './screens/room_screen.dart';
-import './screens/tabs_screen.dart';
 import './screens/building_screen.dart';
+import './screens/campus_screen.dart';
+import './screens/favourites_tabs_screen.dart';
+import './screens/search_screen.dart';
+import './screens/study_area_detail_screen.dart';
+import './screens/study_area_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           create: (ctx) => MyApp(),
         ),
         ChangeNotifierProvider(
-          create: (ctx) => Settings(),
+          create: (ctx) => ThemeSettings(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => Lessons(),
@@ -58,17 +56,17 @@ class MyApp extends StatelessWidget with ChangeNotifier {
         ),
       ],
       builder: (context, child) {
-        final settings = Provider.of<Settings>(context);
+        final settings = Provider.of<ThemeSettings>(context);
         return MaterialApp(
           title: 'HOwGO',
           // theme: ThemeData(
           // primaryColor: settings.darkMode ? Colors.black : Colors.orange,
           // backgroundColor: Colors.white,
           // ),
-          themeMode: settings.themeMode,
+          // themeMode: settings.themeMode,
           // themeMode: ThemeMode.dark,
-          theme: MyThemes.lightTheme,
-          darkTheme: MyThemes.darkTheme,
+          theme: settings.darkTheme ? darkTheme : lightTheme,
+          // darkTheme: darkTheme,
           home: CampusScreen(),
           // initialRoute: '/',
           routes: {

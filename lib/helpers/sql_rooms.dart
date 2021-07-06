@@ -31,19 +31,4 @@ class SQLRooms {
     return await db.delete(table, where: 'title = ?', whereArgs: ['$name']);
     // db.delete(table);
   }
-
-  // static database() async {
-  //   var directory = await getApplicationDocumentsDirectory();
-  //   var path = join(directory.path, 'db_howGo_sql');
-  //   var database = await openDatabase(
-  //     path,
-  //     version: 1,
-  //     onCreate: () => _onCreatingDataBase,
-  //   );
-  //   return database;
-  // }
-
-  // static _onCreatingDataBase(Database database, int version, String table) async {
-  //   await database.execute('CREATE TABLE $table(title TEXT PRIMARY KEY)');
-  // }
 }

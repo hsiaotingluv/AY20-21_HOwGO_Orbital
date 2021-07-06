@@ -64,7 +64,7 @@ class StudyAreaFavouritesScreen extends StatelessWidget {
                 ),
         ),
       ),
-      bottomNavigationBar: NavigationBar(2),
+      // bottomNavigationBar: NavigationBar(2),
     );
   }
 }

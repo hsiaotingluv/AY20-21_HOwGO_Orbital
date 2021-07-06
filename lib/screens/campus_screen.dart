@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 
 import '../category_data.dart';
+import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 import '../widgets/campus_item.dart';
 

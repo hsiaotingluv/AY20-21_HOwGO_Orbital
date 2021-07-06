@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/screens/search_screen.dart';
-import 'package:howgo/screens/study_area_screen.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 
-import '../widgets/building_item.dart';
 import '../models/building.dart';
-import 'campus_screen.dart';
-import 'favourites_tabs_screen.dart';
+import '../widgets/navigation_bar.dart';
+import '../widgets/building_item.dart';
 
 class BuildingScreen extends StatefulWidget {
   static const routeName = '/building';

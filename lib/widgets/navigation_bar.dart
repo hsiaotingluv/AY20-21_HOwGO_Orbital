@@ -97,10 +97,12 @@ class _NavigationBarState extends State<NavigationBar> {
         highlightColor: Colors.transparent,
       ),
       child: BottomNavigationBar(
+        backgroundColor: Theme.of(context).bottomAppBarColor,
         showUnselectedLabels: true,
         onTap: _selectPage,
         // unselectedItemColor: Theme.of(context).iconTheme.color,
-        // selectedItemColor: Theme.of(context).primaryColor,
+        // unselectedItemColor: Colors.black,
+        selectedItemColor: Theme.of(context).primaryColor,
         selectedFontSize: 12,
         unselectedFontSize: 12,
         iconSize: 30.0,
@@ -142,7 +144,7 @@ class _NavigationBarState extends State<NavigationBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              pageNo == 2 ? Icons.star : Icons.star_border,
+              pageNo == 2 ? Icons.favorite : Icons.favorite_border,
               color: pageNo == 2
                   ? Theme.of(context).primaryColor
                   : Theme.of(context).iconTheme.color,

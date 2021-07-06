@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/screens/search_screen.dart';
-import 'package:howgo/screens/study_area_screen.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 
+import '../widgets/navigation_bar.dart';
 import '../widgets/faculty_item.dart';
 import '../models/faculty.dart';
-import 'campus_screen.dart';
-import 'favourites_tabs_screen.dart';
 
 class FacultyScreen extends StatefulWidget {
   static const routeName = '/faculty';
