@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/screens/study_area_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -12,6 +13,17 @@ class StudyAreaItem extends StatelessWidget {
     this.title,
     this.location,
   });
+
+  void selectStudyArea(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(StudyAreaDetailScreen.routeName, arguments: {
+      'title': title,
+      'location': location,
+    }).then((result) {
+      if (result != null) {
+        // removeItem(result);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +50,9 @@ class StudyAreaItem extends StatelessWidget {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Study Spot added to favourites'),
+                  content: studyAreaList.findByName(title).isFavourite
+                      ? Text('Study Spot added to favourites')
+                      : Text('Study Spot removed from favourites'),
                   duration: Duration(seconds: 2),
                   action: SnackBarAction(
                     label: 'UNDO',
@@ -57,7 +71,7 @@ class StudyAreaItem extends StatelessWidget {
       child: Column(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () => selectStudyArea(context),
             borderRadius: BorderRadius.circular(15),
             child: Padding(
               padding: const EdgeInsets.all(0),

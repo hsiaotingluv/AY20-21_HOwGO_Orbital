@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/screens/search_screen.dart';
+import 'package:howgo/screens/study_area_screen.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 
 import '../widgets/building_item.dart';
 import '../models/building.dart';
+import 'campus_screen.dart';
+import 'favourites_tabs_screen.dart';
 
 class BuildingScreen extends StatefulWidget {
   static const routeName = '/building';
@@ -18,12 +23,6 @@ class _BuildingScreenState extends State<BuildingScreen> {
   String facultyTitle;
   List<Building> displayedBuildings;
   var _loadedInitData = false;
-
-  @override
-  void initState() {
-    // ...
-    super.initState();
-  }
 
   @override
   void didChangeDependencies() {
@@ -46,16 +45,27 @@ class _BuildingScreenState extends State<BuildingScreen> {
         title: const Text('Select a Building'),
       ),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: ListView.builder(
-        itemBuilder: (ctx, index) {
-          return BuildingItem(
-            title: displayedBuildings[index].title,
-            campus: displayedBuildings[index].campus,
-          );
-        },
-        itemCount: displayedBuildings.length,
-        padding: EdgeInsets.all(5),
-      ),
+      body: displayedBuildings.length == 0
+          ? Center(
+              child: Text(
+                'No data has been added for this faculty yet. Try another faculty.',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            )
+          : ListView.builder(
+              itemBuilder: (ctx, index) {
+                return BuildingItem(
+                  title: displayedBuildings[index].title,
+                  campus: displayedBuildings[index].campus,
+                );
+              },
+              itemCount: displayedBuildings.length,
+              padding: EdgeInsets.all(5),
+            ),
+      bottomNavigationBar: NavigationBar(0),
     );
   }
 }

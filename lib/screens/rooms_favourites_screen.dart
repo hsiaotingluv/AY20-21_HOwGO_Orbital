@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/rooms_provider.dart';
@@ -7,45 +8,100 @@ import '../widgets/room_item.dart';
 
 class RoomsFavouritesScreen extends StatelessWidget {
   var favouriteRooms = [];
-  Scaffold showListView(List<Room> favouriteRooms, Color bgrColor) {
-    return Scaffold(
-      backgroundColor: bgrColor,
-      body: ListView.builder(
-        padding: const EdgeInsets.all(5),
-        itemBuilder: (ctx, index) {
-          return Container(
-            padding: const EdgeInsets.all(5),
-            child: RoomItem(
-              title: favouriteRooms[index].name,
-              location: favouriteRooms[index].location,
-              building: favouriteRooms[index].building,
-              gridView: false,
-            ),
-          );
-        },
-        itemCount: favouriteRooms.length,
-      ),
-    );
-  }
+  List<Room> _favRooms = [];
 
   @override
   Widget build(BuildContext context) {
     final roomList = Provider.of<Rooms>(context);
     final bgrColor = Theme.of(context).backgroundColor;
-    if (roomList.favouriteRooms.isEmpty) {
-      return Scaffold(
-        backgroundColor: bgrColor,
-        body: Center(
-          child: Text(
-            'You have no favourites yet - start adding some!',
-            style: TextStyle(fontSize: 20),
-            softWrap: true,
-            textAlign: TextAlign.center,
+    // if (roomList.favouriteRooms.isEmpty) {
+    return Scaffold(
+      backgroundColor: bgrColor,
+      body: FutureBuilder(
+        future: Provider.of<Rooms>(context, listen: true).fetchAndSetFavs(),
+        builder: (ctx, snapshot) => Consumer<Rooms>(
+          child: Center(
+            child: Text(
+              'You have no favourites yet - start adding some!',
+              style: TextStyle(fontSize: 20),
+              softWrap: true,
+              textAlign: TextAlign.center,
+            ),
           ),
+          builder: (ctx, favs, ch) => favs.favRooms.length <= 0
+              ? ch
+              : ListView.builder(
+                  padding: const EdgeInsets.all(5),
+                  itemCount: favs.favRooms.length,
+                  itemBuilder: (ctx, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(5),
+                      child: RoomItem(
+                        title: favs.favRooms[index].name,
+                        location: favs.favRooms[index].location,
+                        building: favs.favRooms[index].building,
+                        gridView: false,
+                      ),
+                    );
+                  },
+                ),
         ),
-      );
-    } else {
-      return showListView(roomList.favouriteRooms, bgrColor);
-    }
+      ),
+      bottomNavigationBar: NavigationBar(2),
+    );
+    // } else {
+    //   return showListView(roomList.favouriteRooms, bgrColor);
+    // }
   }
 }
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+
+// import '../providers/rooms_provider.dart';
+// import '../models/room.dart';
+// import '../widgets/room_item.dart';
+
+// class RoomsFavouritesScreen extends StatelessWidget {
+//   var favouriteRooms = [];
+//   Scaffold showListView(List<Room> favouriteRooms, Color bgrColor) {
+//     return Scaffold(
+//       backgroundColor: bgrColor,
+//       body: ListView.builder(
+//         padding: const EdgeInsets.all(5),
+//         itemBuilder: (ctx, index) {
+//           return Container(
+//             padding: const EdgeInsets.all(5),
+//             child: RoomItem(
+//               title: favouriteRooms[index].name,
+//               location: favouriteRooms[index].location,
+//               building: favouriteRooms[index].building,
+//               gridView: false,
+//             ),
+//           );
+//         },
+//         itemCount: favouriteRooms.length,
+//       ),
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final roomList = Provider.of<Rooms>(context);
+//     final bgrColor = Theme.of(context).backgroundColor;
+//     if (roomList.favouriteRooms.isEmpty) {
+//       return Scaffold(
+//         backgroundColor: bgrColor,
+//         body: Center(
+//           child: Text(
+//             'You have no favourites yet - start adding some!',
+//             style: TextStyle(fontSize: 20),
+//             softWrap: true,
+//             textAlign: TextAlign.center,
+//           ),
+//         ),
+//       );
+//     } else {
+//       return showListView(roomList.favouriteRooms, bgrColor);
+//     }
+//   }
+// }

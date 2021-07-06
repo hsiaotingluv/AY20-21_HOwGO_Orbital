@@ -1,21 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:howgo/category_data.dart';
 import 'package:howgo/widgets/navigation_bar.dart';
-import 'package:provider/provider.dart';
-// import '../providers/room_provider.dart';
-import '../models/room.dart';
-import '../providers/rooms_provider.dart';
-import '../category_data.dart';
-import '../screens/direction_screen.dart';
 
-class RoomDetailScreen extends StatelessWidget {
-  static const routeName = '/room-detail';
-
-  void getDirection(BuildContext ctx, Room room) {
-    Navigator.push(ctx, MaterialPageRoute(builder: (context) {
-      return DirectionScreen(room);
-    }));
-  }
+class StudyAreaDetailScreen extends StatelessWidget {
+  static const routeName = '/study-area-detail';
 
   Widget buildIconTile(
       BuildContext context, Icon icon, String title, String subtitle) {
@@ -93,17 +81,12 @@ class RoomDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final roomTitle = routeArgs['title'];
-    final roomLocation = routeArgs['location'];
-    final roomBuilding = routeArgs['building'];
-    final selectedRoom = ROOMS.firstWhere(
-      (room) =>
-          room.name == roomTitle &&
-          room.location == roomLocation &&
-          room.building == roomBuilding,
+    final studyAreaTitle = routeArgs['title'];
+    final studyAreaLocation = routeArgs['location'];
+    final selectedStudyArea = STUDYAREAS.firstWhere(
+      (area) =>
+          area.name == studyAreaTitle && area.location == studyAreaLocation,
     );
-    final roomsList = Provider.of<Rooms>(context);
-    // final room = Provider.of<Room>(context);
     return Scaffold(
       // appBar: AppBar(
       //   iconTheme: IconThemeData(color: Colors.black),
@@ -118,7 +101,7 @@ class RoomDetailScreen extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                '${selectedRoom.name}',
+                '${selectedStudyArea.name}',
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.white,
@@ -128,10 +111,10 @@ class RoomDetailScreen extends StatelessWidget {
                 overflow: TextOverflow.fade,
               ),
               background: Hero(
-                tag: selectedRoom.name,
-                child: selectedRoom.image != null
+                tag: selectedStudyArea.name,
+                child: selectedStudyArea.image != null
                     ? Image.asset(
-                        selectedRoom.image,
+                        selectedStudyArea.image,
                         fit: BoxFit.cover,
                       )
                     : Container(),
@@ -151,27 +134,23 @@ class RoomDetailScreen extends StatelessWidget {
                       width: 350,
                       height: 50,
                       child: RaisedButton(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 40,
-                        ),
-                        color: Theme.of(context).primaryColor,
-                        child: Text(
-                          'GET DIRECTION',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 40,
                           ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                        onPressed: () => getDirection(
-                          context,
-                          selectedRoom,
-                        ),
-                      ),
+                          color: Theme.of(context).primaryColor,
+                          child: Text(
+                            'GET DIRECTION',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          onPressed: () {}),
                     ),
                   ],
                 ),
@@ -179,15 +158,15 @@ class RoomDetailScreen extends StatelessWidget {
                   height: 10,
                 ),
                 buildIconTile(context, Icon(Icons.business_rounded), 'Location',
-                    selectedRoom.location),
+                    selectedStudyArea.location),
                 buildIconTile(context, Icon(Icons.group_rounded), 'Capacity',
-                    selectedRoom.capacity.toString()),
+                    selectedStudyArea.capacity.toString()),
                 buildIconTile(context, Icon(Icons.directions_bus_rounded),
-                    'Nearby Bus Stops', selectedRoom.nearbyBusStops),
+                    'Nearby Bus Stops', selectedStudyArea.nearbyBusStops),
                 buildIconTile(context, Icon(Icons.router_rounded), 'Facilities',
                     '2 x Aircon, 19 x Apple Desktop'),
                 buildIconTile(context, Icon(Icons.location_on_rounded),
-                    'Address', selectedRoom.address),
+                    'Address', selectedStudyArea.address),
                 SizedBox(
                   height: 20,
                 ),
@@ -206,7 +185,7 @@ class RoomDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                selectedRoom.gallery == null
+                selectedStudyArea.gallery == null
                     ? Container(
                         margin: EdgeInsets.symmetric(
                           vertical: 10,
@@ -217,7 +196,7 @@ class RoomDetailScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       )
-                    : buildPhotoGallery(selectedRoom.gallery),
+                    : buildPhotoGallery(selectedStudyArea.gallery),
                 // Divider(
                 //   height: 0,
                 //   thickness: 0.2,
@@ -231,64 +210,7 @@ class RoomDetailScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBar(0),
+      bottomNavigationBar: NavigationBar(3),
     );
   }
 }
-// Container(
-//       margin: EdgeInsets.symmetric(
-//         vertical: 10,
-//       ),
-//       height: 180,
-
-
-// floatingActionButton: FloatingActionButton(
-//   child: Icon(
-//     roomsList.findByName(roomTitle).isFavourite
-//         ? Icons.favorite
-//         : Icons.favorite_border,
-//   ),
-//   backgroundColor: Theme.of(context).primaryColor,
-//   onPressed: () => roomsList.toggleFavourite(roomTitle),
-// ),
-
-
-// body: ListView(
-//   children: [
-//     Container(
-//       child: Text(
-//         'Images go here...',
-//         style: TextStyle(fontSize: 30),
-//       ),
-//       alignment: Alignment.center,
-//       margin: EdgeInsets.all(15),
-//       padding: EdgeInsets.all(15),
-//       height: 300,
-//       width: double.infinity,
-//       decoration: BoxDecoration(
-//         border: Border.all(
-//           width: 2,
-//         ),
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//     ),
-//     Container(
-//       margin: EdgeInsets.all(15),
-//       padding: EdgeInsets.all(20),
-//       child: Text(
-//         'Room: $roomTitle \n'
-//         'Location: $roomLocation \n'
-//         'Capacity: ${selectedRoom.capacity} \n'
-//         'Nearby Bus Stops: ${selectedRoom.nearbyBusStops} \n'
-//         'Address: ${selectedRoom.address}',
-//         style: TextStyle(fontSize: 20),
-//       ),
-//       decoration: BoxDecoration(
-//         border: Border.all(
-//           width: 2,
-//         ),
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//     ),
-//   ],
-// ),

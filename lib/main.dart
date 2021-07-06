@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/screens/campus_screen.dart';
+import 'package:howgo/screens/favourites_tabs_screen.dart';
+import 'package:howgo/screens/search_screen.dart';
+import 'package:howgo/screens/study_area_detail_screen.dart';
+import 'package:howgo/screens/study_area_screen.dart';
 import 'package:provider/provider.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import './category_data.dart';
@@ -64,19 +69,24 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           // themeMode: ThemeMode.dark,
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
-          home: TabsScreen(),
-          initialRoute: '/',
+          home: CampusScreen(),
+          // initialRoute: '/',
           routes: {
             // '/': (ctx) => TabsScreen(),
             FacultyScreen.routeName: (ctx) =>
-                FacultyScreen(_availableFaculties),
+                FacultyScreen(availableFaculty: _availableFaculties),
             BuildingScreen.routeName: (ctx) =>
                 BuildingScreen(_availableBuildings),
             RoomScreen.routeName: (ctx) => RoomScreen(_availableRooms),
             RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(),
+            StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
             TimetableScreen.routeName: (ctx) => TimetableScreen(),
             MapsScreen.routeName: (ctx) => MapsScreen(),
             SettingsScreen.routeName: (ctx) => SettingsScreen(),
+            CampusScreen.routeName: (ctx) => CampusScreen(),
+            SearchScreen.routeName: (ctx) => SearchScreen(),
+            FavouritesTabsScreen.routeName: (ctx) => FavouritesTabsScreen(),
+            StudyAreasScreen.routeName: (ctx) => StudyAreasScreen(),
           },
         );
       },

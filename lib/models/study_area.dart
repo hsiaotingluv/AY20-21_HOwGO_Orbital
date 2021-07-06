@@ -8,6 +8,8 @@ class StudyArea {
   final int capacity;
   final String openingHours;
   bool isFavourite;
+  final String image;
+  final List<String> gallery;
 
   StudyArea({
     @required this.name,
@@ -17,5 +19,7 @@ class StudyArea {
     @required this.capacity,
     @required this.openingHours,
     this.isFavourite = false,
+    this.image,
+    this.gallery,
   });
 }

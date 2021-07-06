@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/screens/search_screen.dart';
+import 'package:howgo/screens/study_area_screen.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 
 import '../widgets/faculty_item.dart';
 import '../models/faculty.dart';
+import 'campus_screen.dart';
+import 'favourites_tabs_screen.dart';
 
 class FacultyScreen extends StatefulWidget {
   static const routeName = '/faculty';
 
   final List<Faculty> availableFaculty;
+  String campusTitle;
 
-  FacultyScreen(this.availableFaculty);
+  FacultyScreen({
+    @required this.availableFaculty,
+    this.campusTitle,
+  });
 
   @override
   _FacultyScreenState createState() => _FacultyScreenState();
 }
 
 class _FacultyScreenState extends State<FacultyScreen> {
-  String campusTitle;
+  // String campusTitle;
+  // _FacultyScreenState(this.campusTitle);
   List<Faculty> displayedFaculty;
   var _loadedInitData = false;
 
   @override
-  void initState() {
-    // ...
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     if (!_loadedInitData) {
-      final routeArgs =
-          ModalRoute.of(context).settings.arguments as Map<String, String>;
-      campusTitle = routeArgs['title'];
+      // final routeArgs =
+      //     ModalRoute.of(context).settings.arguments as Map<String, String>;
+      // campusTitle = routeArgs['title'];
       displayedFaculty = widget.availableFaculty.where((faculty) {
-        return faculty.campus.contains(campusTitle);
+        return faculty.campus.contains(widget.campusTitle);
       }).toList();
       _loadedInitData = true;
     }
@@ -46,17 +50,28 @@ class _FacultyScreenState extends State<FacultyScreen> {
         title: const Text('Select a Faculty'),
       ),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: ListView.builder(
-        itemBuilder: (ctx, index) {
-          return FacultyItem(
-            title: displayedFaculty[index].name,
-            campus: displayedFaculty[index].campus,
-            image: displayedFaculty[index].image,
-          );
-        },
-        itemCount: displayedFaculty.length,
-        padding: EdgeInsets.all(5),
-      ),
+      body: displayedFaculty.length == 0
+          ? Center(
+              child: Text(
+                'No data has been added for this campus yet. Try another campus.',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            )
+          : ListView.builder(
+              itemBuilder: (ctx, index) {
+                return FacultyItem(
+                  title: displayedFaculty[index].name,
+                  campus: displayedFaculty[index].campus,
+                  image: displayedFaculty[index].image,
+                );
+              },
+              itemCount: displayedFaculty.length,
+              padding: EdgeInsets.all(5),
+            ),
+      bottomNavigationBar: NavigationBar(0),
     );
   }
 }

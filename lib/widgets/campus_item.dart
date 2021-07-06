@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/models/faculty.dart';
 
+import '../category_data.dart';
 import '../screens/faculty_screen.dart';
 
 class CampusItem extends StatelessWidget {
   final String title;
   final String image;
+  List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
 
   CampusItem(this.title, this.image);
 
   void selectCampus(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(
-      FacultyScreen.routeName,
-      arguments: {
-        'title': title,
-      },
+    // Navigator.of(ctx).pushNamed(
+    //   FacultyScreen.routeName,
+    //   arguments: {
+    //     'title': title,
+    //   },
+    // );
+    Navigator.push(
+      ctx,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) => FacultyScreen(
+          availableFaculty: _availableFaculties,
+          campusTitle: title,
+        ),
+        transitionDuration: Duration(seconds: 0),
+      ),
     );
   }
 

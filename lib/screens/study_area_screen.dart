@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/study_areas_provider.dart';
@@ -35,6 +36,7 @@ class _StudyAreasScreenState extends State<StudyAreasScreen> {
         },
         itemCount: studyAreas.areas.length,
       ),
+      bottomNavigationBar: NavigationBar(3),
       // (
       //   crossAxisAlignment: CrossAxisAlignment.stretch,
       //   children: studyAreas.areas

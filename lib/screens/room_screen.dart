@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 
 import '../models/room.dart';
 import '../widgets/room_item.dart';
@@ -80,6 +81,7 @@ class _RoomScreenState extends State<RoomScreen> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: showListView(displayedRooms),
       // backgroundColor: Theme.of(context).backgroundColor,
+      bottomNavigationBar: NavigationBar(0),
     );
   }
 

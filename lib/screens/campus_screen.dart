@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 
 import '../category_data.dart';
 import '../widgets/main_drawer.dart';
 import '../widgets/campus_item.dart';
 
 class CampusScreen extends StatelessWidget {
+  static const routeName = '/campus';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +25,7 @@ class CampusScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: NavigationBar(0),
     );
   }
 }

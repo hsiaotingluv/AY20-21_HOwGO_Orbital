@@ -5,6 +5,7 @@ import '../screens/study_area_favourites_screen.dart';
 import '../widgets/main_drawer.dart';
 
 class FavouritesTabsScreen extends StatefulWidget {
+  static const routeName = '/favouritesTabsScreen';
   @override
   _FavouritesTabsScreenState createState() => _FavouritesTabsScreenState();
 }

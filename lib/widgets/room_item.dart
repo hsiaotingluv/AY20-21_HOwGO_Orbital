@@ -55,7 +55,9 @@ class RoomItem extends StatelessWidget {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Room added to favourites'),
+                  content: roomsList.findByName(title).isFavourite
+                      ? Text('Room added to favourites')
+                      : Text('Room removed from favourites'),
                   duration: Duration(seconds: 2),
                   action: SnackBarAction(
                     label: 'UNDO',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../models/room.dart';
@@ -7,6 +8,7 @@ import '../widgets/room_item.dart';
 import '../widgets/main_drawer.dart';
 
 class SearchScreen extends StatelessWidget {
+  static const routeName = '/searchScreen';
   @override
   Widget build(BuildContext context) {
     final rooms = Provider.of<Rooms>(context);
@@ -32,6 +34,7 @@ class SearchScreen extends StatelessWidget {
         padding: const EdgeInsets.all(5.0),
         child: SearchedRoomList(resultList: roomsList),
       ),
+      bottomNavigationBar: NavigationBar(1),
     );
   }
 }
