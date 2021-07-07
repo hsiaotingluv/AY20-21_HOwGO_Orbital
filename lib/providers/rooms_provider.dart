@@ -7,25 +7,31 @@ import '../category_data.dart';
 import '../helpers/sql_rooms.dart';
 
 class Rooms with ChangeNotifier {
-  List<Room> _rooms = ROOMS;
-  List<Room> _favRooms = [];
+  List<RoomModel> _rooms = ROOMS;
+  List<RoomModel> _favRooms = [];
 
-  List<Room> get rooms {
+  List<RoomModel> get rooms {
     return [..._rooms];
   }
 
-  List<Room> get favRooms {
+  List<RoomModel> get favRooms {
     return [..._favRooms];
   }
 
-  Room findByName(String name) {
+  RoomModel findByName(String name) {
     return _rooms.firstWhere((room) => room.name == name);
   }
 
-  Future<void> toggleFavourite(String name) async {
-    Room room = findByName(name);
+  bool findFavByName(String name) {
+    // return _favRooms.firstWhere((room) => room.name == name);
+    return _favRooms.any((room) => room.name == name);
+  }
+
+  void toggleFavourite(String name) async {
+    bool isRoomInFavList = findFavByName(name);
+    RoomModel room = findByName(name);
     // room is not favourited -> favourite the room
-    if (!room.isFavourite) {
+    if (!isRoomInFavList) {
       room.isFavourite = !room.isFavourite;
       await SQLRooms.makeFav(
         'favs_places',
@@ -44,24 +50,31 @@ class Rooms with ChangeNotifier {
     }
   }
 
+  void removeFavourite(String name) async {
+    RoomModel room = findByName(name);
+    await SQLRooms.removeFav('favs_places', name);
+    notifyListeners();
+  }
+
   Future<void> fetchAndSetFavs() async {
     final dataList = await SQLRooms.getData('favs_places');
     _favRooms = dataList
         .map(
-          (i) => Room(
+          (i) => RoomModel(
             name: i['title'],
             location: findByName(i['title']).location,
             building: findByName(i['title']).building,
             address: findByName(i['title']).address,
             nearbyBusStops: findByName(i['title']).nearbyBusStops,
             capacity: findByName(i['title']).capacity,
+            isFavourite: true,
           ),
         )
         .toList();
     notifyListeners();
   }
 
-  Future<void> addRoom(Room room) async {
+  Future<void> addRoom(RoomModel room) async {
     const url = 'https://orbital-howgo-default-rtdb.firebaseio.com/rooms.json';
     try {
       final response = await http.post(
@@ -80,7 +93,7 @@ class Rooms with ChangeNotifier {
         }),
       );
 
-      final newRoom = Room(
+      final newRoom = RoomModel(
         name: room.name,
         address: room.address,
         building: room.building,

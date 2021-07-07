@@ -11,9 +11,9 @@ class SQLRooms {
     }, version: 1);
   }
 
-  static Future<int> makeFav(String table, Map<String, Object> data) async {
+  static Future<void> makeFav(String table, Map<String, Object> data) async {
     final db = await SQLRooms.database();
-    return db.insert(
+    db.insert(
       table,
       data,
       conflictAlgorithm: ConflictAlgorithm.replace,
@@ -25,7 +25,7 @@ class SQLRooms {
     return db.query(table, columns: ['title']);
   }
 
-  static Future<int> removeFav(String table, String name) async {
+  static Future<void> removeFav(String table, String name) async {
     final db = await SQLRooms.database();
     // return await db.rawDelete("DELETE FROM $table WHERE title = $name");
     return await db.delete(table, where: 'title = ?', whereArgs: ['$name']);

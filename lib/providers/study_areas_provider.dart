@@ -20,10 +20,16 @@ class StudyAreas with ChangeNotifier {
     return _studySpots.firstWhere((area) => area.name == name);
   }
 
+  bool findFavByName(String name) {
+    // return _favRooms.firstWhere((room) => room.name == name);
+    return _favStudyAreas.any((room) => room.name == name);
+  }
+
   Future<void> toggleFavourite(String name) async {
+    bool isStudyAreaInFavList = findFavByName(name);
     StudyArea studyArea = findByName(name);
     // room is not favourited -> favourite the room
-    if (!studyArea.isFavourite) {
+    if (!isStudyAreaInFavList) {
       studyArea.isFavourite = !studyArea.isFavourite;
       await SQLStudyAreas.makeFav(
         'favs_study_areas',

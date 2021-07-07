@@ -11,7 +11,7 @@ import '../widgets/navigation_bar.dart';
 class RoomDetailScreen extends StatelessWidget {
   static const routeName = '/room-detail';
 
-  void getDirection(BuildContext ctx, Room room) {
+  void getDirection(BuildContext ctx, RoomModel room) {
     Navigator.push(ctx, MaterialPageRoute(builder: (context) {
       return DirectionScreen(room);
     }));

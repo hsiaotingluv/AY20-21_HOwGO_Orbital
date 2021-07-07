@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Room {
+class RoomModel {
   final String name;
   final String location;
   final String building;
@@ -14,7 +14,7 @@ class Room {
   final List<String> gallery;
   bool isFavourite;
 
-  Room({
+  RoomModel({
     @required this.name,
     @required this.location,
     @required this.building,

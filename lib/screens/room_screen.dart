@@ -12,7 +12,7 @@ enum ViewOptions {
 class RoomScreen extends StatefulWidget {
   static const routeName = '/room';
 
-  final List<Room> availableRooms;
+  final List<RoomModel> availableRooms;
 
   RoomScreen(
     this.availableRooms,
@@ -24,7 +24,7 @@ class RoomScreen extends StatefulWidget {
 
 class _RoomScreenState extends State<RoomScreen> {
   String buildingTitle;
-  List<Room> displayedRooms;
+  List<RoomModel> displayedRooms;
   var _loadedInitData = false;
 
   @override
@@ -50,32 +50,32 @@ class _RoomScreenState extends State<RoomScreen> {
   bool gridView = false;
   @override
   Widget build(BuildContext context) {
-    List<Room> availRooms = displayedRooms;
+    List<RoomModel> availRooms = displayedRooms;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select a Room'),
         actions: [
-          PopupMenuButton(
-            onSelected: (ViewOptions view) {
-              setState(() {
-                if (view == ViewOptions.Grid) {
-                  gridView = true;
-                } else {
-                  gridView = false;
-                }
-              });
-            },
-            itemBuilder: (_) => [
-              PopupMenuItem(
-                child: Text('Grid View'),
-                value: ViewOptions.Grid,
-              ),
-              PopupMenuItem(
-                child: Text('List View'),
-                value: ViewOptions.List,
-              ),
-            ],
-          ),
+          // PopupMenuButton(
+          //   onSelected: (ViewOptions view) {
+          //     setState(() {
+          //       if (view == ViewOptions.Grid) {
+          //         gridView = true;
+          //       } else {
+          //         gridView = false;
+          //       }
+          //     });
+          //   },
+          //   itemBuilder: (_) => [
+          //     PopupMenuItem(
+          //       child: Text('Grid View'),
+          //       value: ViewOptions.Grid,
+          //     ),
+          //     PopupMenuItem(
+          //       child: Text('List View'),
+          //       value: ViewOptions.List,
+          //     ),
+          //   ],
+          // ),
         ],
       ),
       backgroundColor: Theme.of(context).backgroundColor,
@@ -85,7 +85,7 @@ class _RoomScreenState extends State<RoomScreen> {
     );
   }
 
-  ListView showListView(List<Room> displayedRoom) {
+  ListView showListView(List<RoomModel> displayedRoom) {
     return ListView.builder(
       padding: const EdgeInsets.all(5),
       itemBuilder: (ctx, index) {
@@ -103,7 +103,7 @@ class _RoomScreenState extends State<RoomScreen> {
     );
   }
 
-  GridView showGridView(List<Room> availRooms) {
+  GridView showGridView(List<RoomModel> availRooms) {
     return GridView(
       padding: EdgeInsets.all(25),
       children: availRooms

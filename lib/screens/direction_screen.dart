@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../models/room.dart';
 
 class DirectionScreen extends StatelessWidget {
-  final Room room;
+  final RoomModel room;
 
   DirectionScreen(this.room);
 
@@ -57,6 +57,21 @@ class DirectionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Direction')),
       backgroundColor: Theme.of(context).backgroundColor,
+      // body: StreamBuilder(
+      //     stream: FirebaseFirestore.instance
+      //         .collection(
+      //             '/campus/Kent Ridge Campus/faculty/School of Computing/building/COM1/room')
+      //             .document(room.name)
+      //         .snapshots(),
+      //     builder: (ctx, snapshot) {
+      //       if (snapshot.connectionState == ConnectionState.waiting) {
+      //         return Center(
+      //           child: CircularProgressIndicator(),
+      //         );
+      //       }
+      //       var doc = snapshot.data;
+      //       return Column(children: [Text('name: '),],);
+      //     }),
       body: Container(
         child: FutureBuilder(
             // future: _getImages(context),

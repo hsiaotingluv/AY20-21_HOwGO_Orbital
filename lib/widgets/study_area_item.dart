@@ -33,7 +33,7 @@ class StudyAreaItem extends StatelessWidget {
       secondaryActions: [
         Consumer<StudyAreas>(
           builder: (ctx, studyAreaList, child) => IconSlideAction(
-            icon: studyAreaList.findByName(title).isFavourite
+            icon: studyAreaList.findFavByName(title)
                 ? Icons.favorite
                 : Icons.favorite_border,
             // iconWidget: Icon(
@@ -50,7 +50,7 @@ class StudyAreaItem extends StatelessWidget {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: studyAreaList.findByName(title).isFavourite
+                  content: studyAreaList.findFavByName(title)
                       ? Text('Study Spot added to favourites')
                       : Text('Study Spot removed from favourites'),
                   duration: Duration(seconds: 2),

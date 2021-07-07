@@ -47,7 +47,7 @@ const String socAddress =
 
 var ROOMS = [
   // COM 1
-  Room(
+  RoomModel(
     name: 'Embedded Systems Teaching Lab 1',
     location: 'COM1-01-14',
     building: 'COM1',
@@ -56,7 +56,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0114.jpg',
     capacity: 24,
   ),
-  Room(
+  RoomModel(
     name: 'Embedded Systems Teaching Lab 2',
     location: 'COM1-01-13',
     building: 'COM1',
@@ -66,7 +66,7 @@ var ROOMS = [
     capacity: 24,
   ),
 
-  Room(
+  RoomModel(
     name: 'Seminar Room 1',
     location: 'COM1-02-06',
     building: 'COM1',
@@ -75,7 +75,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0206.jpg',
     capacity: 200,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 2',
     location: 'COM1-02-04',
     building: 'COM1',
@@ -84,7 +84,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0204.jpg',
     capacity: 80,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 3',
     location: 'COM1-02-12',
     building: 'COM1',
@@ -93,7 +93,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0212.jpg',
     capacity: 80,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 5',
     location: 'COM1-02-01',
     building: 'COM1',
@@ -102,7 +102,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0201.jpg',
     capacity: 24,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 6',
     location: 'COM1-02-03',
     building: 'COM1',
@@ -112,7 +112,7 @@ var ROOMS = [
     capacity: 25,
   ),
 
-  Room(
+  RoomModel(
     name: 'Seminar Room 7',
     location: 'COM1-02-07',
     building: 'COM1',
@@ -121,7 +121,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0207.jpg',
     capacity: 30,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 8',
     location: 'COM1-02-08',
     building: 'COM1',
@@ -130,7 +130,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0208.jpg',
     capacity: 36,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 9',
     location: 'COM1-02-09',
     building: 'COM1',
@@ -139,7 +139,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0209.jpg',
     capacity: 30,
   ),
-  Room(
+  RoomModel(
     name: 'Seminar Room 10',
     location: 'COM1-02-10',
     building: 'COM1',
@@ -148,7 +148,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-0210.jpg',
     capacity: 42,
   ),
-  Room(
+  RoomModel(
     name: 'Cerebro@SoC',
     location: 'COM1-02-05',
     building: 'COM1',
@@ -157,7 +157,7 @@ var ROOMS = [
     capacity: 70,
   ),
 
-  Room(
+  RoomModel(
     name: 'Video Conference Room',
     location: 'COM1-02-13',
     building: 'COM1',
@@ -166,7 +166,7 @@ var ROOMS = [
     image: 'assets/images/rooms/VCRM.jpg',
     capacity: 60,
   ),
-  Room(
+  RoomModel(
     name: 'Tutorial Room 5',
     location: 'COM1-02-18',
     building: 'COM1',
@@ -174,7 +174,7 @@ var ROOMS = [
     nearbyBusStops: 'COM2',
     capacity: 25,
   ),
-  Room(
+  RoomModel(
     name: 'Tutorial Room 9',
     location: 'COM2-01-08',
     building: 'COM2',
@@ -183,7 +183,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM2-0108.jpg',
     capacity: 32,
   ),
-  Room(
+  RoomModel(
     name: 'Tutorial Room 10',
     location: 'COM1-02-17',
     building: 'COM1',
@@ -210,7 +210,7 @@ var ROOMS = [
     ],
     capacity: 20,
   ),
-  Room(
+  RoomModel(
     name: 'Tutorial Room 11',
     location: 'COM1-02-16',
     building: 'COM1',
@@ -220,7 +220,7 @@ var ROOMS = [
     capacity: 20,
   ),
 
-  Room(
+  RoomModel(
     name: 'Datacomm & Parallel Computing Lab',
     location: 'COM1-B-02',
     building: 'COM1',
@@ -229,7 +229,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-B102.jpg',
     capacity: 48,
   ),
-  Room(
+  RoomModel(
     name: 'Active Learning Lab',
     location: 'COM1-B-03',
     building: 'COM1',
@@ -239,7 +239,7 @@ var ROOMS = [
     capacity: 40,
   ),
 
-  Room(
+  RoomModel(
     name: 'Programming Lab 1',
     location: 'COM1-B-12',
     building: 'COM1',
@@ -248,7 +248,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-B112.jpg',
     capacity: 48,
   ),
-  Room(
+  RoomModel(
     name: 'Programming Lab 2',
     location: 'COM1-B-09',
     building: 'COM1',
@@ -257,7 +257,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-B109.jpg',
     capacity: 46,
   ),
-  Room(
+  RoomModel(
     name: 'Programming Lab 3',
     location: 'COM1-B-08',
     building: 'COM1',
@@ -266,7 +266,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-B108.jpg',
     capacity: 25,
   ),
-  Room(
+  RoomModel(
     name: 'Programming Lab 4',
     location: 'COM1-B-11',
     building: 'COM1',
@@ -275,7 +275,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-B111.jpg',
     capacity: 25,
   ),
-  Room(
+  RoomModel(
     name: 'Programming Lab 5',
     location: 'COM1-B-10',
     building: 'COM1',
@@ -284,7 +284,7 @@ var ROOMS = [
     image: 'assets/images/rooms/COM1-B110.jpg',
     capacity: 23,
   ),
-  Room(
+  RoomModel(
     name: 'Programming Lab 6',
     location: 'COM1-01-20',
     building: 'COM1',
@@ -293,7 +293,7 @@ var ROOMS = [
     capacity: 31,
   ),
 
-  Room(
+  RoomModel(
     name: 'IT Security & OS Lab',
     location: 'COM1-B-13',
     building: 'COM1',
@@ -305,7 +305,7 @@ var ROOMS = [
 
   // COM 2
 
-  Room(
+  RoomModel(
     name: 'LT16',
     location: 'COM2',
     building: 'COM2',
@@ -313,7 +313,7 @@ var ROOMS = [
     nearbyBusStops: 'COM2',
     capacity: 0,
   ),
-  Room(
+  RoomModel(
     name: 'LT17',
     location: 'COM2',
     building: 'COM2',

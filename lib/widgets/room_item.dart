@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/room_provider.dart';
 import '../providers/rooms_provider.dart';
 import '../screens/room_detail_screen.dart';
 
@@ -34,14 +35,14 @@ class RoomItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final room = Provider.of<Room>(context, listen: false);
+    final room = Provider.of<Room>(context, listen: false);
     // final roomsList = Provider.of<Rooms>(context, listen: false);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
         Consumer<Rooms>(
           builder: (ctx, roomsList, child) => IconSlideAction(
-            icon: roomsList.findByName(title).isFavourite
+            icon: roomsList.findFavByName(title)
                 ? Icons.favorite
                 : Icons.favorite_border,
             caption: 'Favourite',
@@ -51,10 +52,11 @@ class RoomItem extends StatelessWidget {
             foregroundColor: Colors.white,
             onTap: () {
               roomsList.toggleFavourite(title);
+              room.toggleFav();
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: roomsList.findByName(title).isFavourite
+                  content: roomsList.findFavByName(title)
                       ? Text('Room added to favourites')
                       : Text('Room removed from favourites'),
                   duration: Duration(seconds: 2),
@@ -63,6 +65,7 @@ class RoomItem extends StatelessWidget {
                     textColor: Colors.cyan,
                     onPressed: () {
                       roomsList.toggleFavourite(title);
+                      room.toggleFav();
                     },
                   ),
                 ),

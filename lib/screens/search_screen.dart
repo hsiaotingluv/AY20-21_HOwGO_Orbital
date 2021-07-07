@@ -40,7 +40,7 @@ class SearchScreen extends StatelessWidget {
 }
 
 class RoomSearch extends SearchDelegate<String> {
-  List<Room> roomsList;
+  List<RoomModel> roomsList;
   RoomSearch(this.roomsList);
 
   @override
@@ -99,7 +99,7 @@ class SearchedRoomList extends StatelessWidget {
     @required this.resultList,
   });
 
-  final List<Room> resultList;
+  final List<RoomModel> resultList;
 
   @override
   Widget build(BuildContext context) {

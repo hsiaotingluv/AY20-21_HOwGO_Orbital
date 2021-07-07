@@ -5,6 +5,7 @@ import './category_data.dart';
 import './models/building.dart';
 import './models/faculty.dart';
 import './models/room.dart';
+import './providers/room_provider.dart';
 import './providers/rooms_provider.dart';
 import './providers/lesson_provider.dart';
 import './providers/profile_providers.dart';
@@ -30,7 +31,7 @@ void main() {
 class MyApp extends StatelessWidget with ChangeNotifier {
   List<Building> _availableBuildings = BUILDING_CATEGORIES;
   List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
-  List<Room> _availableRooms = ROOMS;
+  List<RoomModel> _availableRooms = ROOMS;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget with ChangeNotifier {
       providers: [
         ChangeNotifierProvider(
           create: (ctx) => Rooms(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Room(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => StudyAreas(),
