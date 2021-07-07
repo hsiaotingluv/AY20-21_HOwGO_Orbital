@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 
 import '../models/room.dart';
+import '../widgets/navigation_bar.dart';
 import '../widgets/room_item.dart';
 
 enum ViewOptions {

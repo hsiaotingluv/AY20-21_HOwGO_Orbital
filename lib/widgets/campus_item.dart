@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/models/faculty.dart';
 
+import '../models/faculty.dart';
 import '../category_data.dart';
 import '../screens/faculty_screen.dart';
 

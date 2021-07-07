@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import './models/lesson.dart';
 import './models/profile.dart';
 import './models/study_area.dart';
-
 import './models/faculty.dart';
 import './models/campus.dart';
 import './models/building.dart';

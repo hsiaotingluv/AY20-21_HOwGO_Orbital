@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/category_data.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
+
+import '../widgets/navigation_bar.dart';
+import '../category_data.dart';
 
 class StudyAreaDetailScreen extends StatelessWidget {
   static const routeName = '/study-area-detail';

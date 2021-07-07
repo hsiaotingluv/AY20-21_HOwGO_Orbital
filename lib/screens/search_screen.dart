@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../models/room.dart';
 import '../providers/rooms_provider.dart';
 import '../widgets/room_item.dart';
+import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 
 class SearchScreen extends StatelessWidget {

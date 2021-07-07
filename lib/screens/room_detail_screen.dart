@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
-// import '../providers/room_provider.dart';
+
+import './direction_screen.dart';
 import '../models/room.dart';
 import '../providers/rooms_provider.dart';
 import '../category_data.dart';
-import '../screens/direction_screen.dart';
+import '../widgets/navigation_bar.dart';
 
 class RoomDetailScreen extends StatelessWidget {
   static const routeName = '/room-detail';

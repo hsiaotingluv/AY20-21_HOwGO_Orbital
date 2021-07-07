@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/screens/study_area_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../screens/study_area_detail_screen.dart';
 import '../providers/study_areas_provider.dart';
 
 class StudyAreaItem extends StatelessWidget {

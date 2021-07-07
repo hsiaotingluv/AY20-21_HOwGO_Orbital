@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/theme_provider.dart';
+import '../widgets/navigation_bar.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const routeName = '/settings';

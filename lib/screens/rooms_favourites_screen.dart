@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/rooms_provider.dart';
 import '../models/room.dart';
+import '../widgets/navigation_bar.dart';
 import '../widgets/room_item.dart';
 
 class RoomsFavouritesScreen extends StatelessWidget {

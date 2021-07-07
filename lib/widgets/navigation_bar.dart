@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/screens/campus_screen.dart';
-import 'package:howgo/screens/favourites_tabs_screen.dart';
-import 'package:howgo/screens/search_screen.dart';
-import 'package:howgo/screens/study_area_screen.dart';
+
+import '../screens/campus_screen.dart';
+import '../screens/favourites_tabs_screen.dart';
+import '../screens/search_screen.dart';
+import '../screens/study_area_screen.dart';
 
 class NavigationBar extends StatefulWidget {
   // Function _selectPage;

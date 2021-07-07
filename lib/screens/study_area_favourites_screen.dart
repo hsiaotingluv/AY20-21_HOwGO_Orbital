@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../models/study_area.dart';
 import '../providers/study_areas_provider.dart';
 import '../widgets/study_area_item.dart';
 

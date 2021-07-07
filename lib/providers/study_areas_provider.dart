@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:howgo/helpers/sql_study_areas.dart';
-
+import '../helpers/sql_study_areas.dart';
 import '../models/study_area.dart';
 import '../category_data.dart';
 
@@ -20,16 +19,6 @@ class StudyAreas with ChangeNotifier {
   StudyArea findByName(String name) {
     return _studySpots.firstWhere((area) => area.name == name);
   }
-
-  // List<StudyArea> get favouriteStudyAreas {
-  //   return _studySpots.where((rooms) => rooms.isFavourite).toList();
-  // }
-
-  // void toggleFavourite(String name) {
-  //   StudyArea area = findByName(name);
-  //   area.isFavourite = !area.isFavourite;
-  //   notifyListeners();
-  // }
 
   Future<void> toggleFavourite(String name) async {
     StudyArea studyArea = findByName(name);

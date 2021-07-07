@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/study_areas_provider.dart';
 import '../widgets/main_drawer.dart';
+import '../widgets/navigation_bar.dart';
 import '../widgets/study_area_item.dart';
 
 class StudyAreasScreen extends StatefulWidget {
