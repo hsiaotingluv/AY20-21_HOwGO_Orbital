@@ -41,9 +41,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           create: (ctx) => Rooms(),
         ),
         ChangeNotifierProvider(
-          create: (ctx) => Room(),
-        ),
-        ChangeNotifierProvider(
           create: (ctx) => StudyAreas(),
         ),
         ChangeNotifierProvider(

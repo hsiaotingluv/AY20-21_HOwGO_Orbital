@@ -50,7 +50,7 @@ class StudyAreaItem extends StatelessWidget {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: studyAreaList.findFavByName(title)
+                  content: !studyAreaList.findFavByName(title)
                       ? Text('Study Spot added to favourites')
                       : Text('Study Spot removed from favourites'),
                   duration: Duration(seconds: 2),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:howgo/widgets/fav_room_item.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/rooms_provider.dart';

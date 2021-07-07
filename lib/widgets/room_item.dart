@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/room_provider.dart';
 import '../providers/rooms_provider.dart';
 import '../screens/room_detail_screen.dart';
 
@@ -35,8 +34,7 @@ class RoomItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final room = Provider.of<Room>(context, listen: false);
-    // final roomsList = Provider.of<Rooms>(context, listen: false);
+    final roomsList = Provider.of<Rooms>(context, listen: false);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
@@ -47,16 +45,14 @@ class RoomItem extends StatelessWidget {
                 : Icons.favorite_border,
             caption: 'Favourite',
             color: Theme.of(context).primaryColor,
-            // icon: Icons.favorite,
             closeOnTap: true,
             foregroundColor: Colors.white,
             onTap: () {
               roomsList.toggleFavourite(title);
-              room.toggleFav();
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: roomsList.findFavByName(title)
+                  content: !roomsList.findFavByName(title)
                       ? Text('Room added to favourites')
                       : Text('Room removed from favourites'),
                   duration: Duration(seconds: 2),
@@ -65,7 +61,6 @@ class RoomItem extends StatelessWidget {
                     textColor: Colors.cyan,
                     onPressed: () {
                       roomsList.toggleFavourite(title);
-                      room.toggleFav();
                     },
                   ),
                 ),
@@ -122,16 +117,33 @@ class RoomItem extends StatelessWidget {
                         ),
                       ),
                       // trailing: IconButton(
-                      //   icon: Icon(
-                      //     roomsList.findByName(title).isFavourite
-                      //         ? Icons.star
-                      //         : Icons.star_border,
-                      //     size: 30,
-                      //   ),
-                      //   color: Theme.of(context).iconTheme.color,
-                      //   splashRadius: 1,
-                      //   onPressed: () => roomsList.toggleFavourite(title),
-                      // ),
+                      //     icon: Icon(
+                      //       roomsList.findFavByName(title)
+                      //           ? Icons.favorite
+                      //           : Icons.favorite_border,
+                      //       size: 30,
+                      //     ),
+                      //     color: Theme.of(context).iconTheme.color,
+                      //     splashRadius: 1,
+                      //     onPressed: () {
+                      //       roomsList.toggleFavourite(title);
+                      //       ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      //       ScaffoldMessenger.of(context).showSnackBar(
+                      //         SnackBar(
+                      //           content: roomsList.findFavByName(title)
+                      //               ? Text('Room added to favourites')
+                      //               : Text('Room removed from favourites'),
+                      //           duration: Duration(seconds: 2),
+                      //           action: SnackBarAction(
+                      //             label: 'UNDO',
+                      //             textColor: Colors.cyan,
+                      //             onPressed: () {
+                      //               roomsList.toggleFavourite(title);
+                      //             },
+                      //           ),
+                      //         ),
+                      //       );
+                      //     }),
                     ),
                     height: 75,
                   ),

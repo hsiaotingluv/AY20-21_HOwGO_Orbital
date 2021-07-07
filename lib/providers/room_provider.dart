@@ -27,29 +27,29 @@ class Room with ChangeNotifier {
     @required this.capacity,
     this.isFavourite = false,
   }) {
-    _loadFromPrefs();
+    // _loadFromPrefs();
   }
 
-  _initPrefs() async {
-    if (_pref == null) _pref = await SharedPreferences.getInstance();
-  }
+  // _initPrefs() async {
+  //   if (_pref == null) _pref = await SharedPreferences.getInstance();
+  // }
 
-  _loadFromPrefs() async {
-    await _initPrefs();
-    isFavourite = _pref.getBool(key) ?? true;
-    notifyListeners();
-  }
+  // _loadFromPrefs() async {
+  //   await _initPrefs();
+  //   isFavourite = _pref.getBool(key) ?? true;
+  //   notifyListeners();
+  // }
 
-  toggleFav() {
-    isFavourite = !isFavourite;
-    _saveToPrefs();
-    notifyListeners();
-  }
+  // toggleFav() {
+  //   isFavourite = !isFavourite;
+  //   _saveToPrefs();
+  //   notifyListeners();
+  // }
 
-  _saveToPrefs() async {
-    await _initPrefs();
-    _pref.setBool(key, isFavourite);
-  }
+  // _saveToPrefs() async {
+  //   await _initPrefs();
+  //   _pref.setBool(key, isFavourite);
+  // }
 
   // void toggleFavourite(String name) {
   //   isFavourite = !isFavourite;
