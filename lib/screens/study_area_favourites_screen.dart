@@ -48,11 +48,11 @@ class StudyAreaFavouritesScreen extends StatelessWidget {
           builder: (ctx, favs, ch) => favs.favStudyAreas.length <= 0
               ? ch
               : ListView.builder(
-                  padding: const EdgeInsets.all(5),
+                  // padding: const EdgeInsets.all(5),
                   itemCount: favs.favStudyAreas.length,
                   itemBuilder: (ctx, index) {
                     return Container(
-                      padding: const EdgeInsets.all(5),
+                      // padding: const EdgeInsets.all(5),
                       child: StudyAreaItem(
                         title: favs.favStudyAreas[index].name,
                         location: favs.favStudyAreas[index].location,

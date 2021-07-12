@@ -70,13 +70,14 @@ class StudyAreaItem extends StatelessWidget {
       direction: Axis.horizontal,
       child: Column(
         children: [
-          InkWell(
-            onTap: () => selectStudyArea(context),
-            borderRadius: BorderRadius.circular(15),
-            child: Padding(
-              padding: const EdgeInsets.all(0),
+          Container(
+            height: 85,
+            child: InkWell(
+              onTap: () => selectStudyArea(context),
+              splashColor: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(1),
               child: Container(
-                padding: const EdgeInsets.all(0),
+                padding: const EdgeInsets.all(5),
                 child: ListTile(
                   title: Text(
                     title,
@@ -98,13 +99,16 @@ class StudyAreaItem extends StatelessWidget {
                   //   onPressed: () => studyAreaList.toggleFavourite(title),
                   // ),
                 ),
-                height: 75,
+                height: 70,
               ),
             ),
           ),
           Divider(
             height: 0,
-            thickness: 1.5,
+            thickness: 0.5,
+            color: Theme.of(context).dividerColor,
+            indent: 15,
+            endIndent: 15,
           ),
         ],
       ),

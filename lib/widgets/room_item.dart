@@ -71,87 +71,70 @@ class RoomItem extends StatelessWidget {
       ],
       child: Column(
         children: [
-          InkWell(
-            onTap: () => selectRoom(context),
-            splashColor: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(1),
-            child: gridView
-                ? Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      child: GridTile(
-                        child: Text(
-                          title,
-                          style: Theme.of(context).textTheme.headline1,
-                        ),
-                        footer: Text(
-                          location,
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
-                      ),
+          Container(
+            height: 85,
+            child: InkWell(
+              onTap: () => selectRoom(context),
+              splashColor: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(1),
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                child: ListTile(
+                  horizontalTitleGap: 0,
+                  title: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyText1.color,
                     ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  )
-                : Container(
-                    padding: const EdgeInsets.all(0),
-                    child: ListTile(
-                      horizontalTitleGap: 0,
-                      title: Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.bodyText1.color,
-                        ),
-                      ),
-                      subtitle: Text(
-                        location,
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          // fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      // trailing: IconButton(
-                      //     icon: Icon(
-                      //       roomsList.findFavByName(title)
-                      //           ? Icons.favorite
-                      //           : Icons.favorite_border,
-                      //       size: 30,
-                      //     ),
-                      //     color: Theme.of(context).iconTheme.color,
-                      //     splashRadius: 1,
-                      //     onPressed: () {
-                      //       roomsList.toggleFavourite(title);
-                      //       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      //       ScaffoldMessenger.of(context).showSnackBar(
-                      //         SnackBar(
-                      //           content: roomsList.findFavByName(title)
-                      //               ? Text('Room added to favourites')
-                      //               : Text('Room removed from favourites'),
-                      //           duration: Duration(seconds: 2),
-                      //           action: SnackBarAction(
-                      //             label: 'UNDO',
-                      //             textColor: Colors.cyan,
-                      //             onPressed: () {
-                      //               roomsList.toggleFavourite(title);
-                      //             },
-                      //           ),
-                      //         ),
-                      //       );
-                      //     }),
-                    ),
-                    height: 75,
                   ),
+                  subtitle: Text(
+                    location,
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      // fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  // trailing: IconButton(
+                  //     icon: Icon(
+                  //       roomsList.findFavByName(title)
+                  //           ? Icons.favorite
+                  //           : Icons.favorite_border,
+                  //       size: 30,
+                  //     ),
+                  //     color: Theme.of(context).iconTheme.color,
+                  //     splashRadius: 1,
+                  //     onPressed: () {
+                  //       roomsList.toggleFavourite(title);
+                  //       ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  //       ScaffoldMessenger.of(context).showSnackBar(
+                  //         SnackBar(
+                  //           content: roomsList.findFavByName(title)
+                  //               ? Text('Room added to favourites')
+                  //               : Text('Room removed from favourites'),
+                  //           duration: Duration(seconds: 2),
+                  //           action: SnackBarAction(
+                  //             label: 'UNDO',
+                  //             textColor: Colors.cyan,
+                  //             onPressed: () {
+                  //               roomsList.toggleFavourite(title);
+                  //             },
+                  //           ),
+                  //         ),
+                  //       );
+                  //     }),
+                ),
+                height: 70,
+              ),
+            ),
           ),
           Divider(
             height: 0,
-            thickness: 1.5,
+            thickness: 0.5,
             color: Theme.of(context).dividerColor,
+            indent: 15,
+            endIndent: 15,
           ),
         ],
       ),

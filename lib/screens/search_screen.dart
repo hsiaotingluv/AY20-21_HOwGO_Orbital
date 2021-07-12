@@ -15,7 +15,7 @@ class SearchScreen extends StatelessWidget {
     var roomsList = rooms.rooms;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: Text('Search Rooms'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -117,7 +117,6 @@ class SearchedRoomList extends StatelessWidget {
         : ListView.builder(
             itemBuilder: (ctx, index) {
               return Container(
-                padding: const EdgeInsets.all(5),
                 child: RoomItem(
                   title: resultList[index].name,
                   location: resultList[index].location,

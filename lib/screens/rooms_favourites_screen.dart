@@ -51,11 +51,11 @@ class RoomsFavouritesScreen extends StatelessWidget {
           builder: (ctx, favs, ch) => favs.favRooms.length <= 0
               ? ch
               : ListView.builder(
-                  padding: const EdgeInsets.all(5),
+                  // padding: const EdgeInsets.all(5),
                   itemCount: favs.favRooms.length,
                   itemBuilder: (ctx, index) {
                     return Container(
-                      padding: const EdgeInsets.all(5),
+                      // padding: const EdgeInsets.all(5),
                       child: RoomItem(
                         title: favs.favRooms[index].name,
                         location: favs.favRooms[index].location,

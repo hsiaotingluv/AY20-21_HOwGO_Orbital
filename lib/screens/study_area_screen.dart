@@ -24,10 +24,10 @@ class _StudyAreasScreenState extends State<StudyAreasScreen> {
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: MainDrawer(),
       body: ListView.builder(
-        padding: const EdgeInsets.all(5),
+        // padding: const EdgeInsets.all(5),
         itemBuilder: (ctx, index) {
           return Container(
-            padding: const EdgeInsets.all(5),
+            // padding: const EdgeInsets.all(5),
             child: StudyAreaItem(
               title: studyAreas.areas[index].name,
               location: studyAreas.areas[index].location,
