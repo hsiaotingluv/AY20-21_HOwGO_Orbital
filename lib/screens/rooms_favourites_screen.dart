@@ -21,11 +21,31 @@ class RoomsFavouritesScreen extends StatelessWidget {
         future: Provider.of<Rooms>(context, listen: true).fetchAndSetFavs(),
         builder: (ctx, snapshot) => Consumer<Rooms>(
           child: Center(
-            child: Text(
-              'You have no favourites yet - start adding some!',
-              style: TextStyle(fontSize: 20),
-              softWrap: true,
-              textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 100,
+                ),
+                Text(
+                  'You have no favourites yet. \n Start adding some!',
+                  style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      // border: Border.all(),
+                      ),
+                  height: 250,
+                  width: 350,
+                  child: Image.asset(
+                    'assets/images/makeFavRoomEg.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
           ),
           builder: (ctx, favs, ch) => favs.favRooms.length <= 0

@@ -325,17 +325,26 @@ var ROOMS = [
 
 var STUDYAREAS = [
   StudyArea(
-      name: 'Central Library',
-      location: 'Beside AS8',
-      address: '12 Kent Ridge Crescent Singapore 119275',
-      nearbyBusStops: 'Central Library',
-      capacity: 500,
-      openingHours: '0900 - 0600'),
+    name: 'Central Library',
+    location: 'Beside AS8',
+    address: '12 Kent Ridge Crescent Singapore 119275',
+    nearbyBusStops: 'Central Library',
+    capacity: 500,
+    openingHours: '0900 - 0600',
+  ),
   StudyArea(
     name: 'Outside UTown Starbucks',
-    location: 'University Town',
+    location: 'U Town',
     address:
         '#B1, 8 College Ave West, 01 University Town, Education Resource Centre, 138608',
+    nearbyBusStops: 'University Town',
+    capacity: 100,
+    openingHours: '24 Hours',
+  ),
+  StudyArea(
+    name: 'Education Resource Centre (ERC)',
+    location: 'U Town',
+    address: '8 College Ave West, Buona Vista, Singapore 138608',
     nearbyBusStops: 'University Town',
     capacity: 100,
     openingHours: '24 Hours',

@@ -73,6 +73,8 @@ flutter:
     - assets/images/outram-nus.png
     - assets/images/lzw.png
     - assets/images/soc.png
+    - assets/images/makeFavRoomEg.png
+    - assets/images/makeStudySpotFavEg.png
     # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
