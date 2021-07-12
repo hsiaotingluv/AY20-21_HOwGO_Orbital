@@ -5,7 +5,7 @@ import './category_data.dart';
 import './models/building.dart';
 import './models/faculty.dart';
 import './models/room.dart';
-import './providers/room_provider.dart';
+import './providers/home_screen_provider.dart';
 import './providers/rooms_provider.dart';
 import './providers/lesson_provider.dart';
 import './providers/profile_providers.dart';
@@ -55,23 +55,21 @@ class MyApp extends StatelessWidget with ChangeNotifier {
         ChangeNotifierProvider(
           create: (ctx) => Profiles(),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => ChooseHomeScreenSettings(),
+        ),
       ],
       builder: (context, child) {
-        final settings = Provider.of<ThemeSettings>(context);
+        final themeSettings = Provider.of<ThemeSettings>(context);
+        final pickedHomeScreen = Provider.of<ChooseHomeScreenSettings>(context);
         return MaterialApp(
           title: 'HOwGO',
-          // theme: ThemeData(
-          // primaryColor: settings.darkMode ? Colors.black : Colors.orange,
-          // backgroundColor: Colors.white,
-          // ),
-          // themeMode: settings.themeMode,
-          // themeMode: ThemeMode.dark,
-          theme: settings.darkTheme ? darkTheme : lightTheme,
-          // darkTheme: darkTheme,
-          home: CampusScreen(),
-          // initialRoute: '/',
+          theme: themeSettings.darkTheme ? darkTheme : lightTheme,
+          // home: CampusScreen(),
+          home: pickedHomeScreen.homeScreen
+              ? FavouritesTabsScreen()
+              : CampusScreen(),
           routes: {
-            // '/': (ctx) => TabsScreen(),
             FacultyScreen.routeName: (ctx) =>
                 FacultyScreen(availableFaculty: _availableFaculties),
             BuildingScreen.routeName: (ctx) =>
