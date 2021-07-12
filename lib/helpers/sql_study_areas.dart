@@ -15,7 +15,7 @@ class SQLStudyAreas {
 
   static Future<int> makeFav(String table, Map<String, Object> data) async {
     final db = await SQLStudyAreas.database();
-    return db.insert(
+    return await db.insert(
       table,
       data,
       conflictAlgorithm: ConflictAlgorithm.replace,

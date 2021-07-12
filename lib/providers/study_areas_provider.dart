@@ -21,29 +21,28 @@ class StudyAreas with ChangeNotifier {
   }
 
   bool findFavByName(String name) {
-    // return _favRooms.firstWhere((room) => room.name == name);
     return _favStudyAreas.any((room) => room.name == name);
   }
 
-  Future<void> toggleFavourite(String name) async {
+  Future<int> toggleFavourite(String name) async {
     bool isStudyAreaInFavList = findFavByName(name);
     StudyArea studyArea = findByName(name);
     // room is not favourited -> favourite the room
     if (!isStudyAreaInFavList) {
-      studyArea.isFavourite = !studyArea.isFavourite;
-      await SQLStudyAreas.makeFav(
+      studyArea.isFavourite = !studyArea.isFavourite; //!studyArea.isFavourite;
+      int i = await SQLStudyAreas.makeFav(
         'favs_study_areas',
-        {
-          'title': name,
-        },
+        {'title': name},
       );
       notifyListeners();
+      return i;
     }
     // room is already favourited -> unfavourite the room
     else {
-      studyArea.isFavourite = !studyArea.isFavourite;
-      await SQLStudyAreas.removeFav('favs_study_areas', name);
+      studyArea.isFavourite = !studyArea.isFavourite; //!studyArea.isFavourite;
+      int i = await SQLStudyAreas.removeFav('favs_study_areas', name);
       notifyListeners();
+      return i;
     }
   }
 

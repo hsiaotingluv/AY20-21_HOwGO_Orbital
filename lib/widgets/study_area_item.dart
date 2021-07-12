@@ -27,15 +27,14 @@ class StudyAreaItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final studyAreaList = Provider.of<StudyAreas>(context, listen: false);
+    final studyAreaList = Provider.of<StudyAreas>(context, listen: false);
+    bool isFav = studyAreaList.findFavByName(title);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
         Consumer<StudyAreas>(
           builder: (ctx, studyAreaList, child) => IconSlideAction(
-            icon: studyAreaList.findFavByName(title)
-                ? Icons.favorite
-                : Icons.favorite_border,
+            icon: isFav ? Icons.favorite : Icons.favorite_border,
             // iconWidget: Icon(
             //   Icons.favorite,
             //   size: 30,
@@ -47,10 +46,11 @@ class StudyAreaItem extends StatelessWidget {
             foregroundColor: Colors.white,
             onTap: () {
               studyAreaList.toggleFavourite(title);
+              studyAreaList.fetchAndSetFavs();
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: !studyAreaList.findFavByName(title)
+                  content: !isFav
                       ? Text('Study Spot added to favourites')
                       : Text('Study Spot removed from favourites'),
                   duration: Duration(seconds: 2),
@@ -59,6 +59,7 @@ class StudyAreaItem extends StatelessWidget {
                     textColor: Colors.cyan,
                     onPressed: () {
                       studyAreaList.toggleFavourite(title);
+                      studyAreaList.fetchAndSetFavs();
                     },
                   ),
                 ),
@@ -87,17 +88,35 @@ class StudyAreaItem extends StatelessWidget {
                     location,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
-                  // trailing: IconButton(
-                  //   icon: Icon(
-                  //     studyAreaList.findByName(title).isFavourite
-                  //         ? Icons.star
-                  //         : Icons.star_border,
-                  //     size: 30,
-                  //   ),
-                  //   color: Theme.of(context).iconTheme.color,
-                  //   splashRadius: 1,
-                  //   onPressed: () => studyAreaList.toggleFavourite(title),
-                  // ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      isFav ? Icons.favorite : Icons.favorite_border,
+                      size: 25,
+                    ),
+                    color: Theme.of(context).iconTheme.color,
+                    splashRadius: 1,
+                    onPressed: () {
+                      studyAreaList.toggleFavourite(title);
+                      studyAreaList.fetchAndSetFavs();
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: !isFav
+                              ? Text('Study Spot added to favourites')
+                              : Text('Study Spot removed from favourites'),
+                          duration: Duration(seconds: 2),
+                          action: SnackBarAction(
+                            label: 'UNDO',
+                            textColor: Colors.cyan,
+                            onPressed: () {
+                              studyAreaList.toggleFavourite(title);
+                              studyAreaList.fetchAndSetFavs();
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 height: 70,
               ),

@@ -35,24 +35,24 @@ class RoomItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final roomsList = Provider.of<Rooms>(context, listen: false);
+    bool isFav = roomsList.findFavByName(title);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
         Consumer<Rooms>(
           builder: (ctx, roomsList, child) => IconSlideAction(
-            icon: roomsList.findFavByName(title)
-                ? Icons.favorite
-                : Icons.favorite_border,
+            icon: isFav ? Icons.favorite : Icons.favorite_border,
             caption: 'Favourite',
             color: Theme.of(context).primaryColor,
             closeOnTap: true,
             foregroundColor: Colors.white,
             onTap: () {
               roomsList.toggleFavourite(title);
+              roomsList.fetchAndSetFavs();
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: !roomsList.findFavByName(title)
+                  content: !isFav
                       ? Text('Room added to favourites')
                       : Text('Room removed from favourites'),
                   duration: Duration(seconds: 2),
@@ -61,6 +61,7 @@ class RoomItem extends StatelessWidget {
                     textColor: Colors.cyan,
                     onPressed: () {
                       roomsList.toggleFavourite(title);
+                      roomsList.fetchAndSetFavs();
                     },
                   ),
                 ),
@@ -96,34 +97,34 @@ class RoomItem extends StatelessWidget {
                       // fontStyle: FontStyle.italic,
                     ),
                   ),
-                  // trailing: IconButton(
-                  //     icon: Icon(
-                  //       roomsList.findFavByName(title)
-                  //           ? Icons.favorite
-                  //           : Icons.favorite_border,
-                  //       size: 30,
-                  //     ),
-                  //     color: Theme.of(context).iconTheme.color,
-                  //     splashRadius: 1,
-                  //     onPressed: () {
-                  //       roomsList.toggleFavourite(title);
-                  //       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBar(
-                  //           content: roomsList.findFavByName(title)
-                  //               ? Text('Room added to favourites')
-                  //               : Text('Room removed from favourites'),
-                  //           duration: Duration(seconds: 2),
-                  //           action: SnackBarAction(
-                  //             label: 'UNDO',
-                  //             textColor: Colors.cyan,
-                  //             onPressed: () {
-                  //               roomsList.toggleFavourite(title);
-                  //             },
-                  //           ),
-                  //         ),
-                  //       );
-                  //     }),
+                  trailing: IconButton(
+                      icon: Icon(
+                        isFav ? Icons.favorite : Icons.favorite_border,
+                        size: 25,
+                      ),
+                      color: Theme.of(context).iconTheme.color,
+                      splashRadius: 1,
+                      onPressed: () {
+                        roomsList.toggleFavourite(title);
+                        roomsList.fetchAndSetFavs();
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: !isFav
+                                ? Text('Room added to favourites')
+                                : Text('Room removed from favourites'),
+                            duration: Duration(seconds: 2),
+                            action: SnackBarAction(
+                              label: 'UNDO',
+                              textColor: Colors.cyan,
+                              onPressed: () {
+                                roomsList.toggleFavourite(title);
+                                roomsList.fetchAndSetFavs();
+                              },
+                            ),
+                          ),
+                        );
+                      }),
                 ),
                 height: 70,
               ),

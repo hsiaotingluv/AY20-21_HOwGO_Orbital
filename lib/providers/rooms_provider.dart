@@ -23,37 +23,29 @@ class Rooms with ChangeNotifier {
   }
 
   bool findFavByName(String name) {
-    // return _favRooms.firstWhere((room) => room.name == name);
     return _favRooms.any((room) => room.name == name);
   }
 
-  void toggleFavourite(String name) async {
+  Future<int> toggleFavourite(String name) async {
     bool isRoomInFavList = findFavByName(name);
     RoomModel room = findByName(name);
     // room is not favourited -> favourite the room
     if (!isRoomInFavList) {
       room.isFavourite = !room.isFavourite;
-      await SQLRooms.makeFav(
+      int i = await SQLRooms.makeFav(
         'favs_places',
-        {
-          'title': name,
-          // 'isFavourite': true,
-        },
+        {'title': name},
       );
       notifyListeners();
+      return i;
     }
     // room is already favourited -> unfavourite the room
     else {
       room.isFavourite = !room.isFavourite;
-      await SQLRooms.removeFav('favs_places', name);
+      int i = await SQLRooms.removeFav('favs_places', name);
       notifyListeners();
+      return i;
     }
-  }
-
-  void removeFavourite(String name) async {
-    RoomModel room = findByName(name);
-    await SQLRooms.removeFav('favs_places', name);
-    notifyListeners();
   }
 
   Future<void> fetchAndSetFavs() async {
