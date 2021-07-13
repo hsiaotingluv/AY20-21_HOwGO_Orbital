@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
 import '../screens/campus_screen.dart';
 import '../screens/favourites_tabs_screen.dart';
@@ -184,50 +183,4 @@ class _NavigationBarState extends State<NavigationBar> {
       ),
     );
   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Theme(
-//       data: ThemeData(
-//         splashColor: Colors.transparent,
-//         highlightColor: Colors.transparent,
-//       ),
-//       child: FloatingNavbar(
-//         onTap: _selectPage,
-//         backgroundColor: Theme.of(context).primaryColor,
-//         itemBorderRadius: 10.0,
-//         // selectedItemColor: Colors.white,
-//         // selectedBackgroundColor: Colors.black,
-//         // padding: EdgeInsets.all(8),
-//         // margin: EdgeInsets.all(8),
-//         width: double.infinity,
-//         elevation: 10,
-//         fontSize: 0,
-//         iconSize: 30.0,
-//         currentIndex: pageNo > 3 ? 0 : pageNo,
-//         items: [
-//           FloatingNavbarItem(
-//             icon: Icons
-//                 .explore, //pageNo == 0 ? Icons.explore : Icons.explore_outlined,
-//             title: 'Explore',
-//           ),
-//           FloatingNavbarItem(
-//             icon: Icons
-//                 .search, //pageNo == 1 ? Icons.search : Icons.search_outlined,
-//             title: 'Search',
-//           ),
-//           FloatingNavbarItem(
-//             icon: Icons
-//                 .favorite, //pageNo == 2 ? Icons.favorite : Icons.favorite_border,
-//             title: 'Favourites',
-//           ),
-//           FloatingNavbarItem(
-//             icon: Icons
-//                 .school, //pageNo == 3 ? Icons.school : Icons.school_outlined,
-//             title: 'Study Areas',
-//           ),
-//         ],
-//       ),
-//     );
-//   }
 }

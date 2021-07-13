@@ -4,7 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ChooseHomeScreenSettings extends ChangeNotifier {
   final String key = "homeScreen";
   SharedPreferences _pref;
-  bool _homeScreenTheme; // false is Campus Screen, true is Favs Screen
+  // false is Campus Screen, true is Favs Screen
+  bool _homeScreenTheme;
 
   bool get homeScreen => _homeScreenTheme;
 

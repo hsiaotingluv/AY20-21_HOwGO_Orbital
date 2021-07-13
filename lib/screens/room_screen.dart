@@ -4,11 +4,6 @@ import '../models/room.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/room_item.dart';
 
-enum ViewOptions {
-  Grid,
-  List,
-}
-
 class RoomScreen extends StatefulWidget {
   static const routeName = '/room';
 
@@ -50,37 +45,13 @@ class _RoomScreenState extends State<RoomScreen> {
   bool gridView = false;
   @override
   Widget build(BuildContext context) {
-    List<RoomModel> availRooms = displayedRooms;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select a Room'),
-        actions: [
-          // PopupMenuButton(
-          //   onSelected: (ViewOptions view) {
-          //     setState(() {
-          //       if (view == ViewOptions.Grid) {
-          //         gridView = true;
-          //       } else {
-          //         gridView = false;
-          //       }
-          //     });
-          //   },
-          //   itemBuilder: (_) => [
-          //     PopupMenuItem(
-          //       child: Text('Grid View'),
-          //       value: ViewOptions.Grid,
-          //     ),
-          //     PopupMenuItem(
-          //       child: Text('List View'),
-          //       value: ViewOptions.List,
-          //     ),
-          //   ],
-          // ),
-        ],
+        actions: [],
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: showListView(displayedRooms),
-      // backgroundColor: Theme.of(context).backgroundColor,
       bottomNavigationBar: NavigationBar(0),
     );
   }
@@ -100,28 +71,6 @@ class _RoomScreenState extends State<RoomScreen> {
         );
       },
       itemCount: displayedRooms.length,
-    );
-  }
-
-  GridView showGridView(List<RoomModel> availRooms) {
-    return GridView(
-      padding: EdgeInsets.all(25),
-      children: availRooms
-          .map(
-            (room) => RoomItem(
-              title: room.name,
-              location: room.location,
-              building: room.building,
-              gridView: gridView,
-            ),
-          )
-          .toList(),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
-      ),
     );
   }
 }
