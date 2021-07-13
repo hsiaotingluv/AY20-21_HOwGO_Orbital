@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +20,9 @@ class SearchScreen extends StatelessWidget {
         title: Text('Search Rooms'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(
+              Platform.isIOS ? CupertinoIcons.search : Icons.search,
+            ),
             onPressed: () {
               showSearch(
                 context: context,

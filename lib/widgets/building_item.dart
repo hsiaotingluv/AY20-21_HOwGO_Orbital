@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/room_screen.dart';
 
@@ -24,25 +25,35 @@ class BuildingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          onTap: () => selectBuilding(context),
-          splashColor: Theme.of(context).accentColor,
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            height: 75,
-            padding: const EdgeInsets.only(top: 7),
-            child: ListTile(
-              title: Text(
-                title,
-                style: Theme.of(context).textTheme.headline1,
+        Container(
+          height: 55.sp,
+          padding: const EdgeInsets.only(top: 15, left: 5),
+          child: InkWell(
+            onTap: () => selectBuilding(context),
+            splashColor: Theme.of(context).accentColor,
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              // height: 85,
+              // padding: const EdgeInsets.only(top: 11, left: 5),
+              child: ListTile(
+                title: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).textTheme.bodyText1.color,
+                  ),
+                ),
               ),
             ),
           ),
         ),
         Divider(
           height: 0,
-          thickness: 1.5,
+          thickness: 0.5,
           color: Theme.of(context).dividerColor,
+          indent: 15,
+          endIndent: 15,
         ),
       ],
     );

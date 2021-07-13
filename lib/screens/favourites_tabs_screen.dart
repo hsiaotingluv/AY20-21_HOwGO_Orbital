@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/rooms_favourites_screen.dart';
@@ -25,7 +28,9 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
                 height: 40,
                 child: Tab(
                   icon: Icon(
-                    Icons.menu_book_rounded,
+                    Platform.isIOS
+                        ? CupertinoIcons.book
+                        : Icons.menu_book_rounded,
                     size: 30,
                   ),
                   // text: 'Rooms',

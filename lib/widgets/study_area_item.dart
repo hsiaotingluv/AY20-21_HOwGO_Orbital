@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/study_area_detail_screen.dart';
 import '../providers/study_areas_provider.dart';
@@ -82,16 +86,28 @@ class StudyAreaItem extends StatelessWidget {
                 child: ListTile(
                   title: Text(
                     title,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).textTheme.bodyText1.color,
+                    ),
                   ),
                   subtitle: Text(
                     location,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                    ),
                   ),
                   trailing: IconButton(
                     icon: Icon(
-                      isFav ? Icons.favorite : Icons.favorite_border,
-                      size: 25,
+                      isFav
+                          ? Platform.isIOS
+                              ? CupertinoIcons.heart_fill
+                              : Icons.favorite
+                          : Platform.isIOS
+                              ? CupertinoIcons.heart
+                              : Icons.favorite_border,
+                      size: 19.sp,
                     ),
                     color: Theme.of(context).iconTheme.color,
                     splashRadius: 1,

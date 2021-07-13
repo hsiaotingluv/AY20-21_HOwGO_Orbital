@@ -12,22 +12,22 @@ class CampusItem extends StatelessWidget {
   CampusItem(this.title, this.image);
 
   void selectCampus(BuildContext ctx) {
-    // Navigator.of(ctx).pushNamed(
-    //   FacultyScreen.routeName,
-    //   arguments: {
-    //     'title': title,
-    //   },
-    // );
-    Navigator.push(
-      ctx,
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => FacultyScreen(
-          availableFaculty: _availableFaculties,
-          campusTitle: title,
-        ),
-        transitionDuration: Duration(seconds: 0),
-      ),
+    Navigator.of(ctx).pushNamed(
+      FacultyScreen.routeName,
+      arguments: {
+        'title': title,
+      },
     );
+    // Navigator.push(
+    //   ctx,
+    //   PageRouteBuilder(
+    //     pageBuilder: (context, animation1, animation2) => FacultyScreen(
+    //       availableFaculty: _availableFaculties,
+    //       campusTitle: title,
+    //     ),
+    //     transitionDuration: Duration(seconds: 2),
+    //   ),
+    // );
   }
 
   @override

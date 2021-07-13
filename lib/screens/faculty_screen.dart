@@ -20,14 +20,29 @@ class FacultyScreen extends StatefulWidget {
 }
 
 class _FacultyScreenState extends State<FacultyScreen> {
+  String campusTitle;
   List<Faculty> displayedFaculty;
   var _loadedInitData = false;
+
+  // @override
+  // void didChangeDependencies() {
+  //   if (!_loadedInitData) {
+  //     displayedFaculty = widget.availableFaculty.where((faculty) {
+  //       return faculty.campus.contains(widget.campusTitle);
+  //     }).toList();
+  //     _loadedInitData = true;
+  //   }
+  //   super.didChangeDependencies();
+  // }
 
   @override
   void didChangeDependencies() {
     if (!_loadedInitData) {
+      final routeArgs =
+          ModalRoute.of(context).settings.arguments as Map<String, String>;
+      campusTitle = routeArgs['title'];
       displayedFaculty = widget.availableFaculty.where((faculty) {
-        return faculty.campus.contains(widget.campusTitle);
+        return faculty.campus.contains(campusTitle);
       }).toList();
       _loadedInitData = true;
     }
