@@ -30,10 +30,7 @@ class StudyAreas with ChangeNotifier {
     // room is not favourited -> favourite the room
     if (!isStudyAreaInFavList) {
       studyArea.isFavourite = !studyArea.isFavourite; //!studyArea.isFavourite;
-      int i = await SQLStudyAreas.makeFav(
-        'favs_study_areas',
-        {'title': name},
-      );
+      int i = await SQLStudyAreas.makeFav('favs_study_areas', {'title': name});
       notifyListeners();
       return i;
     }

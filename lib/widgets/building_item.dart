@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/room_screen.dart';
 
@@ -58,8 +59,10 @@ class BuildingItem extends StatelessWidget {
         ),
         Divider(
           height: 0,
-          thickness: 1.5,
+          thickness: 0.5,
           color: Theme.of(context).dividerColor,
+          indent: 15,
+          endIndent: 15,
         ),
       ],
     );

@@ -9,7 +9,6 @@ class StudyAreaFavouritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final studyAreaList = Provider.of<StudyAreas>(context);
     final bgrColor = Theme.of(context).backgroundColor;
     return Scaffold(
       backgroundColor: bgrColor,
@@ -62,7 +61,6 @@ class StudyAreaFavouritesScreen extends StatelessWidget {
                 ),
         ),
       ),
-      // bottomNavigationBar: NavigationBar(2),
     );
   }
 }

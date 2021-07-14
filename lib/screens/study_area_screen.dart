@@ -37,15 +37,6 @@ class _StudyAreasScreenState extends State<StudyAreasScreen> {
         itemCount: studyAreas.areas.length,
       ),
       bottomNavigationBar: NavigationBar(3),
-      // (
-      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-      //   children: studyAreas.areas
-      //       .map((areas) => StudyAreaItem(
-      //             title: areas.name,
-      //             location: areas.location,
-      //           ))
-      //       .toList(),
-      // )
     );
   }
 }

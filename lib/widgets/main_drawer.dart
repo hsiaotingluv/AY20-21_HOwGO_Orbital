@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/maps_screen.dart';
 import '../screens/settings_screen.dart';
@@ -23,24 +27,22 @@ class MainDrawer extends StatelessWidget {
           child: ListTile(
             leading: Icon(
               icon,
-              size: 26,
+              size: 22.sp,
             ),
             title: Text(
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 15.sp,
                 color: Theme.of(context).textTheme.bodyText1.color,
               ),
             ),
             onTap: tapHandler,
           ),
         ),
-        // Divider(
-        //   height: 0,
-        //   thickness: 0.2,
-        //   color: Colors.grey,
-        // ),
+        SizedBox(
+          height: 2.h,
+        ),
       ],
     );
   }
@@ -95,18 +97,18 @@ class MainDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed(TimetableScreen.routeName);
             },
           ),
-          buildListTile(
-            context,
-            'Map',
-            Icons.map_outlined,
-            () {
-              Navigator.of(context).pushNamed(MapsScreen.routeName);
-            },
-          ),
+          // buildListTile(
+          //   context,
+          //   'Map',
+          //   Icons.map_outlined,
+          //   () {
+          //     Navigator.of(context).pushNamed(MapsScreen.routeName);
+          //   },
+          // ),
           buildListTile(
             context,
             'Settings',
-            Icons.settings,
+            Platform.isIOS ? CupertinoIcons.gear_alt : Icons.settings,
             () {
               Navigator.of(context).pushNamed(SettingsScreen.routeName);
             },
@@ -116,44 +118,3 @@ class MainDrawer extends StatelessWidget {
     );
   }
 }
-
-
-
-// Row(
-//   children: [
-//     Container(
-//       padding: EdgeInsets.only(
-//         top: 90,
-//         left: 20,
-//       ),
-//       height: 200,
-//       width: 192,
-//       color: Theme.of(context).primaryColor,
-//       child: Text(
-//         'NUS HOwGO',
-//         style: TextStyle(
-//           fontWeight: FontWeight.bold,
-//           fontSize: 30,
-//           color: Colors.black,
-//         ),
-//       ),
-//     ),
-//     Container(
-//       width: 112,
-//       height: 200,
-//       color: Theme.of(context).primaryColor,
-//       child: Padding(
-//         padding: const EdgeInsets.only(
-//           top: 70.0,
-//           right: 15.0,
-//           left: 15.0,
-//           bottom: 10.0,
-//         ),
-//         child: CircleAvatar(
-//           maxRadius: 12,
-//           backgroundImage: AssetImage('assets/images/lzw.png'),
-//         ),
-//       ),
-//     ),
-//   ],
-// ),

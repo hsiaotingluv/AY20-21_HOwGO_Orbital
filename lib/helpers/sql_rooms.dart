@@ -1,7 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqlite_api.dart';
-import 'package:path_provider/path_provider.dart';
 
 class SQLRooms {
   static Future<Database> database() async {

@@ -30,6 +30,16 @@ class CampusItem extends StatelessWidget {
         transitionDuration: Duration(seconds: 0),
       ),
     );
+    // Navigator.push(
+    //   ctx,
+    //   PageRouteBuilder(
+    //     pageBuilder: (context, animation1, animation2) => FacultyScreen(
+    //       availableFaculty: _availableFaculties,
+    //       campusTitle: title,
+    //     ),
+    //     transitionDuration: Duration(seconds: 2),
+    //   ),
+    // );
   }
 
   @override
@@ -94,33 +104,3 @@ class CampusItem extends StatelessWidget {
     );
   }
 }
-
-
-
-// Positioned(
-//   bottom: 0,
-//   // right: 10,
-//   // top: 10,
-//   // left: 20,
-//   child: Container(
-//     width: 400,
-//     color: Colors.white,
-//     padding: EdgeInsets.symmetric(
-//       vertical: 10,
-//       horizontal: 20,
-//     ),
-//     child: Text(
-//       title,
-//       textAlign: TextAlign.center,
-//       style: Theme.of(context).textTheme.headline1,
-//       // style: TextStyle(
-//       //   fontFamily: 'Roboto',
-//       //   fontSize: 25,
-//       //   color: Colors.black,
-//       //   fontWeight: FontWeight.bold,
-//       // ),
-//       softWrap: true,
-//       overflow: TextOverflow.fade,
-//     ),
-//   ),
-// ),
