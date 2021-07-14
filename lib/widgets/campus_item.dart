@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/faculty.dart';
 import '../category_data.dart';
 import '../screens/faculty_screen.dart';
 
 class CampusItem extends StatelessWidget {
-  final String title;
+  final String campus;
   final String image;
-  List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
+  // List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
 
-  CampusItem(this.title, this.image);
+  CampusItem(this.campus, this.image);
 
   void selectCampus(BuildContext ctx) {
     // Navigator.of(ctx).pushNamed(
     //   FacultyScreen.routeName,
     //   arguments: {
-    //     'title': title,
+    //     'campus': campus,
     //   },
     // );
     Navigator.push(
       ctx,
       PageRouteBuilder(
         pageBuilder: (context, animation1, animation2) => FacultyScreen(
-          availableFaculty: _availableFaculties,
-          campusTitle: title,
+          // availableFaculty: _availableFaculties,
+          campus: campus,
         ),
         transitionDuration: Duration(seconds: 0),
       ),
@@ -34,6 +36,7 @@ class CampusItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = double.infinity;
     var height = MediaQuery.of(context).size.height / 4.1;
+    // print(image);
     return InkWell(
       onTap: () => selectCampus(context),
       splashColor: Theme.of(context).accentColor,
@@ -54,7 +57,7 @@ class CampusItem extends StatelessWidget {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              child: Image.asset(
+              child: Image.network(
                 image,
                 height: height,
                 width: width,
@@ -77,7 +80,7 @@ class CampusItem extends StatelessWidget {
                 // width: 390,
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  title,
+                  campus,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline2,
                   softWrap: true,

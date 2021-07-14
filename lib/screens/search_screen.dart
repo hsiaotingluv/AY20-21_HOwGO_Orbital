@@ -117,12 +117,12 @@ class SearchedRoomList extends StatelessWidget {
         : ListView.builder(
             itemBuilder: (ctx, index) {
               return Container(
-                child: RoomItem(
-                  title: resultList[index].name,
-                  location: resultList[index].location,
-                  building: resultList[index].building,
-                ),
-              );
+                  //   child: RoomItem(
+                  //     title: resultList[index].name,
+                  //     location: resultList[index].location,
+                  //     building: resultList[index].building,
+                  //   ),
+                  );
             },
             itemCount: resultList.length,
           );

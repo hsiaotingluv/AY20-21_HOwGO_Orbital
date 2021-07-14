@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 
 import '../models/room.dart';
 
 class DirectionScreen extends StatelessWidget {
-  final RoomModel room;
+  final DocumentSnapshot<Object> room;
 
   DirectionScreen(this.room);
 
@@ -27,113 +27,90 @@ class DirectionScreen extends StatelessWidget {
 
   // FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<Map<String, String>> getDirection() async {
-    await Firebase.initializeApp();
-    final Map<String, String> content = new Map();
+  // Future<Map<String, String>> getDirection() async {
+  //   await Firebase.initializeApp();
+  //   final Map<String, String> content = new Map();
 
-    Query direction = FirebaseFirestore.instance
-        .collection('campus')
-        .doc('Kent Ridge Campus')
-        .collection('faculty')
-        .doc('School of Computing')
-        .collection('building')
-        .doc(room.building)
-        .collection('room')
-        .doc(room.name)
-        .collection('direction');
-    // .orderBy('direction');
+  //   Query direction = FirebaseFirestore.instance
+  //       .collection('campus')
+  //       .doc('Kent Ridge Campus')
+  //       .collection('faculty')
+  //       .doc('School of Computing')
+  //       .collection('building')
+  //       .doc(room.building)
+  //       .collection('room')
+  //       .doc(room.name)
+  //       .collection('direction');
+  //   // .orderBy('direction');
 
-    final result = await direction.get();
-    for (final item in result.docs) {
-      final imageUrl = item['imageUrl'];
-      final caption = item['caption'];
-      content[imageUrl] = caption;
-    }
-    return content;
-  }
+  //   final result = await direction.get();
+  //   for (final item in result.docs) {
+  //     final imageUrl = item['imageUrl'];
+  //     final caption = item['caption'];
+  //     content[imageUrl] = caption;
+  //   }
+  //   return content;
+  // }
+
+  // Future<DocumentSnapshot<Map<String, dynamic>>> getDirection() async {
+  //   await Firebase.initializeApp();
+  //   return await FirebaseFirestore.instance
+  //       .collection(
+  //           '/campus/Kent Ridge Campus/faculty/School of Computing/building/COM1/room')
+  //       .doc('Tutorial Room 10')
+  //       .get();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    var direction = room['direction'];
     return Scaffold(
-      appBar: AppBar(title: Text('Direction')),
-      backgroundColor: Theme.of(context).backgroundColor,
-      // body: StreamBuilder(
-      //     stream: FirebaseFirestore.instance
-      //         .collection(
-      //             '/campus/Kent Ridge Campus/faculty/School of Computing/building/COM1/room')
-      //             .document(room.name)
-      //         .snapshots(),
-      //     builder: (ctx, snapshot) {
-      //       if (snapshot.connectionState == ConnectionState.waiting) {
-      //         return Center(
-      //           child: CircularProgressIndicator(),
-      //         );
-      //       }
-      //       var doc = snapshot.data;
-      //       return Column(children: [Text('name: '),],);
-      //     }),
-      body: Container(
-        child: FutureBuilder(
-            // future: _getImages(context),
-            future: getDirection(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      String key = snapshot.data.keys.elementAt(index);
-                      return Column(
-                        children: [
-                          Image.network(key),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.all(15),
-                            padding: const EdgeInsets.all(20),
-                            child: Text(
-                              snapshot.data[key],
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1
-                                      .color),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+        appBar: AppBar(title: Text('Direction')),
+        backgroundColor: Theme.of(context).backgroundColor,
+        body: ListView.builder(
+            itemCount: direction.length ?? 0,
+            itemBuilder: (_, index) {
+              return direction == null
+                  ? Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Center(
+                        child: Text(
+                          'No data has been added for this room yet. Try another room.',
+                          style: TextStyle(
+                            fontSize: 20,
                           ),
-                          SizedBox(
-                            height: 20,
-                          )
-                        ],
-                      );
-                    });
-              } else if (snapshot.hasError) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Icon(
-                        Icons.error_outline,
-                        color: Colors.red,
-                        size: 60,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    Center(
-                      child: Text('Error: ${snapshot.error}'),
-                    ),
-                  ],
-                );
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }),
-      ),
-    );
+                    )
+                  : Column(
+                      children: [
+                        Image.network(direction[index]['url']),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            direction[index]['caption'],
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .color),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    );
+            }));
   }
 }

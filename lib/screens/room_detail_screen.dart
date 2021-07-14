@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import './direction_screen.dart';
 import '../models/room.dart';
@@ -11,7 +13,13 @@ import '../widgets/navigation_bar.dart';
 class RoomDetailScreen extends StatelessWidget {
   static const routeName = '/room-detail';
 
-  void getDirection(BuildContext ctx, RoomModel room) {
+  final DocumentSnapshot<Object> selectedRoom;
+
+  RoomDetailScreen({
+    @required this.selectedRoom,
+  });
+
+  void getDirection(BuildContext ctx, DocumentSnapshot<Object> room) {
     Navigator.push(ctx, MaterialPageRoute(builder: (context) {
       return DirectionScreen(room);
     }));
@@ -71,43 +79,48 @@ class RoomDetailScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
           return Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-            ),
-            width: 300,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                gallery[index],
-                fit: BoxFit.cover,
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
               ),
-            ),
-          );
+              width: 300,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  gallery[index],
+                  fit: BoxFit.cover,
+                ),
+              ));
         },
         itemCount: gallery.length,
       ),
     );
   }
 
+  // Future<DocumentSnapshot<Map<String, dynamic>>> getRoom() async {
+  //   // await Firebase.initializeApp();
+  //   return await FirebaseFirestore.instance
+  //       .collection(
+  //           '/campus/${campus}/faculty/${faculty}/building/${building}/room')
+  //       .doc(room)
+  //       .get();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final roomTitle = routeArgs['title'];
-    final roomLocation = routeArgs['location'];
-    final roomBuilding = routeArgs['building'];
-    final selectedRoom = ROOMS.firstWhere(
-      (room) =>
-          room.name == roomTitle &&
-          room.location == roomLocation &&
-          room.building == roomBuilding,
-    );
-    final roomsList = Provider.of<Rooms>(context);
+    // final routeArgs =
+    //     ModalRoute.of(context).settings.arguments as Map<String, String>;
+    // final roomTitle = routeArgs['title'];
+    // final roomLocation = routeArgs['location'];
+    // final roomBuilding = routeArgs['building'];
+    // final selectedRoom = ROOMS.firstWhere(
+    //   (room) =>
+    //       room.name == roomTitle &&
+    //       room.location == roomLocation &&
+    //       room.building == roomBuilding,
+    // );
+    // final roomsList = Provider.of<Rooms>(context);
     // final room = Provider.of<Room>(context);
     return Scaffold(
-      // appBar: AppBar(
-      //   iconTheme: IconThemeData(color: Colors.black),
-      // ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: CustomScrollView(
         slivers: [
@@ -118,7 +131,7 @@ class RoomDetailScreen extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                '${selectedRoom.name}',
+                '${selectedRoom['name']}',
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.white,
@@ -128,10 +141,10 @@ class RoomDetailScreen extends StatelessWidget {
                 overflow: TextOverflow.fade,
               ),
               background: Hero(
-                tag: selectedRoom.name,
-                child: selectedRoom.image != null
-                    ? Image.asset(
-                        selectedRoom.image,
+                tag: selectedRoom['name'],
+                child: selectedRoom['coverphoto'] != null
+                    ? Image.network(
+                        selectedRoom['coverphoto'],
                         fit: BoxFit.cover,
                       )
                     : Container(),
@@ -179,17 +192,17 @@ class RoomDetailScreen extends StatelessWidget {
                   height: 10,
                 ),
                 buildIconTile(context, Icon(Icons.business_rounded), 'Location',
-                    selectedRoom.location),
+                    selectedRoom['location']),
                 buildIconTile(context, Icon(Icons.group_rounded), 'Capacity',
-                    selectedRoom.capacity.toString()),
+                    selectedRoom['capacity'].toString()),
                 buildIconTile(context, Icon(Icons.directions_bus_rounded),
-                    'Nearby Bus Stops', selectedRoom.nearbyBusStops),
+                    'Nearby Bus Stops', selectedRoom['nearbyBusStops']),
                 buildIconTile(context, Icon(Icons.router_rounded), 'Facilities',
-                    '2 x Aircon, 19 x Apple Desktop'),
+                    selectedRoom['facilities']),
                 buildIconTile(context, Icon(Icons.location_on_rounded),
-                    'Address', selectedRoom.address),
+                    'Address', selectedRoom['address']),
                 SizedBox(
-                  height: 20,
+                  height: 50,
                 ),
                 // Divider(
                 //   height: 0,
@@ -206,7 +219,7 @@ class RoomDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                selectedRoom.gallery == null
+                selectedRoom['gallery'] == null
                     ? Container(
                         margin: EdgeInsets.symmetric(
                           vertical: 10,
@@ -217,14 +230,14 @@ class RoomDetailScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       )
-                    : buildPhotoGallery(selectedRoom.gallery),
+                    : buildPhotoGallery(List.from(selectedRoom['gallery'])),
                 // Divider(
                 //   height: 0,
                 //   thickness: 0.2,
                 //   color: Colors.grey,
                 // ),
                 SizedBox(
-                  height: 200,
+                  height: 50,
                 ),
               ],
             ),
@@ -235,12 +248,6 @@ class RoomDetailScreen extends StatelessWidget {
     );
   }
 }
-// Container(
-//       margin: EdgeInsets.symmetric(
-//         vertical: 10,
-//       ),
-//       height: 180,
-
 
 // floatingActionButton: FloatingActionButton(
 //   child: Icon(
@@ -252,43 +259,3 @@ class RoomDetailScreen extends StatelessWidget {
 //   onPressed: () => roomsList.toggleFavourite(roomTitle),
 // ),
 
-
-// body: ListView(
-//   children: [
-//     Container(
-//       child: Text(
-//         'Images go here...',
-//         style: TextStyle(fontSize: 30),
-//       ),
-//       alignment: Alignment.center,
-//       margin: EdgeInsets.all(15),
-//       padding: EdgeInsets.all(15),
-//       height: 300,
-//       width: double.infinity,
-//       decoration: BoxDecoration(
-//         border: Border.all(
-//           width: 2,
-//         ),
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//     ),
-//     Container(
-//       margin: EdgeInsets.all(15),
-//       padding: EdgeInsets.all(20),
-//       child: Text(
-//         'Room: $roomTitle \n'
-//         'Location: $roomLocation \n'
-//         'Capacity: ${selectedRoom.capacity} \n'
-//         'Nearby Bus Stops: ${selectedRoom.nearbyBusStops} \n'
-//         'Address: ${selectedRoom.address}',
-//         style: TextStyle(fontSize: 20),
-//       ),
-//       decoration: BoxDecoration(
-//         border: Border.all(
-//           width: 2,
-//         ),
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//     ),
-//   ],
-// ),

@@ -52,13 +52,13 @@ class RoomsFavouritesScreen extends StatelessWidget {
                   itemCount: favs.favRooms.length,
                   itemBuilder: (ctx, index) {
                     return Container(
-                      child: RoomItem(
-                        title: favs.favRooms[index].name,
-                        location: favs.favRooms[index].location,
-                        building: favs.favRooms[index].building,
-                        gridView: false,
-                      ),
-                    );
+                        // child: RoomItem(
+                        //   title: favs.favRooms[index].name,
+                        //   location: favs.favRooms[index].location,
+                        //   building: favs.favRooms[index].building,
+                        //   gridView: false,
+                        // ),
+                        );
                   },
                 ),
         ),

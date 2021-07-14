@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import './category_data.dart';
 import './models/building.dart';
@@ -24,14 +26,16 @@ import './screens/search_screen.dart';
 import './screens/study_area_detail_screen.dart';
 import './screens/study_area_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget with ChangeNotifier {
-  List<Building> _availableBuildings = BUILDING_CATEGORIES;
-  List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
-  List<RoomModel> _availableRooms = ROOMS;
+  // List<Building> _availableBuildings = BUILDING_CATEGORIES;
+  // List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
+  // List<RoomModel> _availableRooms = ROOMS;
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +74,9 @@ class MyApp extends StatelessWidget with ChangeNotifier {
               ? FavouritesTabsScreen()
               : CampusScreen(),
           routes: {
-            FacultyScreen.routeName: (ctx) =>
-                FacultyScreen(availableFaculty: _availableFaculties),
-            BuildingScreen.routeName: (ctx) =>
-                BuildingScreen(_availableBuildings),
-            RoomScreen.routeName: (ctx) => RoomScreen(_availableRooms),
+            FacultyScreen.routeName: (ctx) => FacultyScreen(),
+            BuildingScreen.routeName: (ctx) => BuildingScreen(),
+            RoomScreen.routeName: (ctx) => RoomScreen(),
             RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(),
             StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
             TimetableScreen.routeName: (ctx) => TimetableScreen(),

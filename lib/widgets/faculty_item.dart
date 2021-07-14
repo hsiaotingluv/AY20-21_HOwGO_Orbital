@@ -3,22 +3,34 @@ import 'package:flutter/material.dart';
 import '../screens/building_screen.dart';
 
 class FacultyItem extends StatelessWidget {
-  final String title;
+  final String faculty;
   final String campus;
   final String image;
 
   FacultyItem({
-    @required this.title,
     @required this.campus,
+    @required this.faculty,
     this.image,
   });
 
   void selectFaculty(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(
-      BuildingScreen.routeName,
-      arguments: {
-        'title': title,
-      },
+    // Navigator.of(ctx).pushNamed(
+    //   BuildingScreen.routeName,
+    //   arguments: {
+    //     'campus': campus,
+    //     'faculty': faculty,
+    //   },
+    // );
+    Navigator.push(
+      ctx,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) => BuildingScreen(
+          // availableFaculty: _availableFaculties,
+          campus: campus,
+          faculty: faculty,
+        ),
+        transitionDuration: Duration(seconds: 0),
+      ),
     );
   }
 
@@ -44,7 +56,7 @@ class FacultyItem extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: Image.asset(
+              child: Image.network(
                 image,
                 height: height,
                 width: width,
@@ -67,7 +79,7 @@ class FacultyItem extends StatelessWidget {
                 // width: 390,
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  title,
+                  faculty,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline2,
                   softWrap: true,

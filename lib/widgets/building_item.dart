@@ -3,20 +3,37 @@ import 'package:flutter/material.dart';
 import '../screens/room_screen.dart';
 
 class BuildingItem extends StatelessWidget {
-  final String title;
   final String campus;
+  final String faculty;
+  final String building;
+  // final String campus;
 
   BuildingItem({
-    @required this.title,
     @required this.campus,
+    @required this.faculty,
+    @required this.building,
+    // @required this.campus,
   });
 
   void selectBuilding(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(
-      RoomScreen.routeName,
-      arguments: {
-        'title': title,
-      },
+    // Navigator.of(ctx).pushNamed(
+    //   RoomScreen.routeName,
+    //   arguments: {
+    //     'campus': campus,
+    //     'faculty': faculty,
+    //     'building': building,
+    //   },
+    // );
+    Navigator.push(
+      ctx,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) => RoomScreen(
+          campus: campus,
+          faculty: faculty,
+          building: building,
+        ),
+        transitionDuration: Duration(seconds: 0),
+      ),
     );
   }
 
@@ -33,7 +50,7 @@ class BuildingItem extends StatelessWidget {
             padding: const EdgeInsets.only(top: 7),
             child: ListTile(
               title: Text(
-                title,
+                building,
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),

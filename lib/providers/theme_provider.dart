@@ -42,6 +42,7 @@ ThemeData darkTheme = ThemeData(
   primaryColor: Colors.cyan[900],
   // primarySwatch: Colors.grey,
   accentColor: Colors.white54,
+  appBarTheme: AppBarTheme(color: Colors.cyan[900]),
   // accentIconTheme: IconThemeData(color: Colors.black),
   dividerColor: Colors.white54,
   iconTheme: IconThemeData(
@@ -92,6 +93,8 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   primaryColor: Colors.cyan[900],
   accentColor: Colors.blueGrey[600],
+  // primarySwatch: Colors.cyan[900],
+  appBarTheme: AppBarTheme(color: Colors.cyan[900]),
   // highlightColor: Colors.blueGrey[600],
   dividerColor: Colors.grey,
   iconTheme: IconThemeData(color: Colors.blueGrey[600]),
