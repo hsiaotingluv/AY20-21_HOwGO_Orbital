@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/faculty.dart';
-import '../category_data.dart';
 import '../screens/faculty_screen.dart';
 
 class CampusItem extends StatelessWidget {

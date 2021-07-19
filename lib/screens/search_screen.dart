@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../models/room.dart';
 import '../providers/rooms_provider.dart';
-import '../widgets/room_item.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 
@@ -14,7 +13,8 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rooms = Provider.of<Rooms>(context);
-    var roomsList = rooms.rooms;
+    var roomsList = [];
+    //rooms.rooms;
     return Scaffold(
       appBar: AppBar(
         title: Text('Search Rooms'),

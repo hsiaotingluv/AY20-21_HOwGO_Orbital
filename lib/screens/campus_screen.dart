@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../category_data.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 import '../widgets/campus_item.dart';
@@ -44,9 +43,6 @@ class CampusScreen extends StatelessWidget {
                                     campus['imageUrl'],
                                   ))
                               .toList(),
-                          // children: CAMPUS_CATEGORIES
-                          //     .map((campus) => CampusItem(campus.name, campus.image))
-                          //     .toList(),
                         ),
                       ],
                     );

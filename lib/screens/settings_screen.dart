@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sizer/sizer.dart';
+// import 'package:sizer/sizer.dart';
 
 import '../models/cupertino_switch_list_tile.dart';
 import '../providers/home_screen_provider.dart';
@@ -34,13 +34,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 3.h,
+              height: 30,
             ),
             Container(
               child: Text(
                 'General',
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -53,7 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Set Favourites as Home Screen',
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -75,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Set Favourites as Home Screen',
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -98,13 +98,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               thickness: 1.5,
             ),
             Container(
-              height: 3.h,
+              height: 3,
             ),
             Container(
               child: Text(
                 'Display',
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -117,7 +117,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Dark Mode',
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -139,7 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Dark Mode',
                         style: TextStyle(
-                          fontSize: 15.sp,
+                          fontSize: 15,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
