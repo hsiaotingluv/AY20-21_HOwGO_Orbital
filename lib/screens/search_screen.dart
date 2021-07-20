@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/room.dart';
 import '../providers/rooms_provider.dart';
@@ -9,8 +10,66 @@ import '../widgets/room_item.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   static const routeName = '/searchScreen';
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+// class _SearchScreenState extends State<SearchScreen> {
+//   TextEditingController searchTextEditingController = TextEditingController();
+//   Future<QuerySnapshot> futureSearchResults;
+
+//   emptyTheTextFormField() {
+//     searchTextEditingController.clear();
+//   }
+
+//   controlSearching() {
+//     Future<QuerySnapshot> allRooms = userReference.where
+//   }
+
+//   AppBar searchPageHeader() {
+//     return AppBar(
+//       backgroundColor: Colors.black,
+//       title: TextFormField(
+//         style: TextStyle(fontSize: 18, color: Colors.white),
+//         controller: searchTextEditingController,
+//         decoration: InputDecoration(
+//             hintText: "Search here...",
+//             hintStyle: TextStyle(color: Colors.grey),
+//             enabledBorder: UnderlineInputBorder(
+//               borderSide: BorderSide(color: Colors.grey),
+//             ),
+//             focusedBorder: UnderlineInputBorder(
+//               borderSide: BorderSide(color: Colors.white),
+//             ),
+//             filled: true,
+//             prefixIcon: Icon(
+//               Icons.person_pin,
+//               color: Colors.white,
+//               size: 30,
+//             ),
+//             suffixIcon: IconButton(
+//               icon: Icon(
+//                 Icons.clear,
+//                 color: Colors.white,
+//               ),
+//               onPressed: emptyTheTextFormField,
+//             )),
+//       ),
+//     );
+//   }
+// }
+
+// class RoomResult extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text('Room Result here');
+//   }
+// }
+
+class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final rooms = Provider.of<Rooms>(context);
