@@ -4,9 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import './direction_screen.dart';
-import '../models/room.dart';
-import '../providers/rooms_provider.dart';
-import '../category_data.dart';
 import '../widgets/navigation_bar.dart';
 
 class RoomDetailScreen extends StatelessWidget {
@@ -95,30 +92,8 @@ class RoomDetailScreen extends StatelessWidget {
     );
   }
 
-  // Future<DocumentSnapshot<Map<String, dynamic>>> getRoom() async {
-  //   // await Firebase.initializeApp();
-  //   return await FirebaseFirestore.instance
-  //       .collection(
-  //           '/campus/${campus}/faculty/${faculty}/building/${building}/room')
-  //       .doc(room)
-  //       .get();
-  // }
-
   @override
   Widget build(BuildContext context) {
-    // final routeArgs =
-    //     ModalRoute.of(context).settings.arguments as Map<String, String>;
-    // final roomTitle = routeArgs['title'];
-    // final roomLocation = routeArgs['location'];
-    // final roomBuilding = routeArgs['building'];
-    // final selectedRoom = ROOMS.firstWhere(
-    //   (room) =>
-    //       room.name == roomTitle &&
-    //       room.location == roomLocation &&
-    //       room.building == roomBuilding,
-    // );
-    // final roomsList = Provider.of<Rooms>(context);
-    // final room = Provider.of<Room>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: CustomScrollView(
@@ -247,14 +222,3 @@ class RoomDetailScreen extends StatelessWidget {
     );
   }
 }
-
-// floatingActionButton: FloatingActionButton(
-//   child: Icon(
-//     roomsList.findByName(roomTitle).isFavourite
-//         ? Icons.favorite
-//         : Icons.favorite_border,
-//   ),
-//   backgroundColor: Theme.of(context).primaryColor,
-//   onPressed: () => roomsList.toggleFavourite(roomTitle),
-// ),
-

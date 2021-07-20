@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,19 +13,10 @@ class RoomItem extends StatelessWidget {
   final DocumentSnapshot<Object> selectedRoom;
 
   RoomItem({
-    @required this.selectedRoom,
+    this.selectedRoom,
   });
 
   void selectRoom(BuildContext ctx) {
-    // Navigator.of(ctx).pushNamed(RoomDetailScreen.routeName, arguments: {
-    //   'title': title,
-    //   'location': location,
-    //   'building': building,
-    // }).then((result) {
-    //   if (result != null) {
-    //     // removeItem(result);
-    //   }
-    // });
     Navigator.push(
       ctx,
       PageRouteBuilder(
@@ -61,43 +51,8 @@ class RoomItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final roomsList = Provider.of<Rooms>(context, listen: false);
-    // bool isFav = roomsList.findFavByName(room);
-    // return Slidable(
-    //   actionPane: SlidableDrawerActionPane(),
-    // secondaryActions: [
-    //   Consumer<Rooms>(
-    //     builder: (ctx, roomsList, child) => IconSlideAction(
-    //       icon: isFav ? Icons.favorite : Icons.favorite_border,
-    //       caption: 'Favourite',
-    //       color: Theme.of(context).primaryColor,
-    //       closeOnTap: true,
-    //       foregroundColor: Colors.white,
-    //       onTap: () {
-    //         roomsList.toggleFavourite(room);
-    //         roomsList.fetchAndSetFavs();
-    //         ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    //         ScaffoldMessenger.of(context).showSnackBar(
-    //           SnackBar(
-    //             content: !isFav
-    //                 ? Text('Room added to favourites')
-    //                 : Text('Room removed from favourites'),
-    //             duration: Duration(seconds: 2),
-    //             action: SnackBarAction(
-    //               label: 'UNDO',
-    //               textColor: Colors.cyan,
-    //               onPressed: () {
-    //                 roomsList.toggleFavourite(room);
-    //                 roomsList.fetchAndSetFavs();
-    //               },
-    //             ),
-    //           ),
-    //         );
-    //       },
-    //     ),
-    //   ),
-    // ],
-
+    final roomsProvider = Provider.of<Rooms>(context);
+    bool isFav = roomsProvider.isRoomFav(selectedRoom['name']);
     return Column(
       children: [
         Container(
@@ -117,7 +72,8 @@ class RoomItem extends StatelessWidget {
                     width: 110,
                   ),
                   SizedBox(width: 10),
-                  Expanded(
+                  Container(
+                    width: 200,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -154,14 +110,42 @@ class RoomItem extends StatelessWidget {
                             ],
                           ),
                         ),
-                        // buildIconTile(
-                        //   context,
-                        //   Icons.router_rounded,
-                        //   selectedRoom['facilities'],
-                        // ),
                       ],
                     ),
                   ),
+                  // VerticalDivider(),
+                  Container(
+                    child: IconButton(
+                      onPressed: () {
+                        // roomsProvider.fetchAndSetFavs();
+                        roomsProvider.toggleFavourite(selectedRoom['name']);
+                        roomsProvider.fetchAndSetFavs();
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: !isFav
+                                ? Text('Room added to favourites')
+                                : Text('Room removed from favourites'),
+                            duration: Duration(seconds: 2),
+                            action: SnackBarAction(
+                              label: 'UNDO',
+                              textColor: Colors.cyan,
+                              onPressed: () {
+                                // roomsProvider.fetchAndSetFavs();
+                                roomsProvider
+                                    .toggleFavourite(selectedRoom['name']);
+                                roomsProvider.fetchAndSetFavs();
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        isFav ? Icons.favorite : Icons.favorite_border,
+                      ),
+                    ),
+                  ),
+                  // ),
                 ],
               ),
               height: 70,

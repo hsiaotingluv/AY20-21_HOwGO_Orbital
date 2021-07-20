@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:sizer/sizer.dart';
+// import 'package:sizer/sizer.dart';
 
 import '../screens/study_area_detail_screen.dart';
 import '../providers/study_areas_provider.dart';
@@ -87,7 +87,7 @@ class StudyAreaItem extends StatelessWidget {
                   title: Text(
                     title,
                     style: TextStyle(
-                      fontSize: 14.sp,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).textTheme.bodyText1.color,
                     ),
@@ -95,7 +95,7 @@ class StudyAreaItem extends StatelessWidget {
                   subtitle: Text(
                     location,
                     style: TextStyle(
-                      fontSize: 10.sp,
+                      fontSize: 10,
                     ),
                   ),
                   trailing: IconButton(
@@ -107,7 +107,7 @@ class StudyAreaItem extends StatelessWidget {
                           : Platform.isIOS
                               ? CupertinoIcons.heart
                               : Icons.favorite_border,
-                      size: 19.sp,
+                      size: 19,
                     ),
                     color: Theme.of(context).iconTheme.color,
                     splashRadius: 1,

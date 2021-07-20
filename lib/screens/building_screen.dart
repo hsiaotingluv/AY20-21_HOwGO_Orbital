@@ -1,39 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/building.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/building_item.dart';
-
-// class BuildingScreen extends StatefulWidget {
-//   static const routeName = '/building';
-
-//   final List<Building> availableBuildings;
-
-//   BuildingScreen(this.availableBuildings);
-
-//   @override
-//   _BuildingScreenState createState() => _BuildingScreenState();
-// }
-
-// class _BuildingScreenState extends State<BuildingScreen> {
-//   String facultyTitle;
-//   List<Building> displayedBuildings;
-//   var _loadedInitData = false;
-
-//   @override
-//   void didChangeDependencies() {
-//     if (!_loadedInitData) {
-//       final routeArgs =
-//           ModalRoute.of(context).settings.arguments as Map<String, String>;
-//       facultyTitle = routeArgs['title'];
-//       displayedBuildings = widget.availableBuildings.where((building) {
-//         return building.faculty.contains(facultyTitle);
-//       }).toList();
-//       _loadedInitData = true;
-//     }
-//     super.didChangeDependencies();
-//   }
 
 class BuildingScreen extends StatelessWidget {
   static const routeName = '/building';
@@ -55,7 +24,7 @@ class BuildingScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       body: FutureBuilder(
           future: FirebaseFirestore.instance
-              .collection('campus/${campus}/faculty/${faculty}/building')
+              .collection('campus/$campus/faculty/$faculty/building')
               .get(),
           builder: (ctx, snapshot) {
             if (snapshot.hasData) {
@@ -64,7 +33,7 @@ class BuildingScreen extends StatelessWidget {
               return displayedBuildings.length == 0
                   ? Center(
                       child: Text(
-                        'No data has been added for this faculty yet. Try another faculty.',
+                        'No data has been added for this faculty. \nTry another faculty.',
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -82,22 +51,9 @@ class BuildingScreen extends StatelessWidget {
                                     building: building['name'],
                                   ))
                               .toList(),
-                          // children: CAMPUS_CATEGORIES
-                          //     .map((campus) => CampusItem(campus.name, campus.image))
-                          //     .toList(),
                         ),
                       ],
                     );
-              // : ListView.builder(
-              //     itemBuilder: (ctx, index) {
-              //       return BuildingItem(
-              //         title: displayedBuildings[index].title,
-              //         campus: displayedBuildings[index].campus,
-              //       );
-              //     },
-              //     itemCount: displayedBuildings.length,
-              //     padding: EdgeInsets.all(5),
-              //   );
             } else if (snapshot.hasError) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,

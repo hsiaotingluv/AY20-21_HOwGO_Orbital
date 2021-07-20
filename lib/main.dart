@@ -3,10 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
-import './category_data.dart';
-import './models/building.dart';
-import './models/faculty.dart';
-import './models/room.dart';
 import './providers/home_screen_provider.dart';
 import './providers/rooms_provider.dart';
 import './providers/lesson_provider.dart';
@@ -33,10 +29,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget with ChangeNotifier {
-  // List<Building> _availableBuildings = BUILDING_CATEGORIES;
-  // List<Faculty> _availableFaculties = FACULTY_CATEGORIES;
-  // List<RoomModel> _availableRooms = ROOMS;
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -69,7 +61,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
         return MaterialApp(
           title: 'HOwGO',
           theme: themeSettings.darkTheme ? darkTheme : lightTheme,
-          // home: CampusScreen(),
           home: pickedHomeScreen.homeScreen
               ? FavouritesTabsScreen()
               : CampusScreen(),
@@ -77,7 +68,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
             FacultyScreen.routeName: (ctx) => FacultyScreen(),
             BuildingScreen.routeName: (ctx) => BuildingScreen(),
             RoomScreen.routeName: (ctx) => RoomScreen(),
-            RoomDetailScreen.routeName: (ctx) => RoomDetailScreen(),
             StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
             TimetableScreen.routeName: (ctx) => TimetableScreen(),
             MapsScreen.routeName: (ctx) => MapsScreen(),

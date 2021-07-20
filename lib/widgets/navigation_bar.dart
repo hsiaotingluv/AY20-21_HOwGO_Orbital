@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+// import 'package:sizer/sizer.dart';
 
 import '../screens/campus_screen.dart';
 import '../screens/favourites_tabs_screen.dart';
@@ -110,7 +110,7 @@ class _NavigationBarState extends State<NavigationBar> {
         selectedItemColor: Theme.of(context).primaryColor,
         selectedFontSize: 12,
         unselectedFontSize: 12,
-        iconSize: 24.sp,
+        iconSize: 24,
         currentIndex: _selectedPageIndex,
         type: BottomNavigationBarType.fixed,
         items: [

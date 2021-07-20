@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+// import 'package:sizer/sizer.dart';
 
-import '../screens/maps_screen.dart';
 import '../screens/settings_screen.dart';
 import '../screens/timetable_screen.dart';
 
@@ -27,13 +26,13 @@ class MainDrawer extends StatelessWidget {
           child: ListTile(
             leading: Icon(
               icon,
-              size: 22.sp,
+              size: 22,
             ),
             title: Text(
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15.sp,
+                fontSize: 15,
                 color: Theme.of(context).textTheme.bodyText1.color,
               ),
             ),
@@ -41,7 +40,7 @@ class MainDrawer extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 2.h,
+          height: 2,
         ),
       ],
     );
