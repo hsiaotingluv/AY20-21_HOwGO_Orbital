@@ -1,82 +1,29 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/room.dart';
-import '../providers/rooms_provider.dart';
+import '../widgets/room_item.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/main_drawer.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/searchScreen';
 
+  List<DocumentSnapshot<Object>> favRooms = [];
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-// class _SearchScreenState extends State<SearchScreen> {
-//   TextEditingController searchTextEditingController = TextEditingController();
-//   Future<QuerySnapshot> futureSearchResults;
-
-//   emptyTheTextFormField() {
-//     searchTextEditingController.clear();
-//   }
-
-//   controlSearching() {
-//     Future<QuerySnapshot> allRooms = userReference.where
-//   }
-
-//   AppBar searchPageHeader() {
-//     return AppBar(
-//       backgroundColor: Colors.black,
-//       title: TextFormField(
-//         style: TextStyle(fontSize: 18, color: Colors.white),
-//         controller: searchTextEditingController,
-//         decoration: InputDecoration(
-//             hintText: "Search here...",
-//             hintStyle: TextStyle(color: Colors.grey),
-//             enabledBorder: UnderlineInputBorder(
-//               borderSide: BorderSide(color: Colors.grey),
-//             ),
-//             focusedBorder: UnderlineInputBorder(
-//               borderSide: BorderSide(color: Colors.white),
-//             ),
-//             filled: true,
-//             prefixIcon: Icon(
-//               Icons.person_pin,
-//               color: Colors.white,
-//               size: 30,
-//             ),
-//             suffixIcon: IconButton(
-//               icon: Icon(
-//                 Icons.clear,
-//                 color: Colors.white,
-//               ),
-//               onPressed: emptyTheTextFormField,
-//             )),
-//       ),
-//     );
-//   }
-// }
-
-// class RoomResult extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Text('Room Result here');
-//   }
-// }
-
 class _SearchScreenState extends State<SearchScreen> {
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
-    final rooms = Provider.of<Rooms>(context);
-    var roomsList = [];
-    //rooms.rooms;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Rooms'),
+        title: const Text('Select a Room'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -85,7 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: RoomSearch(roomsList),
+                delegate: RoomSearch(widget.favRooms),
               );
             },
           ),
@@ -93,17 +40,76 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: MainDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: SearchedRoomList(resultList: roomsList),
-      ),
+      body: FutureBuilder(
+          future: FirebaseFirestore.instance.collection('allRooms').get(),
+          builder: (ctx, snapshot) {
+            if (snapshot.hasData) {
+              final List<DocumentSnapshot> displayedRooms = snapshot.data.docs;
+              if (displayedRooms.length == 0) {
+                return Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Center(
+                    child: Text(
+                      'No data has been added yet.',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                );
+              } else {
+                for (int i = 0; i < displayedRooms.length; i++) {
+                  widget.favRooms.add(displayedRooms[i]);
+                }
+                return ListView(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: displayedRooms
+                          .map((room) => RoomItem(
+                                selectedRoom: room,
+                              ))
+                          .toList(),
+                    ),
+                  ],
+                );
+              }
+            } else if (snapshot.hasError) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      color: Colors.red,
+                      size: 60,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Center(
+                      child: Text(
+                        'Error: ${snapshot.error}',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
       bottomNavigationBar: NavigationBar(1),
     );
   }
 }
 
 class RoomSearch extends SearchDelegate<String> {
-  List<RoomModel> roomsList;
+  List<DocumentSnapshot<Object>> roomsList;
   RoomSearch(this.roomsList);
 
   @override
@@ -138,8 +144,12 @@ class RoomSearch extends SearchDelegate<String> {
     final resultList = query.isEmpty
         ? roomsList
         : roomsList.where((room) {
-            return room.name.toLowerCase().contains(query.toLowerCase()) ||
-                room.location.toLowerCase().contains(query.toLowerCase());
+            return room['name']
+                    .toLowerCase()
+                    .contains(query.toLowerCase().trim()) ||
+                room['location']
+                    .toLowerCase()
+                    .contains(query.toLowerCase().trim());
           }).toList();
     return SearchedRoomList(resultList: resultList);
   }
@@ -150,8 +160,12 @@ class RoomSearch extends SearchDelegate<String> {
     final suggestionList = query.isEmpty
         ? roomsList
         : roomsList.where((room) {
-            return room.name.toLowerCase().contains(query.toLowerCase()) ||
-                room.location.toLowerCase().contains(query.toLowerCase());
+            return room['name']
+                    .toLowerCase()
+                    .contains(query.toLowerCase().trim()) ||
+                room['location']
+                    .toLowerCase()
+                    .contains(query.toLowerCase().trim());
           }).toList();
     return SearchedRoomList(resultList: suggestionList);
   }
@@ -162,7 +176,7 @@ class SearchedRoomList extends StatelessWidget {
     @required this.resultList,
   });
 
-  final List<RoomModel> resultList;
+  final List<DocumentSnapshot<Object>> resultList;
 
   @override
   Widget build(BuildContext context) {
@@ -177,17 +191,17 @@ class SearchedRoomList extends StatelessWidget {
               ),
             ),
           )
-        : ListView.builder(
-            itemBuilder: (ctx, index) {
-              return Container(
-                  //   child: RoomItem(
-                  //     title: resultList[index].name,
-                  //     location: resultList[index].location,
-                  //     building: resultList[index].building,
-                  //   ),
-                  );
-            },
-            itemCount: resultList.length,
+        : ListView(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: resultList
+                    .map((room) => RoomItem(
+                          selectedRoom: room,
+                        ))
+                    .toList(),
+              ),
+            ],
           );
   }
 }
