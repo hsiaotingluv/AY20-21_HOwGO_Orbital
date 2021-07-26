@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +80,7 @@ class MainDrawer extends StatelessWidget {
           buildListTile(
             context,
             'Settings',
-            Platform.isIOS ? CupertinoIcons.gear_alt : Icons.settings,
+            Icons.settings,
             () {
               Navigator.of(context).pushNamed(SettingsScreen.routeName);
             },

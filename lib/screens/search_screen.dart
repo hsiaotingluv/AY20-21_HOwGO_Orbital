@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Platform.isIOS ? CupertinoIcons.search : Icons.search,
+              Icons.search,
             ),
             onPressed: () {
               showSearch(

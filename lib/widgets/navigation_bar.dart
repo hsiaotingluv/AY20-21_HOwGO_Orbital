@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -121,12 +121,13 @@ class _NavigationBarState extends State<NavigationBar> {
           BottomNavigationBarItem(
             icon: Icon(
               pageNo == 1
-                  ? Platform.isIOS
-                      ? CupertinoIcons.search
-                      : Icons.search
-                  : Platform.isIOS
-                      ? CupertinoIcons.search
-                      : Icons.search_outlined,
+                  // ? Platform.isIOS
+                  //     ? CupertinoIcons.search
+                  //     :
+                  ? Icons.search
+                  // : Platform.isIOS
+                  //     ? CupertinoIcons.search
+                  : Icons.search_outlined,
               color: pageNo == 1
                   ? Theme.of(context).primaryColor
                   : Theme.of(context).iconTheme.color,
@@ -143,12 +144,13 @@ class _NavigationBarState extends State<NavigationBar> {
           BottomNavigationBarItem(
             icon: Icon(
               pageNo == 2
-                  ? Platform.isIOS
-                      ? CupertinoIcons.heart_fill
-                      : Icons.favorite
-                  : Platform.isIOS
-                      ? CupertinoIcons.heart
-                      : Icons.favorite_border,
+                  // ? Platform.isIOS
+                  //     ? CupertinoIcons.heart_fill
+                  //     :
+                  ? Icons.favorite
+                  // : Platform.isIOS
+                  //     ? CupertinoIcons.heart
+                  : Icons.favorite_border,
               color: pageNo == 2
                   ? Theme.of(context).primaryColor
                   : Theme.of(context).iconTheme.color,

@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,51 +48,52 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 left: 5.w,
               ),
             ),
-            Platform.isAndroid
-                ? Container(
-                    height: 70,
-                    child: SwitchListTile(
-                      title: Text(
-                        'Set Favourites as Home Screen',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Theme.of(context).textTheme.bodyText2.color,
-                        ),
-                      ),
-                      value: homeScreenSettings.homeScreen,
-                      onChanged: (newValue) {
-                        setState(() {
-                          homeScreenSettings.toggleTheme();
-                        });
-                      },
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 7.w,
-                      top: 1.h,
-                    ),
-                  )
-                : Container(
-                    height: 70,
-                    child: CupertinoSwitchListTile(
-                      title: Text(
-                        'Set Favourites as Home Screen',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Theme.of(context).textTheme.bodyText2.color,
-                        ),
-                      ),
-                      value: homeScreenSettings.homeScreen,
-                      onChanged: (newValue) {
-                        setState(() {
-                          homeScreenSettings.toggleTheme();
-                        });
-                      },
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 7.w,
-                      top: 1.h,
-                    ),
+            // Platform.isAndroid
+            // ?
+            Container(
+              height: 70,
+              child: SwitchListTile(
+                title: Text(
+                  'Set Favourites as Home Screen',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Theme.of(context).textTheme.bodyText2.color,
                   ),
+                ),
+                value: homeScreenSettings.homeScreen,
+                onChanged: (newValue) {
+                  setState(() {
+                    homeScreenSettings.toggleTheme();
+                  });
+                },
+              ),
+              padding: EdgeInsets.only(
+                left: 7.w,
+                top: 1.h,
+              ),
+            ),
+            // : Container(
+            //     height: 70,
+            //     child: CupertinoSwitchListTile(
+            //       title: Text(
+            //         'Set Favourites as Home Screen',
+            //         style: TextStyle(
+            //           fontSize: 14.sp,
+            //           color: Theme.of(context).textTheme.bodyText2.color,
+            //         ),
+            //       ),
+            //       value: homeScreenSettings.homeScreen,
+            //       onChanged: (newValue) {
+            //         setState(() {
+            //           homeScreenSettings.toggleTheme();
+            //         });
+            //       },
+            //     ),
+            //     padding: EdgeInsets.only(
+            //       left: 7.w,
+            //       top: 1.h,
+            //     ),
+            //   ),
             Divider(
               height: 9,
               indent: 20,
@@ -114,51 +115,52 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 left: 5.w,
               ),
             ),
-            Platform.isAndroid
-                ? Container(
-                    height: 70,
-                    child: SwitchListTile(
-                      title: Text(
-                        'Dark Mode',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Theme.of(context).textTheme.bodyText2.color,
-                        ),
-                      ),
-                      value: darkThemeSettings.darkTheme,
-                      onChanged: (newValue) {
-                        setState(() {
-                          darkThemeSettings.toggleTheme();
-                        });
-                      },
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 7.w,
-                      top: 1.h,
-                    ),
-                  )
-                : Container(
-                    height: 70,
-                    child: CupertinoSwitchListTile(
-                      title: Text(
-                        'Dark Mode',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Theme.of(context).textTheme.bodyText2.color,
-                        ),
-                      ),
-                      value: darkThemeSettings.darkTheme,
-                      onChanged: (newValue) {
-                        setState(() {
-                          darkThemeSettings.toggleTheme();
-                        });
-                      },
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 7.w,
-                      top: 1.h,
-                    ),
+            // Platform.isAndroid
+            // ?
+            Container(
+              height: 70,
+              child: SwitchListTile(
+                title: Text(
+                  'Dark Mode',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Theme.of(context).textTheme.bodyText2.color,
                   ),
+                ),
+                value: darkThemeSettings.darkTheme,
+                onChanged: (newValue) {
+                  setState(() {
+                    darkThemeSettings.toggleTheme();
+                  });
+                },
+              ),
+              padding: EdgeInsets.only(
+                left: 7.w,
+                top: 1.h,
+              ),
+            ),
+            // : Container(
+            //     height: 70,
+            //     child: CupertinoSwitchListTile(
+            //       title: Text(
+            //         'Dark Mode',
+            //         style: TextStyle(
+            //           fontSize: 14.sp,
+            //           color: Theme.of(context).textTheme.bodyText2.color,
+            //         ),
+            //       ),
+            //       value: darkThemeSettings.darkTheme,
+            //       onChanged: (newValue) {
+            //         setState(() {
+            //           darkThemeSettings.toggleTheme();
+            //         });
+            //       },
+            //     ),
+            //     padding: EdgeInsets.only(
+            //       left: 7.w,
+            //       top: 1.h,
+            //     ),
+            //   ),
             Divider(
               height: 9,
               indent: 20,
