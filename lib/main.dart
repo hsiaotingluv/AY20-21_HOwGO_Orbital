@@ -9,7 +9,6 @@ import './providers/lesson_provider.dart';
 import './providers/profile_providers.dart';
 import './providers/theme_provider.dart';
 import './providers/study_areas_provider.dart';
-import './screens/maps_screen.dart';
 import './screens/settings_screen.dart';
 import './screens/timetable_screen.dart';
 import './screens/faculty_screen.dart';
@@ -70,7 +69,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
               RoomScreen.routeName: (ctx) => RoomScreen(),
               StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
               TimetableScreen.routeName: (ctx) => TimetableScreen(),
-              MapsScreen.routeName: (ctx) => MapsScreen(),
               SettingsScreen.routeName: (ctx) => SettingsScreen(),
               CampusScreen.routeName: (ctx) => CampusScreen(),
               SearchScreen.routeName: (ctx) => SearchScreen(),

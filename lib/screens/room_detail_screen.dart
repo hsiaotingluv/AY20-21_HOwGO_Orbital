@@ -83,18 +83,6 @@ class RoomDetailScreen extends StatelessWidget {
                 child: Image.network(
                   gallery[index],
                   fit: BoxFit.cover,
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes
-                            : null,
-                      ),
-                    );
-                  },
                 ),
               ));
         },
@@ -189,11 +177,6 @@ class RoomDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                 ),
-                // Divider(
-                //   height: 0,
-                //   thickness: 1,
-                //   color: Colors.grey,
-                // ),
                 Container(
                   padding: EdgeInsets.only(left: 18),
                   child: Text(
@@ -216,11 +199,6 @@ class RoomDetailScreen extends StatelessWidget {
                         ),
                       )
                     : buildPhotoGallery(List.from(selectedRoom['gallery'])),
-                // Divider(
-                //   height: 0,
-                //   thickness: 0.2,
-                //   color: Colors.grey,
-                // ),
                 SizedBox(
                   height: 50,
                 ),

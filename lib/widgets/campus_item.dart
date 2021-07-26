@@ -26,9 +26,11 @@ class CampusItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = double.infinity;
     var height = MediaQuery.of(context).size.height / 4.1;
+    // print(image);
     return InkWell(
       onTap: () => selectCampus(context),
       splashColor: Theme.of(context).accentColor,
+      // borderRadius: BorderRadius.circular(10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -65,6 +67,7 @@ class CampusItem extends StatelessWidget {
                   ),
                   color: Theme.of(context).backgroundColor,
                 ),
+                // width: 390,
                 padding: EdgeInsets.all(10),
                 child: Text(
                   campus,

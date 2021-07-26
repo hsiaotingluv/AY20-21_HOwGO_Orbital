@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../screens/settings_screen.dart';
-// import '../screens/maps_screen.dart';
-// import '../screens/timetable_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTile(
@@ -58,28 +56,18 @@ class MainDrawer extends StatelessWidget {
             color: Theme.of(context).primaryColor,
             child: Container(
               padding: EdgeInsets.only(
-                left: 20,
-                top: 70,
+                left: 5.w,
+                top: 8.h,
               ),
               child: Column(
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Icon(
-                      Icons.map_rounded,
-                      color: Colors.white,
-                      size: 100,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'NUS HOwGO',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        color: Colors.black,
-                      ),
+                    child: Image.asset(
+                      'assets/images/1.png',
+                      height: 20.h,
+                      width: 40.w,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ],
@@ -89,22 +77,6 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          // buildListTile(
-          //   context,
-          //   'Timetable',
-          //   Icons.calendar_today_outlined,
-          //   () {
-          //     Navigator.of(context).pushNamed(TimetableScreen.routeName);
-          //   },
-          // ),
-          // buildListTile(
-          //   context,
-          //   'Map',
-          //   Icons.map_outlined,
-          //   () {
-          //     Navigator.of(context).pushNamed(MapsScreen.routeName);
-          //   },
-          // ),
           buildListTile(
             context,
             'Settings',

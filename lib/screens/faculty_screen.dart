@@ -51,9 +51,6 @@ class FacultyScreen extends StatelessWidget {
                                     image: fac['imageUrl'],
                                   ))
                               .toList(),
-                          // children: CAMPUS_CATEGORIES
-                          //     .map((campus) => CampusItem(campus.name, campus.image))
-                          //     .toList(),
                         ),
                       ],
                     );
