@@ -5,12 +5,9 @@ import 'package:sizer/sizer.dart';
 
 import './providers/home_screen_provider.dart';
 import './providers/rooms_provider.dart';
-import './providers/lesson_provider.dart';
-import './providers/profile_providers.dart';
 import './providers/theme_provider.dart';
 import './providers/study_areas_provider.dart';
 import './screens/settings_screen.dart';
-import './screens/timetable_screen.dart';
 import './screens/faculty_screen.dart';
 import './screens/room_screen.dart';
 import './screens/building_screen.dart';
@@ -44,12 +41,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           create: (ctx) => ThemeSettings(),
         ),
         ChangeNotifierProvider(
-          create: (ctx) => Lessons(),
-        ),
-        ChangeNotifierProvider(
-          create: (ctx) => Profiles(),
-        ),
-        ChangeNotifierProvider(
           create: (ctx) => ChooseHomeScreenSettings(),
         ),
       ],
@@ -68,7 +59,6 @@ class MyApp extends StatelessWidget with ChangeNotifier {
               BuildingScreen.routeName: (ctx) => BuildingScreen(),
               RoomScreen.routeName: (ctx) => RoomScreen(),
               StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
-              TimetableScreen.routeName: (ctx) => TimetableScreen(),
               SettingsScreen.routeName: (ctx) => SettingsScreen(),
               CampusScreen.routeName: (ctx) => CampusScreen(),
               SearchScreen.routeName: (ctx) => SearchScreen(),
