@@ -25,8 +25,8 @@ class RoomDetailScreen extends StatelessWidget {
       BuildContext context, Icon icon, String title, String subtitle) {
     return Container(
       padding: EdgeInsets.only(
-        top: 10,
-        left: 15,
+        top: 2.h,
+        left: 4.w,
       ),
       child: Column(
         children: [

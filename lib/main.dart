@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sizer/sizer.dart';
@@ -51,9 +52,11 @@ class MyApp extends StatelessWidget with ChangeNotifier {
           return MaterialApp(
             title: 'HOwGO',
             theme: themeSettings.darkTheme ? darkTheme : lightTheme,
-            home: pickedHomeScreen.homeScreen
-                ? FavouritesTabsScreen()
-                : CampusScreen(),
+            home: Splash(),
+
+            // pickedHomeScreen.homeScreen
+            //     ? FavouritesTabsScreen()
+            //     : CampusScreen(),
             routes: {
               FacultyScreen.routeName: (ctx) => FacultyScreen(),
               BuildingScreen.routeName: (ctx) => BuildingScreen(),
