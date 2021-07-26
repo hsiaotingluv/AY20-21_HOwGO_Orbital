@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +29,6 @@ class RoomItem extends StatelessWidget {
   Widget buildIconTile(BuildContext context, IconData icon, String title) {
     return Container(
       child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(icon, size: 20),
           SizedBox(
@@ -64,7 +61,6 @@ class RoomItem extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(10),
               child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.network(
                     selectedRoom['coverphoto'],
@@ -113,11 +109,9 @@ class RoomItem extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // VerticalDivider(),
                   Container(
                     child: IconButton(
                       onPressed: () {
-                        // roomsProvider.fetchAndSetFavs();
                         roomsProvider.toggleFavourite(selectedRoom['name']);
                         roomsProvider.fetchAndSetFavs();
                         ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -131,7 +125,6 @@ class RoomItem extends StatelessWidget {
                               label: 'UNDO',
                               textColor: Colors.cyan,
                               onPressed: () {
-                                // roomsProvider.fetchAndSetFavs();
                                 roomsProvider
                                     .toggleFavourite(selectedRoom['name']);
                                 roomsProvider.fetchAndSetFavs();
@@ -145,7 +138,6 @@ class RoomItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // ),
                 ],
               ),
               height: 70,
@@ -160,7 +152,6 @@ class RoomItem extends StatelessWidget {
           endIndent: 15,
         ),
       ],
-      // ),
     );
   }
 }

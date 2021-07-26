@@ -9,56 +9,6 @@ class DirectionScreen extends StatelessWidget {
 
   DirectionScreen(this.room);
 
-  // Future<List<String>> _getImages(BuildContext context) async {
-  //   await Firebase.initializeApp();
-  //   List<String> imagesUrl = [];
-  //   final ListResult result = await FirebaseStorage.instance
-  //       .ref('SoC/COM1/COM1-02-17/direction/')
-  //       .list();
-  //   final List<Reference> allFiles = result.items;
-  //   await Future.forEach<Reference>(allFiles, (file) async {
-  //     final String fileUrl = await file.getDownloadURL();
-  //     imagesUrl.add(fileUrl.toString());
-  //   });
-  //   return imagesUrl;
-  // }
-
-  // FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  // Future<Map<String, String>> getDirection() async {
-  //   await Firebase.initializeApp();
-  //   final Map<String, String> content = new Map();
-
-  //   Query direction = FirebaseFirestore.instance
-  //       .collection('campus')
-  //       .doc('Kent Ridge Campus')
-  //       .collection('faculty')
-  //       .doc('School of Computing')
-  //       .collection('building')
-  //       .doc(room.building)
-  //       .collection('room')
-  //       .doc(room.name)
-  //       .collection('direction');
-  //   // .orderBy('direction');
-
-  //   final result = await direction.get();
-  //   for (final item in result.docs) {
-  //     final imageUrl = item['imageUrl'];
-  //     final caption = item['caption'];
-  //     content[imageUrl] = caption;
-  //   }
-  //   return content;
-  // }
-
-  // Future<DocumentSnapshot<Map<String, dynamic>>> getDirection() async {
-  //   await Firebase.initializeApp();
-  //   return await FirebaseFirestore.instance
-  //       .collection(
-  //           '/campus/Kent Ridge Campus/faculty/School of Computing/building/COM1/room')
-  //       .doc('Tutorial Room 10')
-  //       .get();
-  // }
-
   @override
   Widget build(BuildContext context) {
     var direction = room['direction'];
@@ -83,7 +33,27 @@ class DirectionScreen extends StatelessWidget {
                     )
                   : Column(
                       children: [
-                        Image.network(direction[index]['url']),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 250,
+                          child: Image.network(
+                            direction[index]['url'],
+                            fit: BoxFit.fill,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes
+                                      : null,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.all(15),

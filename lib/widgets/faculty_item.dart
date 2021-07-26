@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/building_screen.dart';
 
@@ -37,7 +38,7 @@ class FacultyItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = double.infinity;
-    var height = MediaQuery.of(context).size.height / 4;
+    var height = MediaQuery.of(context).size.height / 4.1;
     return InkWell(
       onTap: () => selectFaculty(context),
       splashColor: Theme.of(context).accentColor,
@@ -66,9 +67,9 @@ class FacultyItem extends StatelessWidget {
             Positioned(
               bottom: 0,
               // height: 50,
-              width: 396,
+              width: 96.w,
               child: Container(
-                height: 50,
+                height: 6.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),

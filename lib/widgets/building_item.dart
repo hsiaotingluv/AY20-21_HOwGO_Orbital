@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:sizer/sizer.dart';
 
 import '../screens/room_screen.dart';
 
@@ -17,14 +16,6 @@ class BuildingItem extends StatelessWidget {
   });
 
   void selectBuilding(BuildContext ctx) {
-    // Navigator.of(ctx).pushNamed(
-    //   RoomScreen.routeName,
-    //   arguments: {
-    //     'campus': campus,
-    //     'faculty': faculty,
-    //     'building': building,
-    //   },
-    // );
     Navigator.push(
       ctx,
       PageRouteBuilder(

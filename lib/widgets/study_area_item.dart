@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:howgo/screens/room_detail_screen.dart';
@@ -6,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../providers/study_areas_provider.dart';
-// import 'package:sizer/sizer.dart';
 
 class StudyAreaItem extends StatelessWidget {
   final DocumentSnapshot<Object> selectedRoom;
@@ -30,7 +28,6 @@ class StudyAreaItem extends StatelessWidget {
   Widget buildIconTile(BuildContext context, IconData icon, String title) {
     return Container(
       child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(icon, size: 20),
           SizedBox(
@@ -63,7 +60,6 @@ class StudyAreaItem extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(10),
               child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.network(
                     selectedRoom['coverphoto'],
@@ -112,7 +108,6 @@ class StudyAreaItem extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // VerticalDivider(),
                   Container(
                     child: IconButton(
                       onPressed: () {
@@ -129,7 +124,6 @@ class StudyAreaItem extends StatelessWidget {
                               label: 'UNDO',
                               textColor: Colors.cyan,
                               onPressed: () {
-                                // roomsProvider.fetchAndSetFavs();
                                 studyAreaProvider
                                     .toggleFavourite(selectedRoom['name']);
                                 studyAreaProvider.fetchAndSetFavs();
@@ -143,7 +137,6 @@ class StudyAreaItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // ),
                 ],
               ),
               height: 70,
@@ -158,7 +151,6 @@ class StudyAreaItem extends StatelessWidget {
           endIndent: 15,
         ),
       ],
-      // ),
     );
   }
 }

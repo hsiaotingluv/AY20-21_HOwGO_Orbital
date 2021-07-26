@@ -114,7 +114,6 @@ class _NewLessonState extends State<NewLesson> {
                   Container(
                     width: 130,
                     height: 35,
-                    // alignment: Alignment.centerLeft,
                     child: TextField(
                       controller: dayController,
                       decoration: InputDecoration(
@@ -155,7 +154,6 @@ class _NewLessonState extends State<NewLesson> {
                       day: dayController.text,
                       startTime: startController.text.trim(),
                       endTime: endController.text.trim(),
-                      // day: chosenDay,
                     );
                   },
                 );
