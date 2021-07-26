@@ -1,10 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+import './direction_screen.dart';
 import '../widgets/navigation_bar.dart';
-import '../category_data.dart';
 
 class StudyAreaDetailScreen extends StatelessWidget {
   static const routeName = '/study-area-detail';
+
+  final DocumentSnapshot<Object> selectedRoom;
+
+  StudyAreaDetailScreen({
+    @required this.selectedRoom,
+  });
+
+  void getDirection(BuildContext ctx, DocumentSnapshot<Object> room) {
+    Navigator.push(ctx, MaterialPageRoute(builder: (context) {
+      return DirectionScreen(room);
+    }));
+  }
 
   Widget buildIconTile(
       BuildContext context, Icon icon, String title, String subtitle) {
@@ -60,18 +74,17 @@ class StudyAreaDetailScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
           return Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-            ),
-            width: 300,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                gallery[index],
-                fit: BoxFit.cover,
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
               ),
-            ),
-          );
+              width: 300,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  gallery[index],
+                  fit: BoxFit.cover,
+                ),
+              ));
         },
         itemCount: gallery.length,
       ),
@@ -80,18 +93,7 @@ class StudyAreaDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final studyAreaTitle = routeArgs['title'];
-    final studyAreaLocation = routeArgs['location'];
-    final selectedStudyArea = STUDYAREAS.firstWhere(
-      (area) =>
-          area.name == studyAreaTitle && area.location == studyAreaLocation,
-    );
     return Scaffold(
-      // appBar: AppBar(
-      //   iconTheme: IconThemeData(color: Colors.black),
-      // ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: CustomScrollView(
         slivers: [
@@ -102,7 +104,7 @@ class StudyAreaDetailScreen extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                '${selectedStudyArea.name}',
+                '${selectedRoom['name']}',
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.white,
@@ -112,10 +114,10 @@ class StudyAreaDetailScreen extends StatelessWidget {
                 overflow: TextOverflow.fade,
               ),
               background: Hero(
-                tag: selectedStudyArea.name,
-                child: selectedStudyArea.image != null
-                    ? Image.asset(
-                        selectedStudyArea.image,
+                tag: selectedRoom['name'],
+                child: selectedRoom['coverphoto'] != null
+                    ? Image.network(
+                        selectedRoom['coverphoto'],
                         fit: BoxFit.cover,
                       )
                     : Container(),
@@ -135,23 +137,27 @@ class StudyAreaDetailScreen extends StatelessWidget {
                       width: 350,
                       height: 50,
                       child: RaisedButton(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 40,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 40,
+                        ),
+                        color: Theme.of(context).primaryColor,
+                        child: Text(
+                          'GET DIRECTION',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
                           ),
-                          color: Theme.of(context).primaryColor,
-                          child: Text(
-                            'GET DIRECTION',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                          ),
-                          onPressed: () {}),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                        onPressed: () => getDirection(
+                          context,
+                          selectedRoom,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -159,15 +165,15 @@ class StudyAreaDetailScreen extends StatelessWidget {
                   height: 10,
                 ),
                 buildIconTile(context, Icon(Icons.business_rounded), 'Location',
-                    selectedStudyArea.location),
+                    selectedRoom['location']),
                 buildIconTile(context, Icon(Icons.group_rounded), 'Capacity',
-                    selectedStudyArea.capacity.toString()),
+                    selectedRoom['capacity'].toString()),
                 buildIconTile(context, Icon(Icons.directions_bus_rounded),
-                    'Nearby Bus Stops', selectedStudyArea.nearbyBusStops),
+                    'Nearby Bus Stops', selectedRoom['nearbyBusStops']),
                 buildIconTile(context, Icon(Icons.router_rounded), 'Facilities',
-                    '2 x Aircon, 19 x Apple Desktop'),
+                    selectedRoom['facilities']),
                 buildIconTile(context, Icon(Icons.location_on_rounded),
-                    'Address', selectedStudyArea.address),
+                    'Address', selectedRoom['address']),
                 SizedBox(
                   height: 20,
                 ),
@@ -186,7 +192,7 @@ class StudyAreaDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                selectedStudyArea.gallery == null
+                selectedRoom['gallery'] == null
                     ? Container(
                         margin: EdgeInsets.symmetric(
                           vertical: 10,
@@ -197,7 +203,7 @@ class StudyAreaDetailScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       )
-                    : buildPhotoGallery(selectedStudyArea.gallery),
+                    : buildPhotoGallery(List.from(selectedRoom['gallery'])),
                 // Divider(
                 //   height: 0,
                 //   thickness: 0.2,
