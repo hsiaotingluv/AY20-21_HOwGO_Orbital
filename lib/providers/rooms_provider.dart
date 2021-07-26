@@ -9,6 +9,10 @@ class Rooms with ChangeNotifier {
     return [..._favRooms];
   }
 
+  List<String> get noDuplicates {
+    return _favRooms.toSet().toList();
+  }
+
   bool isRoomFav(String roomName) {
     return _favRooms.any((element) => element == roomName);
   }

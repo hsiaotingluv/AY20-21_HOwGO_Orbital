@@ -11,7 +11,7 @@ class DirectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = double.infinity;
-    var height = MediaQuery.of(context).size.height / 3.1;
+    var height = MediaQuery.of(context).size.height / 4.6;
     var direction = room['direction'];
     return Scaffold(
       appBar: AppBar(title: Text('Direction')),
@@ -57,35 +57,87 @@ class DirectionScreen extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          Positioned(
-                            bottom: 0,
-                            // height: 50,
-                            width: 96.w,
-                            child: Container(
-                              height: 8.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
-                                ),
-                                color: Theme.of(context).backgroundColor,
-                              ),
-                              // width: 390,
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                direction[index]['caption'],
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline2,
-                                softWrap: true,
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                          ),
+                          // Positioned(
+                          //   bottom: 2.h,
+                          //   right: 1.w,
+                          //   left: 1.w,
+                          //   child: Container(
+                          //     width: 300,
+                          //     color: Colors.black38,
+                          //     padding: EdgeInsets.symmetric(
+                          //       vertical: 1.w,
+                          //       horizontal: 2.h,
+                          //     ),
+                          //     child: Text(
+                          //       direction[index]['caption'],
+                          //       style: TextStyle(
+                          //         fontSize: 18.sp,
+                          //         color: Colors.white,
+                          //       ),
+                          //       softWrap: true,
+                          //       overflow: TextOverflow.fade,
+                          //     ),
+                          //   ),
+                          // ),
+                          // Positioned(
+                          //   bottom: 0,
+                          //   // height: 50,
+                          //   width: 96.w,
+                          //   child: Container(
+                          //     height: 8.h,
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.only(
+                          //         bottomLeft: Radius.circular(10),
+                          //         bottomRight: Radius.circular(10),
+                          //       ),
+                          //       color: Theme.of(context).backgroundColor,
+                          //     ),
+                          //     // width: 390,
+                          //     padding: EdgeInsets.all(10),
+                          //     child: Text(
+                          //       direction[index]['caption'],
+                          //       textAlign: TextAlign.center,
+                          //       style: Theme.of(context).textTheme.headline2,
+                          //       softWrap: true,
+                          //       overflow: TextOverflow.clip,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
+                    Container(
+                      width: double.infinity,
+                      // margin: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        direction[index]['caption'],
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(
+                      //       color: Theme.of(context)
+                      //           .textTheme
+                      //           .bodyText1
+                      //           .color),
+                      //   borderRadius: BorderRadius.circular(10),
+                      // ),
+                    ),
+                    // Divider(
+                    //   height: 0,
+                    //   thickness: 2.sp,
+                    //   endIndent: 20,
+                    //   indent: 20,
+                    // ),
+                    // SizedBox(
+                    //   height: 20,
+                    // )
                     SizedBox(
-                      height: 20,
+                      height: 0,
                     ),
                   ],
                 );

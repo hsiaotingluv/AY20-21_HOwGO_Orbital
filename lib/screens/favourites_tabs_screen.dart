@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:howgo/providers/rooms_provider.dart';
+import 'package:howgo/providers/study_areas_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/rooms_favourites_screen.dart';
 import '../screens/study_area_favourites_screen.dart';
@@ -17,33 +20,53 @@ class FavouritesTabsScreen extends StatefulWidget {
 class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
   @override
   Widget build(BuildContext context) {
+    // final roomsProvider = Provider.of<Rooms>(context, listen: false);
+    // final studyAreaProvider = Provider.of<StudyAreas>(context, listen: false);
+    // roomsProvider.fetchAndSetFavs();
+    // studyAreaProvider.fetchAndSetFavs();
+    // final noOfStudyAreasFav = studyAreaProvider.noDuplicates.length;
+    // final noOfRoomFav = roomsProvider.noDuplicates.length;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Favourites'),
           bottom: TabBar(
+            automaticIndicatorColorAdjustment: true,
+            indicatorWeight: 3.0,
+            indicatorColor: Colors.white,
+            unselectedLabelColor: Colors.white38,
             tabs: [
               SizedBox(
                 height: 40,
                 child: Tab(
-                  icon: Icon(
-                    Platform.isIOS
-                        ? CupertinoIcons.book
-                        : Icons.menu_book_rounded,
-                    size: 30,
+                  // text: 'Rooms',
+                  child: Text(
+                    'Rooms',
+                    style: TextStyle(fontSize: 18),
                   ),
+                  // icon: Icon(
+                  //   Platform.isIOS
+                  //       ? CupertinoIcons.book
+                  //       : Icons.menu_book_rounded,
+                  //   size: 30,
+                  // ),
                   // text: 'Rooms',
                 ),
               ),
               SizedBox(
                 height: 40,
                 child: Tab(
-                  icon: Icon(
-                    Icons.school_outlined,
-                    size: 30,
-                  ),
                   // text: 'StudySpots',
+                  child: Text(
+                    'StudySpots',
+                    style: TextStyle(fontSize: 18),
+                  ),
+
+                  // icon: Icon(
+                  //   Icons.school_outlined,
+                  //   size: 30,
+                  // ),
                 ),
               ),
             ],

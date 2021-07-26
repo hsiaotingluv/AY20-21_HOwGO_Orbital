@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howgo/helpers/sql_study_areas.dart';
 
 import '../helpers/sql_rooms.dart';
 
@@ -9,6 +10,10 @@ class StudyAreas with ChangeNotifier {
     return [..._favStudyAreas];
   }
 
+  List<String> get noDuplicates {
+    return _favStudyAreas.toSet().toList();
+  }
+
   bool isStudyAreaFav(String studyAreaName) {
     return _favStudyAreas.any((element) => element == studyAreaName);
   }
@@ -16,7 +21,7 @@ class StudyAreas with ChangeNotifier {
   Future<int> toggleFavourite(String studyAreaName) async {
     bool isStudyAreaInFavList = isStudyAreaFav(studyAreaName);
     if (isStudyAreaInFavList) {
-      int i = await SQLRooms.removeFav(
+      int i = await SQLStudyAreas.removeFav(
         studyAreaName,
       );
       _favStudyAreas.removeWhere((element) => element == studyAreaName);
@@ -25,7 +30,7 @@ class StudyAreas with ChangeNotifier {
     }
     // room not fav yet -> make fav
     else {
-      int i = await SQLRooms.makeFav(
+      int i = await SQLStudyAreas.makeFav(
         {'title': studyAreaName},
       );
       _favStudyAreas.add(studyAreaName);
@@ -35,7 +40,7 @@ class StudyAreas with ChangeNotifier {
   }
 
   Future<void> fetchAndSetFavs() async {
-    final dataList = await SQLRooms.getData();
+    final dataList = await SQLStudyAreas.getData();
     _favStudyAreas = dataList.map((e) => e['title'] as String).toList();
     print('lenght of _favRooms is ${favRooms.length}');
     notifyListeners();
