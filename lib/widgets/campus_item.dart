@@ -24,8 +24,6 @@ class CampusItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = double.infinity;
-    var height = MediaQuery.of(context).size.height / 4.1;
     // print(image);
     return InkWell(
       onTap: () => selectCampus(context),
@@ -38,8 +36,8 @@ class CampusItem extends StatelessWidget {
         ),
         elevation: 4,
         margin: EdgeInsets.symmetric(
-          vertical: 6,
-          horizontal: 8,
+          vertical: 1.h,
+          horizontal: 2.w,
         ),
         child: Stack(
           children: <Widget>[
@@ -49,15 +47,15 @@ class CampusItem extends StatelessWidget {
               ),
               child: Image.network(
                 image,
-                height: height,
-                width: width,
+                height: 25.h,
+                width: 100.w,
                 fit: BoxFit.cover,
               ),
             ),
             Positioned(
               bottom: 0,
               // height: 50,
-              width: 96.w,
+              width: 98.w,
               child: Container(
                 height: 6.h,
                 decoration: BoxDecoration(

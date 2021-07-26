@@ -65,7 +65,7 @@ class StudyAreaFavouritesScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         //'No rooms favourited yet.',
-                        '',
+                        'No favourites yet.',
                         style: TextStyle(
                           fontSize: 20,
                         ),

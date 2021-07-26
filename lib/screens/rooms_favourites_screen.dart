@@ -63,7 +63,7 @@ class RoomsFavouritesScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: Center(
                       child: Text(
-                        'No rooms favourited yet.',
+                        'No favourites yet.',
                         style: TextStyle(
                           fontSize: 20,
                         ),

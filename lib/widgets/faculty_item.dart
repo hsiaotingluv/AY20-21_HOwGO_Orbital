@@ -37,8 +37,6 @@ class FacultyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = double.infinity;
-    var height = MediaQuery.of(context).size.height / 4.1;
     return InkWell(
       onTap: () => selectFaculty(context),
       splashColor: Theme.of(context).accentColor,
@@ -50,8 +48,8 @@ class FacultyItem extends StatelessWidget {
         ),
         elevation: 4,
         margin: EdgeInsets.symmetric(
-          vertical: 6,
-          horizontal: 8,
+          vertical: 1.h,
+          horizontal: 2.w,
         ),
         child: Stack(
           children: <Widget>[
@@ -59,15 +57,15 @@ class FacultyItem extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10)),
               child: Image.network(
                 image,
-                height: height,
-                width: width,
+                height: 25.h,
+                width: 100.w,
                 fit: BoxFit.cover,
               ),
             ),
             Positioned(
               bottom: 0,
               // height: 50,
-              width: 96.w,
+              width: 98.w,
               child: Container(
                 height: 6.h,
                 decoration: BoxDecoration(

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:howgo/screens/room_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sizer/sizer.dart';
 
 import '../providers/study_areas_provider.dart';
+import '../screens/room_detail_screen.dart';
 
+// ignore: must_be_immutable
 class StudyAreaItem extends StatelessWidget {
   final DocumentSnapshot<Object> selectedRoom;
 
@@ -29,14 +31,17 @@ class StudyAreaItem extends StatelessWidget {
     return Container(
       child: Row(
         children: [
-          Icon(icon, size: 20),
+          Icon(
+            icon,
+            size: 15.sp,
+          ),
           SizedBox(
             width: 2,
           ),
           Text(
             title,
             style: TextStyle(
-              fontSize: 11,
+              fontSize: 11.sp,
               color: Theme.of(context).accentColor,
             ),
           ),
@@ -52,7 +57,7 @@ class StudyAreaItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 100,
+          height: 16.h,
           child: InkWell(
             onTap: () => selectRoom(context),
             splashColor: Theme.of(context).primaryColor,
@@ -63,20 +68,24 @@ class StudyAreaItem extends StatelessWidget {
                 children: [
                   Image.network(
                     selectedRoom['coverphoto'],
-                    height: 90,
-                    width: 110,
+                    height: 13.h,
+                    width: 25.w,
+                    fit: BoxFit.fill,
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(
+                    width: 4.w,
+                  ),
                   Container(
-                    width: 200,
+                    width: 50.w,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
                           selectedRoom['name'],
+                          softWrap: true,
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 13.5.sp,
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
@@ -84,10 +93,12 @@ class StudyAreaItem extends StatelessWidget {
                         Text(
                           selectedRoom['location'],
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 11.0.sp,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(
+                          height: 1.h,
+                        ),
                         Expanded(
                           child: Row(
                             children: [
@@ -96,7 +107,9 @@ class StudyAreaItem extends StatelessWidget {
                                 Icons.group_rounded,
                                 'x${selectedRoom['capacity']}',
                               ),
-                              SizedBox(width: 10),
+                              SizedBox(
+                                width: 4.w,
+                              ),
                               buildIconTile(
                                 context,
                                 Icons.directions_bus_rounded,
@@ -107,6 +120,9 @@ class StudyAreaItem extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    width: 2.w,
                   ),
                   Container(
                     child: IconButton(
@@ -134,18 +150,18 @@ class StudyAreaItem extends StatelessWidget {
                       },
                       icon: Icon(
                         isFav ? Icons.favorite : Icons.favorite_border,
+                        size: 18.sp,
                       ),
                     ),
                   ),
                 ],
               ),
-              height: 70,
             ),
           ),
         ),
         Divider(
           height: 0,
-          thickness: 0.5,
+          thickness: 0.5.sp,
           color: Theme.of(context).dividerColor,
           indent: 15,
           endIndent: 15,

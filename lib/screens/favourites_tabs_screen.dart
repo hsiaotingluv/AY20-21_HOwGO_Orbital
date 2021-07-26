@@ -20,12 +20,12 @@ class FavouritesTabsScreen extends StatefulWidget {
 class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
   @override
   Widget build(BuildContext context) {
-    // final roomsProvider = Provider.of<Rooms>(context, listen: false);
-    // final studyAreaProvider = Provider.of<StudyAreas>(context, listen: false);
-    // roomsProvider.fetchAndSetFavs();
-    // studyAreaProvider.fetchAndSetFavs();
-    // final noOfStudyAreasFav = studyAreaProvider.noDuplicates.length;
-    // final noOfRoomFav = roomsProvider.noDuplicates.length;
+    final roomsProvider = Provider.of<Rooms>(context, listen: true);
+    final studyAreaProvider = Provider.of<StudyAreas>(context, listen: true);
+    roomsProvider.fetchAndSetFavs();
+    studyAreaProvider.fetchAndSetFavs();
+    final noOfStudyAreasFav = studyAreaProvider.noDuplicates.length;
+    final noOfRoomFav = roomsProvider.noDuplicates.length;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -42,7 +42,7 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
                 child: Tab(
                   // text: 'Rooms',
                   child: Text(
-                    'Rooms',
+                    'Rooms ($noOfRoomFav)',
                     style: TextStyle(fontSize: 18),
                   ),
                   // icon: Icon(
@@ -59,7 +59,7 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
                 child: Tab(
                   // text: 'StudySpots',
                   child: Text(
-                    'StudySpots',
+                    'StudySpots ($noOfStudyAreasFav)',
                     style: TextStyle(fontSize: 18),
                   ),
 

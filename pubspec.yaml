@@ -79,6 +79,7 @@ flutter:
     - assets/images/makeStudySpotFavEg.png
     - assets/images/1.png
     - assets/images/6.png
+    - assets/images/icon.png
     # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

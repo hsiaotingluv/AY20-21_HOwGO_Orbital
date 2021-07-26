@@ -18,9 +18,6 @@ class MainDrawer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          // padding: EdgeInsets.symmetric(
-          //   vertical: 3,
-          // ),
           height: 60,
           child: ListTile(
             leading: Icon(
@@ -47,45 +44,70 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          Container(
-            height: 230,
-            width: double.infinity,
-            color: Theme.of(context).primaryColor,
-            child: Container(
-              padding: EdgeInsets.only(
-                left: 5.w,
-                top: 8.h,
-              ),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Image.asset(
-                      'assets/images/1.png',
-                      height: 20.h,
-                      width: 40.w,
-                      fit: BoxFit.cover,
+    return Container(
+      width: 70.w,
+      child: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 23.h,
+              // width: double.infinity,
+              color: Theme.of(context).primaryColor,
+              child: Container(
+                padding: EdgeInsets.only(
+                  left: 5.w,
+                  top: 5.h,
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 1),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Image.asset(
+                          'assets/images/icon.png',
+                          height: 15.h,
+                          // width: 32.8.w,
+                          fit: BoxFit.fill,
+                          // scale: 0.5,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: 1.w,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 40,
+                      ),
+                      child: Container(
+                        child: Text(
+                          'HOwGO',
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          buildListTile(
-            context,
-            'Settings',
-            Icons.settings,
-            () {
-              Navigator.of(context).pushNamed(SettingsScreen.routeName);
-            },
-          ),
-        ],
+            SizedBox(
+              height: 1.h,
+            ),
+            buildListTile(
+              context,
+              'Settings',
+              Icons.settings,
+              () {
+                Navigator.of(context).pushNamed(SettingsScreen.routeName);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
