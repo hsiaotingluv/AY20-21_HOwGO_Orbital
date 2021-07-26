@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/main_drawer.dart';
 import '../widgets/navigation_bar.dart';
 import '../widgets/study_area_item.dart';
 
@@ -18,6 +19,7 @@ class _StudyAreasScreenState extends State<StudyAreasScreen> {
       appBar: AppBar(
         title: const Text('Select a Study Area'),
       ),
+      drawer: MainDrawer(),
       backgroundColor: Theme.of(context).backgroundColor,
       body: FutureBuilder(
           future: FirebaseFirestore.instance.collection('allStudyAreas').get(),
