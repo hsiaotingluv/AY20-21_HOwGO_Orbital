@@ -21,7 +21,7 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
   @override
   Widget build(BuildContext context) {
     final roomsProvider = Provider.of<Rooms>(context, listen: true);
-    final studyAreaProvider = Provider.of<StudyAreas>(context, listen: true);
+    final studyAreaProvider = Provider.of<StudyAreas>(context, listen: false);
     roomsProvider.fetchAndSetFavs();
     studyAreaProvider.fetchAndSetFavs();
     final noOfStudyAreasFav = studyAreaProvider.noDuplicates.length;

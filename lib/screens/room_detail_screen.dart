@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sizer/sizer.dart';
 
 import './direction_screen.dart';
 import '../widgets/navigation_bar.dart';
@@ -23,7 +24,10 @@ class RoomDetailScreen extends StatelessWidget {
   Widget buildIconTile(
       BuildContext context, Icon icon, String title, String subtitle) {
     return Container(
-      padding: EdgeInsets.only(top: 10, left: 15),
+      padding: EdgeInsets.only(
+        top: 10,
+        left: 15,
+      ),
       child: Column(
         children: [
           Row(
@@ -32,21 +36,25 @@ class RoomDetailScreen extends StatelessWidget {
               icon,
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(
+                    left: 15,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         title,
+                        softWrap: true,
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 9.sp,
                           color: Theme.of(context).accentColor,
                         ),
                       ),
                       Text(
                         subtitle,
+                        softWrap: true,
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: 13.sp,
                           color: Theme.of(context).textTheme.bodyText1.color,
                         ),
                       ),
@@ -74,17 +82,18 @@ class RoomDetailScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
           return Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 8,
+            padding: EdgeInsets.symmetric(
+              horizontal: 8,
+            ),
+            width: 300,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                gallery[index],
+                fit: BoxFit.cover,
               ),
-              width: 300,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  gallery[index],
-                  fit: BoxFit.cover,
-                ),
-              ));
+            ),
+          );
         },
         itemCount: gallery.length,
       ),
@@ -162,7 +171,7 @@ class RoomDetailScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 2.h,
                 ),
                 buildIconTile(context, Icon(Icons.business_rounded), 'Location',
                     selectedRoom['location']),

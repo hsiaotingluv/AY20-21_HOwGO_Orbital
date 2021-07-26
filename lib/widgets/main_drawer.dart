@@ -18,7 +18,6 @@ class MainDrawer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          height: 60,
           child: ListTile(
             leading: Icon(
               icon,
@@ -45,7 +44,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70.w,
+      width: 71.w,
       child: Drawer(
         child: Column(
           children: [
@@ -55,7 +54,7 @@ class MainDrawer extends StatelessWidget {
               color: Theme.of(context).primaryColor,
               child: Container(
                 padding: EdgeInsets.only(
-                  left: 5.w,
+                  left: 3.w,
                   top: 5.h,
                 ),
                 child: Row(
