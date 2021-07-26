@@ -34,7 +34,7 @@ dependencies:
   path_provider: ^2.0.2
   shared_preferences: ^2.0.6
   floating_bottom_navigation_bar: ^1.5.2
-  # sizer: ^2.0.13
+  sizer: ^2.0.13
 
 
   # The following adds the Cupertino Icons font to your application.

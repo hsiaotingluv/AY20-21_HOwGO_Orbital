@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sizer/sizer.dart';
 
 import './providers/home_screen_provider.dart';
 import './providers/rooms_provider.dart';
@@ -56,26 +57,28 @@ class MyApp extends StatelessWidget with ChangeNotifier {
       builder: (context, child) {
         final themeSettings = Provider.of<ThemeSettings>(context);
         final pickedHomeScreen = Provider.of<ChooseHomeScreenSettings>(context);
-        return MaterialApp(
-          title: 'HOwGO',
-          theme: themeSettings.darkTheme ? darkTheme : lightTheme,
-          home: pickedHomeScreen.homeScreen
-              ? FavouritesTabsScreen()
-              : CampusScreen(),
-          routes: {
-            FacultyScreen.routeName: (ctx) => FacultyScreen(),
-            BuildingScreen.routeName: (ctx) => BuildingScreen(),
-            RoomScreen.routeName: (ctx) => RoomScreen(),
-            StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
-            TimetableScreen.routeName: (ctx) => TimetableScreen(),
-            MapsScreen.routeName: (ctx) => MapsScreen(),
-            SettingsScreen.routeName: (ctx) => SettingsScreen(),
-            CampusScreen.routeName: (ctx) => CampusScreen(),
-            SearchScreen.routeName: (ctx) => SearchScreen(),
-            FavouritesTabsScreen.routeName: (ctx) => FavouritesTabsScreen(),
-            StudyAreasScreen.routeName: (ctx) => StudyAreasScreen(),
-          },
-        );
+        return Sizer(builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            title: 'HOwGO',
+            theme: themeSettings.darkTheme ? darkTheme : lightTheme,
+            home: pickedHomeScreen.homeScreen
+                ? FavouritesTabsScreen()
+                : CampusScreen(),
+            routes: {
+              FacultyScreen.routeName: (ctx) => FacultyScreen(),
+              BuildingScreen.routeName: (ctx) => BuildingScreen(),
+              RoomScreen.routeName: (ctx) => RoomScreen(),
+              StudyAreaDetailScreen.routeName: (ctx) => StudyAreaDetailScreen(),
+              TimetableScreen.routeName: (ctx) => TimetableScreen(),
+              MapsScreen.routeName: (ctx) => MapsScreen(),
+              SettingsScreen.routeName: (ctx) => SettingsScreen(),
+              CampusScreen.routeName: (ctx) => CampusScreen(),
+              SearchScreen.routeName: (ctx) => SearchScreen(),
+              FavouritesTabsScreen.routeName: (ctx) => FavouritesTabsScreen(),
+              StudyAreasScreen.routeName: (ctx) => StudyAreasScreen(),
+            },
+          );
+        });
       },
     );
   }

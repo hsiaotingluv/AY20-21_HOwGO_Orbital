@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -75,9 +76,9 @@ class CampusItem extends StatelessWidget {
             Positioned(
               bottom: 0,
               // height: 50,
-              width: 396,
+              width: 96.w,
               child: Container(
-                height: 50,
+                height: 6.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),

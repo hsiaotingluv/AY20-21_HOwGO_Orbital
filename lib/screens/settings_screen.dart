@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 import '../models/cupertino_switch_list_tile.dart';
 import '../providers/home_screen_provider.dart';
@@ -40,11 +40,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Text(
                 'General',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              margin: EdgeInsets.only(left: 20),
+              margin: EdgeInsets.only(
+                left: 5.w,
+              ),
             ),
             Platform.isAndroid
                 ? Container(
@@ -53,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Set Favourites as Home Screen',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -65,8 +67,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     padding: EdgeInsets.only(
-                      left: 25,
-                      top: 8,
+                      left: 7.w,
+                      top: 1.h,
                     ),
                   )
                 : Container(
@@ -75,7 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Set Favourites as Home Screen',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -87,8 +89,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     padding: EdgeInsets.only(
-                      left: 25,
-                      top: 8,
+                      left: 7.w,
+                      top: 1.h,
                     ),
                   ),
             Divider(
@@ -98,17 +100,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               thickness: 1.5,
             ),
             Container(
-              height: 3,
+              height: 3.h,
             ),
             Container(
               child: Text(
                 'Display',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              margin: EdgeInsets.only(left: 20),
+              margin: EdgeInsets.only(
+                left: 5.w,
+              ),
             ),
             Platform.isAndroid
                 ? Container(
@@ -117,7 +121,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Dark Mode',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -129,8 +133,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     padding: EdgeInsets.only(
-                      left: 25,
-                      top: 8,
+                      left: 7.w,
+                      top: 1.h,
                     ),
                   )
                 : Container(
@@ -139,7 +143,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text(
                         'Dark Mode',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 14.sp,
                           color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                       ),
@@ -151,8 +155,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     padding: EdgeInsets.only(
-                      left: 25,
-                      top: 8,
+                      left: 7.w,
+                      top: 1.h,
                     ),
                   ),
             Divider(

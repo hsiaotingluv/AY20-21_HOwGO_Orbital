@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/settings_screen.dart';
-import '../screens/timetable_screen.dart';
+// import '../screens/maps_screen.dart';
+// import '../screens/timetable_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTile(
@@ -26,13 +27,13 @@ class MainDrawer extends StatelessWidget {
           child: ListTile(
             leading: Icon(
               icon,
-              size: 22,
+              size: 22.sp,
             ),
             title: Text(
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 15.sp,
                 color: Theme.of(context).textTheme.bodyText1.color,
               ),
             ),
@@ -40,7 +41,7 @@ class MainDrawer extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 2,
+          height: 2.h,
         ),
       ],
     );
@@ -88,14 +89,14 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          buildListTile(
-            context,
-            'Timetable',
-            Icons.calendar_today_outlined,
-            () {
-              Navigator.of(context).pushNamed(TimetableScreen.routeName);
-            },
-          ),
+          // buildListTile(
+          //   context,
+          //   'Timetable',
+          //   Icons.calendar_today_outlined,
+          //   () {
+          //     Navigator.of(context).pushNamed(TimetableScreen.routeName);
+          //   },
+          // ),
           // buildListTile(
           //   context,
           //   'Map',
