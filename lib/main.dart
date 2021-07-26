@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
 import './providers/home_screen_provider.dart';
 import './providers/rooms_provider.dart';
@@ -13,7 +12,6 @@ import './screens/maps_screen.dart';
 import './screens/settings_screen.dart';
 import './screens/timetable_screen.dart';
 import './screens/faculty_screen.dart';
-import './screens/room_detail_screen.dart';
 import './screens/room_screen.dart';
 import './screens/building_screen.dart';
 import './screens/campus_screen.dart';

@@ -1,62 +1,43 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/sql_study_areas.dart';
-import '../models/study_area.dart';
-import '../category_data.dart';
+import '../helpers/sql_rooms.dart';
 
 class StudyAreas with ChangeNotifier {
-  List<StudyArea> _studySpots = STUDYAREAS;
-  List<StudyArea> _favStudyAreas = [];
+  List<String> _favStudyAreas = [];
 
-  List<StudyArea> get areas {
-    return [..._studySpots];
-  }
-
-  List<StudyArea> get favStudyAreas {
+  List<String> get favRooms {
     return [..._favStudyAreas];
   }
 
-  StudyArea findByName(String name) {
-    return _studySpots.firstWhere((area) => area.name == name);
+  bool isStudyAreaFav(String studyAreaName) {
+    return _favStudyAreas.any((element) => element == studyAreaName);
   }
 
-  bool findFavByName(String name) {
-    return _favStudyAreas.any((room) => room.name == name);
-  }
-
-  Future<int> toggleFavourite(String name) async {
-    bool isStudyAreaInFavList = findFavByName(name);
-    StudyArea studyArea = findByName(name);
-    // room is not favourited -> favourite the room
-    if (!isStudyAreaInFavList) {
-      studyArea.isFavourite = !studyArea.isFavourite; //!studyArea.isFavourite;
-      int i = await SQLStudyAreas.makeFav('favs_study_areas', {'title': name});
+  Future<int> toggleFavourite(String studyAreaName) async {
+    bool isStudyAreaInFavList = isStudyAreaFav(studyAreaName);
+    if (isStudyAreaInFavList) {
+      int i = await SQLRooms.removeFav(
+        studyAreaName,
+      );
+      _favStudyAreas.removeWhere((element) => element == studyAreaName);
       notifyListeners();
       return i;
     }
-    // room is already favourited -> unfavourite the room
+    // room not fav yet -> make fav
     else {
-      studyArea.isFavourite = !studyArea.isFavourite; //!studyArea.isFavourite;
-      int i = await SQLStudyAreas.removeFav('favs_study_areas', name);
+      int i = await SQLRooms.makeFav(
+        {'title': studyAreaName},
+      );
+      _favStudyAreas.add(studyAreaName);
       notifyListeners();
       return i;
     }
   }
 
   Future<void> fetchAndSetFavs() async {
-    final dataList = await SQLStudyAreas.getData('favs_study_areas');
-    _favStudyAreas = dataList
-        .map(
-          (i) => StudyArea(
-            name: i['title'],
-            location: findByName(i['title']).location,
-            address: findByName(i['title']).address,
-            nearbyBusStops: findByName(i['title']).nearbyBusStops,
-            capacity: findByName(i['title']).capacity,
-            openingHours: findByName(i['title']).openingHours,
-          ),
-        )
-        .toList();
+    final dataList = await SQLRooms.getData();
+    _favStudyAreas = dataList.map((e) => e['title'] as String).toList();
+    print('lenght of _favRooms is ${favRooms.length}');
     notifyListeners();
   }
 }

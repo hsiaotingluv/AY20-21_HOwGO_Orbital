@@ -63,7 +63,7 @@ class RoomsFavouritesScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: Center(
                       child: Text(
-                        'length of _favRooms is ${roomProvider.favRooms.length}',
+                        'No rooms favourited yet.',
                         style: TextStyle(
                           fontSize: 20,
                         ),
