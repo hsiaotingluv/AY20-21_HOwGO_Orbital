@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../widgets/room_item.dart';
 import '../providers/rooms_provider.dart';
@@ -32,7 +33,7 @@ class RoomsFavouritesScreen extends StatelessWidget {
                     child: Text(
                       'No data has been added for this building yet. Try another building.',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 14.sp,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -65,7 +66,7 @@ class RoomsFavouritesScreen extends StatelessWidget {
                       child: Text(
                         'No favourites yet.',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 14.sp,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -81,7 +82,7 @@ class RoomsFavouritesScreen extends StatelessWidget {
                     child: Icon(
                       Icons.error_outline,
                       color: Colors.red,
-                      size: 60,
+                      size: 40.sp,
                     ),
                   ),
                   Padding(

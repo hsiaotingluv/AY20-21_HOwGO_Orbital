@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 class ThemeSettings extends ChangeNotifier {
   final String key = "theme";
@@ -58,7 +59,7 @@ ThemeData darkTheme = ThemeData(
     ),
     // Campus & Faculty title
     headline2: TextStyle(
-      fontSize: 18.0,
+      fontSize: 13.0.sp,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
@@ -112,7 +113,7 @@ ThemeData lightTheme = ThemeData(
     ),
     // Campus & Faculty title
     headline2: TextStyle(
-      fontSize: 18.0,
+      fontSize: 13.0.sp,
       fontWeight: FontWeight.bold,
       color: Colors.cyan[900],
     ),

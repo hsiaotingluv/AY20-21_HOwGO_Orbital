@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:howgo/providers/rooms_provider.dart';
 import 'package:howgo/providers/study_areas_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../screens/rooms_favourites_screen.dart';
 import '../screens/study_area_favourites_screen.dart';
@@ -38,12 +39,12 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
             unselectedLabelColor: Colors.white38,
             tabs: [
               SizedBox(
-                height: 40,
+                height: 4.h,
                 child: Tab(
                   // text: 'Rooms',
                   child: Text(
                     'Rooms ($noOfRoomFav)',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 13.sp),
                   ),
                   // icon: Icon(
                   //   Platform.isIOS
@@ -55,12 +56,12 @@ class _FavouritesTabsScreenState extends State<FavouritesTabsScreen> {
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 4.h,
                 child: Tab(
                   // text: 'StudySpots',
                   child: Text(
                     'StudySpots ($noOfStudyAreasFav)',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 13.sp),
                   ),
 
                   // icon: Icon(

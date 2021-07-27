@@ -47,7 +47,7 @@ class CampusItem extends StatelessWidget {
               ),
               child: Image.network(
                 image,
-                height: 25.h,
+                height: 24.h,
                 width: 100.w,
                 fit: BoxFit.cover,
               ),
@@ -57,7 +57,7 @@ class CampusItem extends StatelessWidget {
               // height: 50,
               width: 98.w,
               child: Container(
-                height: 6.h,
+                height: 4.5.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
@@ -66,7 +66,9 @@ class CampusItem extends StatelessWidget {
                   color: Theme.of(context).backgroundColor,
                 ),
                 // width: 390,
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(
+                  top: 0.8.h,
+                ),
                 child: Text(
                   campus,
                   textAlign: TextAlign.center,

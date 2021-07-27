@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sizer/sizer.dart';
 
 import '../widgets/navigation_bar.dart';
 import '../widgets/building_item.dart';
@@ -35,7 +36,7 @@ class BuildingScreen extends StatelessWidget {
                       child: Text(
                         'No data has been added for this faculty. \nTry another faculty.',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 12.sp,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -46,9 +47,10 @@ class BuildingScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: displayedBuildings
                               .map((building) => BuildingItem(
+                                    building: building['name'],
+                                    image: building['imageUrl'],
                                     campus: campus,
                                     faculty: faculty,
-                                    building: building['name'],
                                   ))
                               .toList(),
                         ),

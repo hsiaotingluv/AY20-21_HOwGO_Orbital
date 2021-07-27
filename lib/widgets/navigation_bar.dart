@@ -98,7 +98,7 @@ class _NavigationBarState extends State<NavigationBar> {
         selectedItemColor: Theme.of(context).primaryColor,
         selectedFontSize: 12,
         unselectedFontSize: 12,
-        iconSize: 22.sp,
+        iconSize: 20.sp,
         currentIndex: _selectedPageIndex,
         type: BottomNavigationBarType.fixed,
         items: [

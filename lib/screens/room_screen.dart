@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sizer/sizer.dart';
 
 import '../widgets/navigation_bar.dart';
 import '../widgets/room_item.dart';
@@ -39,7 +40,7 @@ class RoomScreen extends StatelessWidget {
                         child: Text(
                           'No data has been added for this building yet. Try another building.',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 12.sp,
                           ),
                           textAlign: TextAlign.center,
                         ),
