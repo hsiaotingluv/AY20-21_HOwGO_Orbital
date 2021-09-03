@@ -1,6 +1,6 @@
 # HOwGO App
 
-This is an navigation app developed as part of the NUS Orbital Programme. 
+This is an navigation app developed as part of the NUS Orbital Programme (CP2106). 
 
 ## Description 
 
@@ -11,9 +11,12 @@ There are several navigation apps available for navigation around Singapore. In 
 1) Locate Rooms 
 2) Locate Study Spots 
 3) Favourite rooms and study spots for easy reference 
-4) Add your timetable to the app for easy reference to your next venue and lesson 
+4) Provide room information such as capacity, facilities and interior design
 
 
 ## Made By
 Chen Hsiao Ting\
 Raveen Prabhu
+
+## Useful links
+[ReadMe](https://docs.google.com/document/d/1COfFz31T111n5N_7wGhzrfVBVV8UFcojFzaznxY7Tyg/edit?usp=sharing), [Poster](https://drive.google.com/file/d/1BF5aWe1cbkNCor89nOTPNBCLot3JCkDS/view?usp=sharing), [Video](https://drive.google.com/file/d/1HJXqxJ5yYw1EMsAcWVoUvGPtUBB7rkgt/view?usp=sharing), [Code](https://drive.google.com/file/d/1TiXLZByCfBNZMYIDkgC4UVJtXaql4Aqk/view?usp=sharing)
